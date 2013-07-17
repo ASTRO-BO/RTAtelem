@@ -1,4 +1,4 @@
 RTAtelem
 ========
 
-The CTA Real-Time Analsys demo
+The CTA Real-Time Analsys demo prototype.
