@@ -1,0 +1,12 @@
+[RBlock Configuration]
+-- fixed part present (yes | no)
+yes
+-- variable part present (yes | no). If yes, add [RBlockX] sections.
+no
+--number of rblock (if variable part is present)
+0
+[Fixed Part]
+-- FADC
+FADC
+16
+none
