@@ -19,8 +19,7 @@ namespace RTATelem {
 			~CTATriggeredEvent();
 			
 			//set section -----------------------------
-			
-			
+
 			void setMetadata(word arrayID, word runNumber, word eventNumber); 
 			void setNumberOfTelescopes(word number);
 			void setNumberOfPixels(word telescopeIndex, word number);

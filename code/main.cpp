@@ -46,14 +46,10 @@ int main(int argc, char *argv[])
     	word nsamples = 5;
     	trev->setNumberOfPixels(telescopeIndex, npixels);
     	
-    	
-    	
     	for(int i=0; i<npixels; i++) {
     		trev->setNumerOfSamples(telescopeIndex, i, nsamples);
     		trev->setPixelId(telescopeIndex, i, i);
     	}
-    	
-    	
 
     	for(int i=0; i<npixels; i++)
     		for(int j=0; j<nsamples; j++)
@@ -62,7 +58,6 @@ int main(int argc, char *argv[])
     	trev->printPacket_output();
     		
     	trev->writePacket();
-    	
     	
     	t = clock() - t;
   		printf ("It took me %d clicks (%f seconds).\n",t,((float)t)/CLOCKS_PER_SEC);
