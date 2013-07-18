@@ -34,6 +34,36 @@ int main(int argc, char *argv[])
     {
     	clock_t t;
     	RTATelem::CTATriggeredEvent * trev = new RTATelem::CTATriggeredEvent("conf/rta.stream", "", "out.raw");
+    	
+    	trev->setMetadata(1, 2, 3);
+    	trev->setNumberOfTelescopes(1);
+    	
+    	word telescopeIndex = 0;
+    	
+    	trev->setTelescopeId(telescopeIndex, 10);
+    	    	
+    	word npixels = 30;
+    	word nsamples = 5;
+    	trev->setNumberOfPixels(telescopeIndex, npixels);
+    	
+    	
+    	
+    	for(int i=0; i<npixels; i++) {
+    		trev->setNumerOfSamples(telescopeIndex, i, nsamples);
+    		trev->setPixelId(telescopeIndex, i, i);
+    	}
+    	
+    	
+
+    	for(int i=0; i<npixels; i++)
+    		for(int j=0; j<nsamples; j++)
+    			trev->setSampleValue(0, i, j, 3);
+    	
+    	trev->printPacket_output();
+    		
+    	trev->writePacket();
+    	
+    	
     	t = clock() - t;
   		printf ("It took me %d clicks (%f seconds).\n",t,((float)t)/CLOCKS_PER_SEC);
         cout << "END" << endl;
@@ -42,10 +72,10 @@ int main(int argc, char *argv[])
     }
     catch(PacketExceptionIO* e)
     {
-        cout << e->geterror();
+        cout << e->geterror() << endl;;
     }
     catch(PacketException* e)
     {
-        cout << e->geterror();
+        cout << e->geterror() << endl;
     }
 }

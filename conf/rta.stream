@@ -4,7 +4,7 @@ false
 --stream format bigendian
 true
 --dimension of prefix
-2
+0
 [Header Format]
 headerESATM.header
 [Packet Format]

@@ -29,6 +29,7 @@ namespace RTATelem {
 			void setPixelId(word telescopeIndex, word pixelIndex, word pixelID);
 			void setSampleValue(word telescopeIndex, word pixelIndex, word sampleIndex, word FADC);
 			void writePacket();
+			void printPacket_output();
 			
 			//get section ----------------------------
 			
@@ -36,6 +37,10 @@ namespace RTATelem {
 			char* readPacket();
 			
 		protected:
+		
+			//utility
+			void printListOfString(char** r);
+			void printListOfString(string* r);
 			
 			
 		protected:

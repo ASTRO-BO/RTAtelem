@@ -7,15 +7,42 @@
 #define RBLOCK_TELESCOPE 0
 #define RBLOCK_PIXEL 0
 #define RBLOCK_SAMPLE 0
+#define APID 100
 
+void RTATelem::CTATriggeredEvent::printListOfString(char** r) {
+	int i=0;
+	while(r[i] != 0)
+		cout << r[i++] << endl;
+}
 
+void RTATelem::CTATriggeredEvent::printListOfString(string* r) {
+	
+		cout << *r<< endl;
+}
+
+void RTATelem::CTATriggeredEvent::printPacket_output() {
+	cout << "HEADER ----------" << endl;
+	char** r = outputPacket->header->printValue();
+	printListOfString(r);
+	cout << "DATA FIELD HEADER ----------" << endl;
+ 	r = outputPacket->dataField->dataFieldHeader->printValue();
+	printListOfString(r);
+	cout << "SOURCE DATA FIELD ----------" << endl;
+	SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField; //Get a pointer to the source data field
+	r = sdf->printValue();
+	printListOfString(r);
+	
+}
+	
 RTATelem::CTATriggeredEvent::CTATriggeredEvent(string packetConfig, string tmInputFileName, string tmOutputFileName) {
 	
 	in = 0;
 	out = 0;
 	ips = 0;
 	ops = 0;
-
+	outputPacket = 0;
+	inputPacket = 0;
+	
 	try{
 		char** param = (char**) new char* [2];
 		
@@ -25,7 +52,8 @@ RTATelem::CTATriggeredEvent::CTATriggeredEvent(string packetConfig, string tmInp
 			ops->setFileNameConfig(packetConfig.c_str());
 			ops->createStreamStructure();
 			outputPacket = ops->getPacketType(1);
-			
+			outputPacket->header->setFieldValue(3, APID);
+			cout << (const char*) outputPacket->getName() << endl;
 			//parameter for the output: file
 			out = (Output*) new OutputFile(ops->isBigEndian()); 
 			param[0] = (char*)tmOutputFileName.c_str(); //file name
@@ -68,15 +96,7 @@ RTATelem::CTATriggeredEvent::~CTATriggeredEvent() {
 	if(out) out->close();
 }
 
-void RTATelem::CTATriggeredEvent::setEvent(word arrayID, word runNumber, word eventNumber, word numberOfTelescopes, word numberOfPixels, word numberOfSamples) {
-	setMetadata(arrayID, runNumber, eventNumber);
-	setNumberOfTelescopes(numberOfTelescopes);
-	for(int i=0; i<numberOfTelescopes; i++) {
-		setNumberOfPixels(i, numberOfPixels);
-		for(int j=0; j<numberOfPixels; j++)
-			setNumerOfSamples(i, j, numberOfSamples);
-	}
-}
+
 
 void RTATelem::CTATriggeredEvent::setMetadata(word arrayID, word runNumber, word eventNumber) {
 	outputPacket->dataField->dataFieldHeader->setFieldValue(3, arrayID);
@@ -87,42 +107,43 @@ void RTATelem::CTATriggeredEvent::setMetadata(word arrayID, word runNumber, word
 
 void RTATelem::CTATriggeredEvent::setNumberOfTelescopes(word number) {
 	SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField; //Get a pointer to the source data field
-	sdf->setNumberOfRealDataBlock(number, RBLOCK_TELESCOPE); //N blocks for rtype RBLOCK_TELESCOPE
+	sdf->setNumberOfRealDataBlock(number, RBLOCK_TELESCOPE); //N blocks for rtype RBLOCK_TELESCOPE	
 }
 
 
 void RTATelem::CTATriggeredEvent::setTelescopeId(word telescopeIndex, word telescopeID) {
 	SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField; //Get a pointer to the source data field
-	SDFRBlock* telescope = (SDFRBlock*) sdf->getBlock(telescopeIndex, RBLOCK_TELESCOPE); //get the block i of type RBLOCK_TELESCOPE of the source data field
+	SDFRBBlock* telescope = (SDFRBBlock*) sdf->getBlock(telescopeIndex, RBLOCK_TELESCOPE); //get the block i of type RBLOCK_TELESCOPE of the source data field
 	telescope->setFieldValue(1, telescopeID);
 }
 
 void RTATelem::CTATriggeredEvent::setNumberOfPixels(word telescopeIndex, word number) {
 	SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField; //Get a pointer to the source data field
-	SDFRBlock* telescope = (SDFRBlock*) sdf->getBlock(telescopeIndex, RBLOCK_TELESCOPE); //get the block i of type RBLOCK_TELESCOPE of the source data field
+	SDFRBBlock* telescope = (SDFRBBlock*) sdf->getBlock(telescopeIndex, RBLOCK_TELESCOPE); //get the block i of type RBLOCK_TELESCOPE of the source data field
 	telescope->setNumberOfRealDataBlock(number, RBLOCK_PIXEL);
 	
+
 }
 
 void RTATelem::CTATriggeredEvent::setPixelId(word telescopeIndex, word pixelIndex, word pixelID) {
 	SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField; //Get a pointer to the source data field
-	SDFRBlock* telescope = (SDFRBlock*) sdf->getBlock(telescopeIndex, RBLOCK_TELESCOPE); //get the block i of type RBLOCK_TELESCOPE of the source data field
-	SDFRBlock* pixel = (SDFRBlock*) telescope->getBlock(pixelIndex, RBLOCK_PIXEL);
+	SDFRBBlock* telescope = (SDFRBBlock*) sdf->getBlock(telescopeIndex, RBLOCK_TELESCOPE); //get the block i of type RBLOCK_TELESCOPE of the source data field
+	SDFRBBlock* pixel = (SDFRBBlock*) telescope->getBlock(pixelIndex, RBLOCK_PIXEL);
 	pixel->setFieldValue(1, pixelID);
 }
 
 void RTATelem::CTATriggeredEvent::setNumerOfSamples(word telescopeIndex, word pixelIndex, word number) {
 	SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField; //Get a pointer to the source data field
-	SDFRBlock* telescope = (SDFRBlock*) sdf->getBlock(telescopeIndex, RBLOCK_TELESCOPE); //get the block i of type RBLOCK_TELESCOPE of the source data field
-	SDFRBlock* pixel = (SDFRBlock*) telescope->getBlock(pixelIndex, RBLOCK_PIXEL);
+	SDFRBBlock* telescope = (SDFRBBlock*) sdf->getBlock(telescopeIndex, RBLOCK_TELESCOPE); //get the block i of type RBLOCK_TELESCOPE of the source data field
+	SDFRBBlock* pixel = (SDFRBBlock*) telescope->getBlock(pixelIndex, RBLOCK_PIXEL);
 	pixel->setNumberOfRealDataBlock(number, RBLOCK_SAMPLE);
 }
 
 void RTATelem::CTATriggeredEvent::setSampleValue(word telescopeIndex, word pixelIndex, word sampleIndex, word FADC) {
 	SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField; //Get a pointer to the source data field
-	SDFRBlock* telescope = (SDFRBlock*) sdf->getBlock(telescopeIndex, RBLOCK_TELESCOPE); //get the block i of type RBLOCK_TELESCOPE of the source data field
-	SDFRBlock* pixel = (SDFRBlock*) telescope->getBlock(pixelIndex, RBLOCK_PIXEL);
-	SDFRBlock* sample = (SDFRBlock*) pixel->getBlock(sampleIndex, RBLOCK_SAMPLE);
+	SDFRBBlock* telescope = (SDFRBBlock*) sdf->getBlock(telescopeIndex, RBLOCK_TELESCOPE); //get the block i of type RBLOCK_TELESCOPE of the source data field
+	SDFRBBlock* pixel = (SDFRBBlock*) telescope->getBlock(pixelIndex, RBLOCK_PIXEL);
+	SDFRBBlock* sample = (SDFRBBlock*) pixel->getBlock(sampleIndex, RBLOCK_SAMPLE);
 	sample->setFieldValue(0, FADC);
 }
 
