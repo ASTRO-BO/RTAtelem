@@ -22,13 +22,20 @@
 #include <iostream>
 #include <stdlib.h>
 #include "PacketExceptionIO.h"
+#include "CTATriggeredEvent.h"
 using namespace std;
 using namespace PacketLib;
+
+#include <time.h> 
 
 int main(int argc, char *argv[])
 {
     try
     {
+    	clock_t t;
+    	RTATelem::CTATriggeredEvent * trev = new RTATelem::CTATriggeredEvent("conf/rta.stream", "", "out.raw");
+    	t = clock() - t;
+  		printf ("It took me %d clicks (%f seconds).\n",t,((float)t)/CLOCKS_PER_SEC);
         cout << "END" << endl;
         return 0;
 

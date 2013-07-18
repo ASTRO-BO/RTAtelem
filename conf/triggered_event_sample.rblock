@@ -3,10 +3,9 @@
 yes
 -- variable part present (yes | no). If yes, add [RBlockX] sections.
 no
---number of rblock (if variable part is present)
-0
 [Fixed Part]
--- FADC
+-- field 0 - FADC
 FADC
 16
 none
+[RBlock1]

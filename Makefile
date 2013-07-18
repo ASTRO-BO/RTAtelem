@@ -69,16 +69,16 @@ CXX      = g++
 #Insert the optional parameter to the compiler. The CFLAGS could be changed externally by the user
 CFLAGS   =
 #Set INCPATH to add the inclusion paths
-INCPATH = -I ./include -I $(GTB_CFITSIO_INCLUDE) -L$(GTB_CFITSIO_LIB) -I $(GTB_PACKETLIB_INCLUDE) -L$(GTB_PACKETLIB_LIB)
+INCPATH = -I ./include  -I $(GTB_PACKETLIB_INCLUDE) -L$(GTB_PACKETLIB_LIB)
 #Insert the implicit parameter to the compiler:
 ALL_CFLAGS = -fexceptions -Wall $(INCPATH) $(CFLAGS)
 ifeq ($(SYSTEM), QNX)
 	ALL_CFLAGS += -Vgcc_ntox86_gpp -lang-c++
 endif
 #Use CPPFLAGS for the preprocessor
-CPPFLAGS = 
+CPPFLAGS =  -m64 
 #Set LIBS for addition library
-LIBS = $(INCPATH) -lstdc++ -lcfitsio -lpacket
+LIBS = $(INCPATH) -lstdc++  -lpacket
 ifeq ($(SYSTEM), QNX)
 	LIBS += -lsocket
 endif

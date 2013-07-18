@@ -15,16 +15,16 @@ none
 -- field 2
 Packet Subtype
 8
-2
--- arrayID (Array)
+none
+-- field 3 - arrayID (Array)
 ArrayID
 16
 none
--- RunNumber (Run)
+-- field 4 - RunNumber (Run)
 runNumber
 16
 none
--- eventNumber (Event)
+-- field 5 - eventNumber (Event)
 eventNumber
 16
 none
@@ -40,21 +40,21 @@ yes
 1
 [Fixed Part]
 --field 0 (Number of cameras) - SOURCE DATA FIELD HEADER ----------------------------------------
-Number of triggered cameras
+Number of triggered telescopes
 16
 none
 [RBlock1]
 --type of number of blocks of this variable part: fixed = number of block fixed equals to max number of block (fixed | variable)
 variable
---number of blocks for fixed value into variable part, max number of blocks for variable value into variable part
-100
+--number of blocks for fixed value into variable part, max number of blocks for variable value into variable part (100)
+1
 -- for variable block, number of level of headers in which is present the field with the number of blocks of the variable part (0: fixed part)
 0
 -- for variable block, index of field of the header which rappresent the number of events (the number of blocks) of the packet
 0
 -- for variable block, value to sum to get the real number of events (blocks) 
 0
-triggered_event_camera.rblock
+triggered_event_telescope.rblock
 [Identifiers]
 -- ID0 APID
 -- field number
