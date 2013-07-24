@@ -11,29 +11,31 @@ using namespace std;
 using namespace PacketLib;
 
 namespace RTATelem {
-	class CTATriggeredEvent {
+	class CTATriggeredTelescope {
 
 
 		public:
-			CTATriggeredEvent(string packetConfig, string tmInputFileName = "", string tmOutputFileName = "");
-			~CTATriggeredEvent();
+			CTATriggeredTelescope(string packetConfig, string tmInputFileName = "", string tmOutputFileName = "");
+			~CTATriggeredTelescope();
 			
 			//set section -----------------------------
 
 			void setMetadata(word arrayID, word runNumber, word eventNumber); 
-			void setNumberOfTelescopes(word number);
-			void setNumberOfPixels(word telescopeIndex, word number);
-			void setNumerOfSamples(word telescopeIndex, word pixelIndex, word number);
-			void setTelescopeId(word telescopeIndex, word telescopeID);
-			void setPixelId(word telescopeIndex, word pixelIndex, word pixelID);
-			void setSampleValue(word telescopeIndex, word pixelIndex, word sampleIndex, word FADC);
+			void setNumberOfTriggeredTelescopes(word number);
+			void setIndexOfCurrentTriggeredTelescopes(word telescopeIndex);
+			void setTelescopeId(word telescopeID);
+			void setNumberOfPixels(word number);
+			void setPixelId(word pixelIndex, word pixelID);
+			void setNumerOfSamples(word pixelIndex, word number);
+			void setSampleValue(word pixelIndex, word sampleIndex, word FADC);
 			void writePacket();
 			void printPacket_output();
 			
 			//get section ----------------------------
 			
 			// Return a ByteStream* or 0 if there is no packets
-			char* readPacket();
+			byte* readPacket();
+			void printPacket_input();
 			
 		protected:
 		

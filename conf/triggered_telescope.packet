@@ -1,5 +1,5 @@
 -- name of packet
-CTA Triggered Sim Event
+CTA Triggered Sim Telescope
 [PacketHeader]
 -- file that contains the description of the header
 headerESATM.header
@@ -16,16 +16,24 @@ none
 Packet Subtype
 8
 none
--- field 3 - arrayID (Array)
+-- field 3 - arrayID (Array) - metadata
 ArrayID
 16
 none
--- field 4 - RunNumber (Run)
+-- field 4 - RunNumber (Run) - metadata
 runNumber
 16
 none
--- field 5 - eventNumber (Event)
+-- field 5 - eventNumber (Event) - metadata
 eventNumber
+16
+none
+-- field 6 - number of triggered telescopes
+numberOfTriggeredTelescopes
+16
+none
+-- field 7 - index of the triggered telescope (0..numberOfTriggeredTelescopes-1)
+telescopeCounter
 16
 none
 [SourceDataField]
@@ -39,22 +47,26 @@ yes
 --number of rblock (if variable part is present)
 1
 [Fixed Part]
---field 0 (Number of cameras) - SOURCE DATA FIELD HEADER ----------------------------------------
-Number of triggered telescopes
+--field 0 - SOURCE DATA FIELD HEADER ----------------------------------------
+TelescopeID
+16
+none
+--field 1 (Number of pixels)
+Number of pixels
 16
 none
 [RBlock1]
 --type of number of blocks of this variable part: fixed = number of block fixed equals to max number of block (fixed | variable)
 variable
---number of blocks for fixed value into variable part, max number of blocks for variable value into variable part (100)
-1
+--number of blocks for fixed value into variable part, max number of blocks for variable value into variable part (2900)
+2900
 -- for variable block, number of level of headers in which is present the field with the number of blocks of the variable part (0: fixed part)
 0
 -- for variable block, index of field of the header which rappresent the number of events (the number of blocks) of the packet
-0
+1
 -- for variable block, value to sum to get the real number of events (blocks) 
 0
-triggered_event_telescope.rblock
+triggered_telescope_pixel.rblock
 [Identifiers]
 -- ID0 APID
 -- field number

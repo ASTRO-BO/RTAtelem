@@ -8,4 +8,4 @@ true
 [Header Format]
 headerESATM.header
 [Packet Format]
-triggered_event.packet
+triggered_telescope.packet
