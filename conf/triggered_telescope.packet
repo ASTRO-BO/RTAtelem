@@ -16,15 +16,15 @@ none
 Packet Subtype
 8
 none
--- field 3 - arrayID (Array) - metadata
+-- field 3 - arrayID (Array) - identifier - metadata
 ArrayID
 16
 none
--- field 4 - RunNumber (Run) - metadata
+-- field 4 - RunNumberID (Run) - identifier - metadata
 runNumber
 16
 none
--- field 5 - eventNumber (Event) - metadata
+-- field 5 - eventNumberID (Event) - identifier - metadata
 eventNumber
 16
 none

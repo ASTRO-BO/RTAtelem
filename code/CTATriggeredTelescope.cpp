@@ -104,10 +104,10 @@ RTATelem::CTATriggeredTelescope::~CTATriggeredTelescope() {
 
 
 
-void RTATelem::CTATriggeredTelescope::setMetadata(word arrayID, word runNumber, word eventNumber) {
+void RTATelem::CTATriggeredTelescope::setMetadata(word arrayID, word runNumberID, word eventNumberID) {
 	outputPacket->dataField->dataFieldHeader->setFieldValue(3, arrayID);
-	outputPacket->dataField->dataFieldHeader->setFieldValue(4, runNumber);
-	outputPacket->dataField->dataFieldHeader->setFieldValue(5, eventNumber);
+	outputPacket->dataField->dataFieldHeader->setFieldValue(4, runNumberID);
+	outputPacket->dataField->dataFieldHeader->setFieldValue(5, eventNumberID);
 }
 
 
@@ -158,6 +158,8 @@ void RTATelem::CTATriggeredTelescope::writePacket() {
 
 byte* RTATelem::CTATriggeredTelescope::readPacket() {
 	inputPacket = ips->readPacket();
+	if(inputPacket == 0)
+		return 0;
 	return inputPacket->getInputStream()->stream;
 }
 
@@ -176,3 +178,17 @@ void RTATelem::CTATriggeredTelescope::printPacket_input() {
 	
 }
 
+
+void RTATelem::CTATriggeredTelescope::getMetadata(word &arrayID, word &runNumberID, word &eventNumberID) {
+	arrayID = inputPacket->dataField->dataFieldHeader->getFieldValue(3);
+	runNumberID = inputPacket->dataField->dataFieldHeader->getFieldValue(4);
+	eventNumberID = inputPacket->dataField->dataFieldHeader->getFieldValue(5);
+}
+
+word RTATelem::CTATriggeredTelescope::getNumberOfTriggeredTelescopes() {
+	return inputPacket->dataField->dataFieldHeader->getFieldValue(6);	
+}
+
+word RTATelem::CTATriggeredTelescope::getIndexOfCurrentTriggeredTelescopes() {
+	return inputPacket->dataField->dataFieldHeader->getFieldValue(7);	
+}

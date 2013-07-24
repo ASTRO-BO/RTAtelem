@@ -28,15 +28,28 @@ using namespace PacketLib;
 
 #include <time.h> 
 
-int mainR(int argc, char *argv[])
+//mainR
+int main(int argc, char *argv[])
 {
     try
     {
     	clock_t t;
     	RTATelem::CTATriggeredTelescope * trev = new RTATelem::CTATriggeredTelescope("conf/rta.stream", "out.raw", "");
     	
-    	trev->readPacket();
-    	trev->printPacket_input();
+    	byte* b = trev->readPacket();
+    	while(b != 0) {
+    		if(b) {
+    			//trev->printPacket_input();
+    			cout << "--" << endl;
+    			word arrayID, runNumberID, eventNumberID;
+    			trev->getMetadata(arrayID, runNumberID, eventNumberID);
+    			cout << "metadata " << arrayID << " " << runNumberID << " " << eventNumberID << endl;
+    			cout << "triggered telescopes: " << trev->getNumberOfTriggeredTelescopes() << endl;
+    			cout << "getIndexOfCurrentTriggeredTelescopes " << trev->getIndexOfCurrentTriggeredTelescopes() << endl;
+    		}
+    		b = trev->readPacket();
+    		
+    	}
 		
 				
     	
@@ -57,7 +70,7 @@ int mainR(int argc, char *argv[])
 }
 
 //mainW
-int main(int argc, char *argv[])
+int mainW(int argc, char *argv[])
 {
     try
     {
