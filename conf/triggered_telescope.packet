@@ -2,7 +2,7 @@
 CTA Triggered Sim Telescope
 [PacketHeader]
 -- file that contains the description of the header
-headerESATM.header
+CTAheader.header
 [DataFieldHeader]
 -- field 0
 CRC flag

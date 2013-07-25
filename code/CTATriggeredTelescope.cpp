@@ -29,7 +29,7 @@ void RTATelem::CTATriggeredTelescope::printPacket_output() {
 	cout << "DATA FIELD HEADER ----------" << endl;
  	r = outputPacket->dataField->dataFieldHeader->printValue();
 	printListOfString(r);
-	cout << outputPacket->dataField->dataFieldHeader->outputstream->printStreamInHexadecimal() << endl;
+	//cout << outputPacket->dataField->dataFieldHeader->outputstream->printStreamInHexadecimal() << endl;
 	cout << "max dimension: " << outputPacket->dataField->dataFieldHeader->getDimension() << endl;
 	cout << "SOURCE DATA FIELD ----------" << endl;
 	SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField; //Get a pointer to the source data field
@@ -161,7 +161,7 @@ byte* RTATelem::CTATriggeredTelescope::readPacket() {
 	inputPacket = ips->readPacket();
 	if(inputPacket == 0)
 		return 0;
-	cout << inputPacket->printHeaderStream() << endl;
+	//cout << inputPacket->printHeaderStream() << endl;
 	return inputPacket->getInputStream()->stream;
 }
 
@@ -170,17 +170,18 @@ void RTATelem::CTATriggeredTelescope::printPacket_input() {
 	char** r = inputPacket->header->printValue();
 	printListOfString(r);
 	cout << inputPacket->header->stream->printStreamInHexadecimal() << endl;
-	cout << "max dimension: " << inputPacket->header->getDimension() << endl;
+	cout << "max dimension in byte of the header: " << inputPacket->header->getDimension() << endl;
+	cout << "packet length " << inputPacket->header->getPacketLength() << endl;
 	cout << "DATA FIELD HEADER ----------" << endl;
  	r = inputPacket->dataField->dataFieldHeader->printValue();
 	printListOfString(r);
-	cout << inputPacket->dataField->dataFieldHeader->stream->printStreamInHexadecimal() << endl;
+	//cout << inputPacket->dataField->dataFieldHeader->stream->printStreamInHexadecimal() << endl;
 	cout << "max dimension: " << inputPacket->dataField->dataFieldHeader->getDimension() << endl;	
 	cout << "SOURCE DATA FIELD ----------" << endl;
 	SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField; //Get a pointer to the source data field
 	sdf->printValueStdout();
-	cout << "DIM: " << inputPacket->getDimension() << endl;
-	cout << "MAXDIM: " << inputPacket->getMaxDimension() << endl;
+	cout << "TOTAL DIM OF THE PACKET : " << inputPacket->getDimension() << endl;
+	cout << "MAXDIM OF THE PACKET : " << inputPacket->getMaxDimension() << endl;
 	
 }
 

@@ -82,38 +82,38 @@ int mainW(int argc, char *argv[])
     	clock_t t;
     	RTATelem::CTATriggeredTelescope * trtel = new RTATelem::CTATriggeredTelescope("conf/rta.stream", "", "out.raw");
     	
-    	for(int evnum = 0; evnum < 1; evnum++) {
+    	int evnum=10;
     	
-    		int numberOfTriggeredTelescopes = 2;
-			for(int telindex = 0; telindex<numberOfTriggeredTelescopes; telindex++) {
-		
-				trtel->setMetadata(1, 2, evnum);
-		
-		
-				//1
-				trtel->setNumberOfTriggeredTelescopes(numberOfTriggeredTelescopes);
-				trtel->setIndexOfCurrentTriggeredTelescopes(telindex);
-				trtel->setTelescopeId(telindex*10);
-		
-				//30
-				word npixels = 30;
-				//5
-				word nsamples = 40;
-				trtel->setNumberOfPixels(npixels);
-		
-				for(int pixelindex=0; pixelindex<npixels; pixelindex++) {
-					trtel->setPixelId(pixelindex, pixelindex);
-					//trtel->setNumberOfSamples(pixelindex, nsamples);
-					for(int sampleindex=0; sampleindex<nsamples; sampleindex++)
-						trtel->setSampleValue(pixelindex, sampleindex, 3);
-				}
-			
-				trtel->writePacket();
-				
-				trtel->printPacket_output();
-			
+		int numberOfTriggeredTelescopes = 1;
+		for(int telindex = 0; telindex<numberOfTriggeredTelescopes; telindex++) {
+	
+			trtel->setMetadata(1, 2, evnum);
+	
+	
+			//1
+			trtel->setNumberOfTriggeredTelescopes(numberOfTriggeredTelescopes);
+			trtel->setIndexOfCurrentTriggeredTelescopes(telindex);
+			trtel->setTelescopeId(telindex*10+5);
+	
+			//30
+			word npixels = 1141;
+			//5
+			word nsamples = 40;
+			trtel->setNumberOfPixels(npixels);
+	
+			for(int pixelindex=0; pixelindex<npixels; pixelindex++) {
+				trtel->setPixelId(pixelindex, pixelindex);
+				//trtel->setNumberOfSamples(pixelindex, nsamples);
+				for(int sampleindex=0; sampleindex<nsamples; sampleindex++)
+					trtel->setSampleValue(pixelindex, sampleindex, 3);
 			}
-    	}
+		
+			trtel->writePacket();
+			
+			trtel->printPacket_output();
+		
+		}
+	
     	
     	t = clock() - t;
   		printf ("It took me %d clicks (%f seconds).\n",t,((float)t)/CLOCKS_PER_SEC);

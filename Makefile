@@ -67,7 +67,7 @@ ICON_DIR = ui
 CC       = gcc
 CXX      = g++
 #Insert the optional parameter to the compiler. The CFLAGS could be changed externally by the user
-CFLAGS   =
+CFLAGS   = 
 #Set INCPATH to add the inclusion paths
 INCPATH = -I ./include  -I $(GTB_PACKETLIB_INCLUDE) -L$(GTB_PACKETLIB_LIB)
 #Insert the implicit parameter to the compiler:

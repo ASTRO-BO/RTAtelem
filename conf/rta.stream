@@ -6,6 +6,6 @@ true
 --dimension of prefix
 0
 [Header Format]
-headerESATM.header
+CTAheader.header
 [Packet Format]
 triggered_telescope.packet
