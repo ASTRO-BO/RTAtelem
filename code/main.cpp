@@ -33,25 +33,30 @@ int main(int argc, char *argv[])
 {
     try
     {
+
     	clock_t t;
-    	RTATelem::CTATriggeredTelescope * trev = new RTATelem::CTATriggeredTelescope("conf/rta.stream", "out.raw", "");
+    	RTATelem::CTATriggeredTelescope * trtel = new RTATelem::CTATriggeredTelescope("conf/rta.stream", "out.raw", "");
     	
-    	byte* b = trev->readPacket();
+    	byte* b = trtel->readPacket();
     	while(b != 0) {
     		if(b) {
-    			//trev->printPacket_input();
+    			trtel->printPacket_input();
     			cout << "--" << endl;
     			word arrayID, runNumberID, eventNumberID;
-    			trev->getMetadata(arrayID, runNumberID, eventNumberID);
+    			trtel->getMetadata(arrayID, runNumberID, eventNumberID);
     			cout << "metadata " << arrayID << " " << runNumberID << " " << eventNumberID << endl;
-    			cout << "triggered telescopes: " << trev->getNumberOfTriggeredTelescopes() << endl;
-    			cout << "getIndexOfCurrentTriggeredTelescopes " << trev->getIndexOfCurrentTriggeredTelescopes() << endl;
+    			cout << "triggered telescopes: " << trtel->getNumberOfTriggeredTelescopes() << endl;
+    			cout << "IndexOfCurrentTriggeredTelescopes " << trtel->getIndexOfCurrentTriggeredTelescopes() << endl;
+    			cout << "TelescopeId " << trtel->getTelescopeId() << endl;
+    			cout << "NumberOfPixels " << trtel->getNumberOfPixels() << endl;
+    			cout << "PixelId " << trtel->getPixelId(0) << endl;
+    			cout << "NumberOfSamples " << trtel->getNumberOfSamples(0) << endl;
+    			cout << "SampleValue " << trtel->getSampleValue(0, 0) << endl;
     		}
-    		b = trev->readPacket();
+    		b = trtel->readPacket();
     		
     	}
-		
-				
+						
     	
     	t = clock() - t;
   		printf ("It took me %d clicks (%f seconds).\n",t,((float)t)/CLOCKS_PER_SEC);
@@ -75,37 +80,37 @@ int mainW(int argc, char *argv[])
     try
     {
     	clock_t t;
-    	RTATelem::CTATriggeredTelescope * trev = new RTATelem::CTATriggeredTelescope("conf/rta.stream", "", "out.raw");
+    	RTATelem::CTATriggeredTelescope * trtel = new RTATelem::CTATriggeredTelescope("conf/rta.stream", "", "out.raw");
     	
     	for(int evnum = 0; evnum < 1; evnum++) {
     	
     		int numberOfTriggeredTelescopes = 2;
 			for(int telindex = 0; telindex<numberOfTriggeredTelescopes; telindex++) {
 		
-				trev->setMetadata(1, 2, evnum);
+				trtel->setMetadata(1, 2, evnum);
 		
 		
 				//1
-				trev->setNumberOfTriggeredTelescopes(numberOfTriggeredTelescopes);
-				trev->setIndexOfCurrentTriggeredTelescopes(telindex);
-				trev->setTelescopeId(telindex*10);
+				trtel->setNumberOfTriggeredTelescopes(numberOfTriggeredTelescopes);
+				trtel->setIndexOfCurrentTriggeredTelescopes(telindex);
+				trtel->setTelescopeId(telindex*10);
 		
 				//30
 				word npixels = 30;
 				//5
 				word nsamples = 10;
-				trev->setNumberOfPixels(npixels);
+				trtel->setNumberOfPixels(npixels);
 		
 				for(int pixelindex=0; pixelindex<npixels; pixelindex++) {
-					trev->setPixelId(pixelindex, pixelindex);
-					trev->setNumerOfSamples(pixelindex, nsamples);
+					trtel->setPixelId(pixelindex, pixelindex);
+					trtel->setNumberOfSamples(pixelindex, nsamples);
 					for(int sampleindex=0; sampleindex<nsamples; sampleindex++)
-						trev->setSampleValue(pixelindex, sampleindex, 3);
+						trtel->setSampleValue(pixelindex, sampleindex, 3);
 				}
 			
-				trev->writePacket();
+				trtel->writePacket();
 				
-				trev->printPacket_output();
+				trtel->printPacket_output();
 			
 			}
     	}

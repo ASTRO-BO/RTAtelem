@@ -23,11 +23,10 @@ namespace RTATelem {
 			void setMetadata(word arrayID, word runNumberID, word eventNumberID); 
 			void setNumberOfTriggeredTelescopes(word number);
 			void setIndexOfCurrentTriggeredTelescopes(word telescopeIndex);
-			//---
 			void setTelescopeId(word telescopeID);
 			void setNumberOfPixels(word number);
 			void setPixelId(word pixelIndex, word pixelID);
-			void setNumerOfSamples(word pixelIndex, word number);
+			void setNumberOfSamples(word pixelIndex, word number);
 			void setSampleValue(word pixelIndex, word sampleIndex, word FADC);
 			void writePacket();
 			void printPacket_output();
@@ -40,6 +39,11 @@ namespace RTATelem {
 			void getMetadata(word &arrayID, word &runNumberID, word &eventNumberID); 
 			word getNumberOfTriggeredTelescopes();
 			word getIndexOfCurrentTriggeredTelescopes();
+			word getTelescopeId();
+                        word getNumberOfPixels();
+                        word getPixelId(word pixelIndex);
+                        word getNumberOfSamples(word pixelIndex);
+                        word getSampleValue(word pixelIndex, word sampleIndex);
 			
 		protected:
 		

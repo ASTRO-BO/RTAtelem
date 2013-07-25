@@ -136,7 +136,7 @@ void RTATelem::CTATriggeredTelescope::setPixelId(word pixelIndex, word pixelID) 
 	pixel->setFieldValue(0, pixelID);
 }
 
-void RTATelem::CTATriggeredTelescope::setNumerOfSamples(word pixelIndex, word number) {
+void RTATelem::CTATriggeredTelescope::setNumberOfSamples(word pixelIndex, word number) {
 	SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField; //Get a pointer to the source data field
 	SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
 	pixel->setNumberOfRealDataBlock(number, RBLOCK_SAMPLE);
@@ -191,4 +191,33 @@ word RTATelem::CTATriggeredTelescope::getNumberOfTriggeredTelescopes() {
 
 word RTATelem::CTATriggeredTelescope::getIndexOfCurrentTriggeredTelescopes() {
 	return inputPacket->dataField->dataFieldHeader->getFieldValue(7);	
+}
+
+word RTATelem::CTATriggeredTelescope::getTelescopeId() {
+	SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField; //Get a pointer to the source data field
+	return sdf->getFieldValue(1);
+}
+
+word RTATelem::CTATriggeredTelescope::getNumberOfPixels() {
+	SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField; //Get a pointer to the source data field
+	return sdf->getNumberOfRealDataBlock();
+}
+
+word RTATelem::CTATriggeredTelescope::getPixelId(word pixelIndex) {
+	SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField; //Get a pointer to the source data field
+	SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
+	return pixel->getFieldValue(0);
+}
+
+word RTATelem::CTATriggeredTelescope::getNumberOfSamples(word pixelIndex) {
+	SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField; //Get a pointer to the source data field
+	SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
+	return pixel->getNumberOfRealDataBlock();
+}
+
+word RTATelem::CTATriggeredTelescope::getSampleValue(word pixelIndex, word sampleIndex) {
+	SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField; //Get a pointer to the source data field
+	SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
+	SDFRBBlock* sample = (SDFRBBlock*) pixel->getBlock(sampleIndex, RBLOCK_SAMPLE);
+	return sample->getFieldValue(0);
 }
