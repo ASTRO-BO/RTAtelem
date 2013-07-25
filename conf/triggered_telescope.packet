@@ -66,7 +66,7 @@ variable
 1
 -- for variable block, value to sum to get the real number of events (blocks) 
 0
-triggered_telescope_pixel.rblock
+triggered_telescope_pixel40.rblock
 [Identifiers]
 -- ID0 APID
 -- field number

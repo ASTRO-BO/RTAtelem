@@ -160,6 +160,7 @@ byte* RTATelem::CTATriggeredTelescope::readPacket() {
 	inputPacket = ips->readPacket();
 	if(inputPacket == 0)
 		return 0;
+	cout << inputPacket->printHeaderStream() << endl;
 	return inputPacket->getInputStream()->stream;
 }
 
@@ -167,9 +168,13 @@ void RTATelem::CTATriggeredTelescope::printPacket_input() {
 	cout << "HEADER ----------" << endl;
 	char** r = inputPacket->header->printValue();
 	printListOfString(r);
+	cout << inputPacket->header->stream->printStreamInHexadecimal() << endl;
+	cout << "max dimension: " << inputPacket->header->getDimension() << endl;
 	cout << "DATA FIELD HEADER ----------" << endl;
  	r = inputPacket->dataField->dataFieldHeader->printValue();
 	printListOfString(r);
+	cout << inputPacket->dataField->dataFieldHeader->stream->printStreamInHexadecimal() << endl;
+	cout << "max dimension: " << inputPacket->dataField->dataFieldHeader->getDimension() << endl;	
 	cout << "SOURCE DATA FIELD ----------" << endl;
 	SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField; //Get a pointer to the source data field
 	sdf->printValueStdout();

@@ -40,10 +40,10 @@ namespace RTATelem {
 			word getNumberOfTriggeredTelescopes();
 			word getIndexOfCurrentTriggeredTelescopes();
 			word getTelescopeId();
-                        word getNumberOfPixels();
-                        word getPixelId(word pixelIndex);
-                        word getNumberOfSamples(word pixelIndex);
-                        word getSampleValue(word pixelIndex, word sampleIndex);
+			word getNumberOfPixels();
+			word getPixelId(word pixelIndex);
+			word getNumberOfSamples(word pixelIndex);
+			word getSampleValue(word pixelIndex, word sampleIndex);
 			
 		protected:
 		
