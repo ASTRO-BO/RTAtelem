@@ -110,6 +110,13 @@ void RTATelem::CTATriggeredTelescope::setMetadata(word arrayID, word runNumberID
 	outputPacket->dataField->dataFieldHeader->setFieldValue(5, eventNumberID);
 }
 
+void RTATelem::CTATriggeredTelescope::setSSC(word counter) {
+	outputPacket->header->setFieldValue(5, counter);
+}
+
+word RTATelem::CTATriggeredTelescope::getSSC() {
+	return inputPacket->header->getFieldValue(5);
+}
 
 void RTATelem::CTATriggeredTelescope::setNumberOfTriggeredTelescopes(word number) {
 	outputPacket->dataField->dataFieldHeader->setFieldValue(6, number);	
@@ -122,7 +129,7 @@ void RTATelem::CTATriggeredTelescope::setIndexOfCurrentTriggeredTelescopes(word 
 
 void RTATelem::CTATriggeredTelescope::setTelescopeId(word telescopeID) {
 	SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField; //Get a pointer to the source data field
-	sdf->setFieldValue(1, telescopeID);
+	sdf->setFieldValue(0, telescopeID);
 }
 
 void RTATelem::CTATriggeredTelescope::setNumberOfPixels(word number) {

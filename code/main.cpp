@@ -29,7 +29,7 @@ using namespace PacketLib;
 #include <time.h> 
 
 //mainR
-int main(int argc, char *argv[])
+int mainR(int argc, char *argv[])
 {
     try
     {
@@ -44,6 +44,7 @@ int main(int argc, char *argv[])
     			cout << "--" << endl;
     			word arrayID, runNumberID, eventNumberID;
     			trtel->getMetadata(arrayID, runNumberID, eventNumberID);
+    			cout << "ssc: " << trtel->getSSC() << endl;
     			cout << "metadata " << arrayID << " " << runNumberID << " " << eventNumberID << endl;
     			cout << "triggered telescopes: " << trtel->getNumberOfTriggeredTelescopes() << endl;
     			cout << "IndexOfCurrentTriggeredTelescopes " << trtel->getIndexOfCurrentTriggeredTelescopes() << endl;
@@ -75,7 +76,7 @@ int main(int argc, char *argv[])
 }
 
 //mainW
-int mainW(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
     try
     {
@@ -87,6 +88,7 @@ int mainW(int argc, char *argv[])
 		int numberOfTriggeredTelescopes = 1;
 		for(int telindex = 0; telindex<numberOfTriggeredTelescopes; telindex++) {
 	
+			trtel->setSSC(0);
 			trtel->setMetadata(1, 2, evnum);
 	
 	

@@ -20,6 +20,7 @@ namespace RTATelem {
 			
 			//set section -----------------------------
 
+			void setSSC(word counter);
 			void setMetadata(word arrayID, word runNumberID, word eventNumberID); 
 			void setNumberOfTriggeredTelescopes(word number);
 			void setIndexOfCurrentTriggeredTelescopes(word telescopeIndex);
@@ -36,6 +37,7 @@ namespace RTATelem {
 			// Return a ByteStream* or 0 if there is no packets
 			byte* readPacket();
 			void printPacket_input();
+			word getSSC();
 			void getMetadata(word &arrayID, word &runNumberID, word &eventNumberID); 
 			word getNumberOfTriggeredTelescopes();
 			word getIndexOfCurrentTriggeredTelescopes();
