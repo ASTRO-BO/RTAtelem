@@ -145,8 +145,9 @@ void RTATelem::CTATriggeredTelescope::setNumberOfSamples(word pixelIndex, word n
 void RTATelem::CTATriggeredTelescope::setSampleValue(word pixelIndex, word sampleIndex, word FADC) {
 	SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField; //Get a pointer to the source data field
 	SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
-	SDFRBBlock* sample = (SDFRBBlock*) pixel->getBlock(sampleIndex, RBLOCK_SAMPLE);
-	sample->setFieldValue(0, FADC);
+	//SDFRBBlock* sample = (SDFRBBlock*) pixel->getBlock(sampleIndex, RBLOCK_SAMPLE);
+	//sample->setFieldValue(0, FADC);
+	pixel->setFieldValue(sampleIndex+2, FADC);
 }
 
 void RTATelem::CTATriggeredTelescope::writePacket() {
@@ -223,6 +224,7 @@ word RTATelem::CTATriggeredTelescope::getNumberOfSamples(word pixelIndex) {
 word RTATelem::CTATriggeredTelescope::getSampleValue(word pixelIndex, word sampleIndex) {
 	SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField; //Get a pointer to the source data field
 	SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
-	SDFRBBlock* sample = (SDFRBBlock*) pixel->getBlock(sampleIndex, RBLOCK_SAMPLE);
-	return sample->getFieldValue(0);
+	//SDFRBBlock* sample = (SDFRBBlock*) pixel->getBlock(sampleIndex, RBLOCK_SAMPLE);
+	//return sample->getFieldValue(0);
+	return pixel->getFieldValue(sampleIndex+2);
 }

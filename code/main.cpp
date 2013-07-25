@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
     			cout << "TelescopeId " << trtel->getTelescopeId() << endl;
     			cout << "NumberOfPixels " << trtel->getNumberOfPixels() << endl;
     			cout << "PixelId " << trtel->getPixelId(0) << endl;
-    			cout << "NumberOfSamples " << trtel->getNumberOfSamples(0) << endl;
+    			//cout << "NumberOfSamples " << trtel->getNumberOfSamples(0) << endl;
     			cout << "SampleValue " << trtel->getSampleValue(0, 0) << endl;
     		}
     		b = trtel->readPacket();
@@ -98,12 +98,12 @@ int mainW(int argc, char *argv[])
 				//30
 				word npixels = 30;
 				//5
-				word nsamples = 10;
+				word nsamples = 40;
 				trtel->setNumberOfPixels(npixels);
 		
 				for(int pixelindex=0; pixelindex<npixels; pixelindex++) {
 					trtel->setPixelId(pixelindex, pixelindex);
-					trtel->setNumberOfSamples(pixelindex, nsamples);
+					//trtel->setNumberOfSamples(pixelindex, nsamples);
 					for(int sampleindex=0; sampleindex<nsamples; sampleindex++)
 						trtel->setSampleValue(pixelindex, sampleindex, 3);
 				}
