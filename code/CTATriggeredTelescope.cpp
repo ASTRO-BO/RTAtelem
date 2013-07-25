@@ -152,9 +152,11 @@ void RTATelem::CTATriggeredTelescope::setNumberOfSamples(word pixelIndex, word n
 void RTATelem::CTATriggeredTelescope::setSampleValue(word pixelIndex, word sampleIndex, word FADC) {
 	SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField; //Get a pointer to the source data field
 	SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
-	//SDFRBBlock* sample = (SDFRBBlock*) pixel->getBlock(sampleIndex, RBLOCK_SAMPLE);
-	//sample->setFieldValue(0, FADC);
-	pixel->setFieldValue(sampleIndex+2, FADC);
+	//VARIABLE FORMAT
+	SDFRBBlock* sample = (SDFRBBlock*) pixel->getBlock(sampleIndex, RBLOCK_SAMPLE);
+	sample->setFieldValue(0, FADC);
+	//FIXED FORMAT
+	//pixel->setFieldValue(sampleIndex+2, FADC);
 }
 
 void RTATelem::CTATriggeredTelescope::writePacket() {
@@ -168,7 +170,6 @@ byte* RTATelem::CTATriggeredTelescope::readPacket() {
 	inputPacket = ips->readPacket();
 	if(inputPacket == 0)
 		return 0;
-	//cout << inputPacket->printHeaderStream() << endl;
 	return inputPacket->getInputStream()->stream;
 }
 
@@ -209,7 +210,7 @@ word RTATelem::CTATriggeredTelescope::getIndexOfCurrentTriggeredTelescopes() {
 
 word RTATelem::CTATriggeredTelescope::getTelescopeId() {
 	SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField; //Get a pointer to the source data field
-	return sdf->getFieldValue(1);
+	return sdf->getFieldValue(0);
 }
 
 word RTATelem::CTATriggeredTelescope::getNumberOfPixels() {
@@ -232,7 +233,9 @@ word RTATelem::CTATriggeredTelescope::getNumberOfSamples(word pixelIndex) {
 word RTATelem::CTATriggeredTelescope::getSampleValue(word pixelIndex, word sampleIndex) {
 	SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField; //Get a pointer to the source data field
 	SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
-	//SDFRBBlock* sample = (SDFRBBlock*) pixel->getBlock(sampleIndex, RBLOCK_SAMPLE);
-	//return sample->getFieldValue(0);
-	return pixel->getFieldValue(sampleIndex+2);
+	//VARIABLE FORMAT
+	SDFRBBlock* sample = (SDFRBBlock*) pixel->getBlock(sampleIndex, RBLOCK_SAMPLE);
+	return sample->getFieldValue(0);
+	//FIXED FORMAT
+	//return pixel->getFieldValue(sampleIndex+2);
 }

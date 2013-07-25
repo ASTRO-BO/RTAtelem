@@ -105,7 +105,7 @@ int main(int argc, char *argv[])
 	
 			for(int pixelindex=0; pixelindex<npixels; pixelindex++) {
 				trtel->setPixelId(pixelindex, pixelindex);
-				//trtel->setNumberOfSamples(pixelindex, nsamples);
+				trtel->setNumberOfSamples(pixelindex, nsamples);
 				for(int sampleindex=0; sampleindex<nsamples; sampleindex++)
 					trtel->setSampleValue(pixelindex, sampleindex, 3);
 			}
