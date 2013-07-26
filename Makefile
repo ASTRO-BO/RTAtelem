@@ -69,7 +69,7 @@ CXX      = g++
 #Insert the optional parameter to the compiler. The CFLAGS could be changed externally by the user
 CFLAGS   = 
 #Set INCPATH to add the inclusion paths
-INCPATH = -I ./include  -I $(GTB_PACKETLIB_INCLUDE) -L$(GTB_PACKETLIB_LIB)
+INCPATH = -I ./include  -I $(PACKETLIB)/include -L$(PACKETLIB)/lib
 #Insert the implicit parameter to the compiler:
 ALL_CFLAGS = -fexceptions -Wall $(INCPATH) $(CFLAGS)
 ifeq ($(SYSTEM), QNX)

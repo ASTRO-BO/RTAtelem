@@ -29,7 +29,7 @@ using namespace PacketLib;
 #include <time.h> 
 
 //mainR
-int mainR(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
     try
     {
@@ -76,7 +76,7 @@ int mainR(int argc, char *argv[])
 }
 
 //mainW
-int main(int argc, char *argv[])
+int mainW(int argc, char *argv[])
 {
     try
     {
