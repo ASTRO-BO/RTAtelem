@@ -79,13 +79,14 @@ RTATelem::CTATriggeredTelescope::CTATriggeredTelescope(string packetConfig, stri
 			cout << (const char*) outputPacket->getName() << endl;
 			/// parameter for the output: file
 			out = (Output*) new OutputFile(ops->isBigEndian()); 
-			param[0] = (char*)tmOutputFileName.c_str(); //file name
+			/// file name
+			param[0] = (char*)tmOutputFileName.c_str(); 
 			param[1] = 0;
 			
-			///open output
+			/// open output
 			out->open(param);
 			
-       		///connect the output
+       		/// connect the output
   			ops->setOutput(out);
        		
 		}
@@ -97,13 +98,14 @@ RTATelem::CTATriggeredTelescope::CTATriggeredTelescope(string packetConfig, stri
 			inputPacket = ips->getPacketType(1);
 			
 			in = (Input*) new InputFile(ips->isBigEndian());
-			param[0] = (char*) tmInputFileName.c_str(); //file name
+			/// file name
+			param[0] = (char*) tmInputFileName.c_str(); 
 			param[1] = 0;
 			
-			///open input
+			/// open input
    			in->open(param);
    			
-   			///set a particular input
+   			/// set a particular input
    			ips->setInput(in);
    			
 		}

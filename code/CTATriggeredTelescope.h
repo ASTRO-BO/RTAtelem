@@ -17,7 +17,7 @@
 #ifndef _CTATRIGGEREDTELESCOPE_H
 #define _CTATRIGGEREDTELESCOPE_H
 
-#endif 
+
 
 #include <iostream>
 #include <stdlib.h>
@@ -133,3 +133,5 @@ namespace RTATelem {
        		
 	};
 }
+
+#endif 

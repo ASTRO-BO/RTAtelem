@@ -1,3 +1,20 @@
+/***************************************************************************
+                          CTAPedestalHigh.cpp  -  description
+                             -------------------
+    copyright            : (C) 2013 Andrea Bulgarelli
+    email                : bulgarelli@iasfbo.inaf.it
+ ***************************************************************************/
+
+/***************************************************************************
+ *                                                                         *
+ *   This program is free software for non commercial purpose              *
+ *   and for public research institutes; you can redistribute it and/or    *
+ *   modify it under the terms of the GNU General Public License.          *
+ *   For commercial purpose see appropriate license terms                  *
+ *                                                                         *
+ ***************************************************************************/
+
+
 #include "CTAPedestalHigh.h"
 #include "OutputFile.h"
 #include "InputFile.h"
@@ -31,7 +48,8 @@ void RTATelem::CTAPedestalHigh::printPacket_output() {
 	//cout << outputPacket->dataField->dataFieldHeader->outputstream->printStreamInHexadecimal() << endl;
 	cout << "max dimension: " << outputPacket->dataField->dataFieldHeader->getDimension() << endl;
 	cout << "SOURCE DATA FIELD ----------" << endl;
-	SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField; //Get a pointer to the source data field
+	/// Get a pointer to the source data field
+	SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField; 
 	cout << "max dimension: " << sdf->getDimension() << endl;
 	sdf->printValueStdout();
 	cout << "DIM: " << outputPacket->getDimension() << endl;
@@ -52,40 +70,42 @@ RTATelem::CTAPedestalHigh::CTAPedestalHigh(string packetConfig, string tmInputFi
 		char** param = (char**) new char* [2];
 		
 		if(tmOutputFileName != "") {
-			//create output packet stream
+			/// create output packet stream
 			ops = new OutputPacketStream();
 			ops->setFileNameConfig(packetConfig.c_str());
 			ops->createStreamStructure();
 			outputPacket = ops->getPacketType(1);
 			outputPacket->header->setFieldValue(3, APID);
 			cout << (const char*) outputPacket->getName() << endl;
-			//parameter for the output: file
+			/// parameter for the output: file
 			out = (Output*) new OutputFile(ops->isBigEndian()); 
-			param[0] = (char*)tmOutputFileName.c_str(); //file name
+			/// file name
+			param[0] = (char*)tmOutputFileName.c_str(); 
 			param[1] = 0;
 			
-			//open output
+			/// open output
 			out->open(param);
 			
-       		//connect the output
+       		/// connect the output
   			ops->setOutput(out);
        		
 		}
     	if(tmInputFileName != "") {
-			//create input packet stream
+			/// create input packet stream
 			ips = new InputPacketStream();
 			ips->setFileNameConfig(packetConfig.c_str());
 			ips->createStreamStructure();
 			inputPacket = ips->getPacketType(1);
 			
 			in = (Input*) new InputFile(ips->isBigEndian());
-			param[0] = (char*) tmInputFileName.c_str(); //file name
+			/// file name
+			param[0] = (char*) tmInputFileName.c_str(); 
 			param[1] = 0;
 			
-			//open input
+			/// open input
    			in->open(param);
    			
-   			//set a particular input
+   			/// set a particular input
    			ips->setInput(in);
    			
 		}
@@ -126,24 +146,28 @@ void RTATelem::CTAPedestalHigh::setIndexOfCurrentTelescopes(word telescopeIndex)
 
 
 void RTATelem::CTAPedestalHigh::setTelescopeId(word telescopeID) {
-	SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField; //Get a pointer to the source data field
+	/// Get a pointer to the source data field
+	SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField; 
 	sdf->setFieldValue(0, telescopeID);
 }
 
 void RTATelem::CTAPedestalHigh::setNumberOfPixels(word number) {
-	SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField; //Get a pointer to the source data field
+	/// Get a pointer to the source data field
+	SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField; 
 	sdf->setNumberOfRealDataBlock(number, RBLOCK_PIXEL);
 }
 
 void RTATelem::CTAPedestalHigh::setPixelId(word pixelIndex, word pixelID) {
-	SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField; //Get a pointer to the source data field
+	/// Get a pointer to the source data field
+	SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField; 
 	SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
 	pixel->setFieldValue(0, pixelID);
 }
 
 
 void RTATelem::CTAPedestalHigh::setPedestalHighValue(word pixelIndex, word PED_HIGH) {
-	SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField; //Get a pointer to the source data field
+	/// Get a pointer to the source data field
+	SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField; 
 	SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
 	pixel->setFieldValue(1, PED_HIGH);
 	//FIXED FORMAT
@@ -177,7 +201,8 @@ void RTATelem::CTAPedestalHigh::printPacket_input() {
 	//cout << inputPacket->dataField->dataFieldHeader->stream->printStreamInHexadecimal() << endl;
 	cout << "max dimension: " << inputPacket->dataField->dataFieldHeader->getDimension() << endl;	
 	cout << "SOURCE DATA FIELD ----------" << endl;
-	SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField; //Get a pointer to the source data field
+	/// Get a pointer to the source data field
+	SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField;
 	sdf->printValueStdout();
 	cout << "TOTAL DIM OF THE PACKET : " << inputPacket->getDimension() << endl;
 	cout << "MAXDIM OF THE PACKET : " << inputPacket->getMaxDimension() << endl;
@@ -199,24 +224,28 @@ word RTATelem::CTAPedestalHigh::getIndexOfCurrentTelescopes() {
 }
 
 word RTATelem::CTAPedestalHigh::getTelescopeId() {
-	SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField; //Get a pointer to the source data field
+	/// Get a pointer to the source data field
+	SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField; 
 	return sdf->getFieldValue(0);
 }
 
 word RTATelem::CTAPedestalHigh::getNumberOfPixels() {
-	SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField; //Get a pointer to the source data field
+	/// Get a pointer to the source data field
+	SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField; 
 	return sdf->getNumberOfRealDataBlock();
 }
 
 word RTATelem::CTAPedestalHigh::getPixelId(word pixelIndex) {
-	SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField; //Get a pointer to the source data field
+	/// Get a pointer to the source data field
+	SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField; 
 	SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
 	return pixel->getFieldValue(0);
 }
 
 
 word RTATelem::CTAPedestalHigh::getPedestalHighValue(word pixelIndex) {
-	SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField; //Get a pointer to the source data field
+	/// Get a pointer to the source data field
+	SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField; 
 	SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
 	return pixel->getFieldValue(1);
 	//FIXED FORMAT
