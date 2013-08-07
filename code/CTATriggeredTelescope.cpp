@@ -1,3 +1,20 @@
+/***************************************************************************
+                          CTATriggeredTelescope.cpp  -  description
+                             -------------------
+    copyright            : (C) 2013 Andrea Bulgarelli
+    email                : bulgarelli@iasfbo.inaf.it
+ ***************************************************************************/
+
+/***************************************************************************
+ *                                                                         *
+ *   This program is free software for non commercial purpose              *
+ *   and for public research institutes; you can redistribute it and/or    *
+ *   modify it under the terms of the GNU General Public License.          *
+ *   For commercial purpose see appropriate license terms                  *
+ *                                                                         *
+ ***************************************************************************/
+
+
 #include "CTATriggeredTelescope.h"
 #include "OutputFile.h"
 #include "InputFile.h"
@@ -29,10 +46,10 @@ void RTATelem::CTATriggeredTelescope::printPacket_output() {
 	cout << "DATA FIELD HEADER ----------" << endl;
  	r = outputPacket->dataField->dataFieldHeader->printValue();
 	printListOfString(r);
-	//cout << outputPacket->dataField->dataFieldHeader->outputstream->printStreamInHexadecimal() << endl;
 	cout << "max dimension: " << outputPacket->dataField->dataFieldHeader->getDimension() << endl;
 	cout << "SOURCE DATA FIELD ----------" << endl;
-	SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField; //Get a pointer to the source data field
+	/// Get a pointer to the source data field
+	SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField; 
 	cout << "max dimension: " << sdf->getDimension() << endl;
 	sdf->printValueStdout();
 	cout << "DIM: " << outputPacket->getDimension() << endl;
@@ -53,27 +70,27 @@ RTATelem::CTATriggeredTelescope::CTATriggeredTelescope(string packetConfig, stri
 		char** param = (char**) new char* [2];
 		
 		if(tmOutputFileName != "") {
-			//create output packet stream
+			/// create output packet stream
 			ops = new OutputPacketStream();
 			ops->setFileNameConfig(packetConfig.c_str());
 			ops->createStreamStructure();
 			outputPacket = ops->getPacketType(1);
 			outputPacket->header->setFieldValue(3, APID);
 			cout << (const char*) outputPacket->getName() << endl;
-			//parameter for the output: file
+			/// parameter for the output: file
 			out = (Output*) new OutputFile(ops->isBigEndian()); 
 			param[0] = (char*)tmOutputFileName.c_str(); //file name
 			param[1] = 0;
 			
-			//open output
+			///open output
 			out->open(param);
 			
-       		//connect the output
+       		///connect the output
   			ops->setOutput(out);
        		
 		}
     	if(tmInputFileName != "") {
-			//create input packet stream
+			///create input packet stream
 			ips = new InputPacketStream();
 			ips->setFileNameConfig(packetConfig.c_str());
 			ips->createStreamStructure();
@@ -83,10 +100,10 @@ RTATelem::CTATriggeredTelescope::CTATriggeredTelescope(string packetConfig, stri
 			param[0] = (char*) tmInputFileName.c_str(); //file name
 			param[1] = 0;
 			
-			//open input
+			///open input
    			in->open(param);
    			
-   			//set a particular input
+   			///set a particular input
    			ips->setInput(in);
    			
 		}
@@ -104,10 +121,14 @@ RTATelem::CTATriggeredTelescope::~CTATriggeredTelescope() {
 
 
 
-void RTATelem::CTATriggeredTelescope::setMetadata(word arrayID, word runNumberID, word eventNumberID) {
+void RTATelem::CTATriggeredTelescope::setMetadata(byte arrayID, word runNumberID, dword eventNumberID) {
 	outputPacket->dataField->dataFieldHeader->setFieldValue(3, arrayID);
 	outputPacket->dataField->dataFieldHeader->setFieldValue(4, runNumberID);
-	outputPacket->dataField->dataFieldHeader->setFieldValue(5, eventNumberID);
+	outputPacket->dataField->dataFieldHeader->setFieldValue_4_14(5, eventNumberID);
+}
+
+void RTATelem::CTATriggeredTelescope::setTelescopeTime(signed long trigTime) {
+	outputPacket->dataField->dataFieldHeader->setFieldValue_4_14(7, trigTime);
 }
 
 void RTATelem::CTATriggeredTelescope::setSSC(word counter) {
@@ -119,44 +140,47 @@ word RTATelem::CTATriggeredTelescope::getSSC() {
 }
 
 void RTATelem::CTATriggeredTelescope::setNumberOfTriggeredTelescopes(word number) {
-	outputPacket->dataField->dataFieldHeader->setFieldValue(6, number);	
+	outputPacket->dataField->dataFieldHeader->setFieldValue(9, number);	
 }
 
 void RTATelem::CTATriggeredTelescope::setIndexOfCurrentTriggeredTelescopes(word telescopeIndex) {
-	outputPacket->dataField->dataFieldHeader->setFieldValue(7, telescopeIndex);
+	outputPacket->dataField->dataFieldHeader->setFieldValue(10, telescopeIndex);
 }
 
 
 void RTATelem::CTATriggeredTelescope::setTelescopeId(word telescopeID) {
-	SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField; //Get a pointer to the source data field
+	/// Get a pointer to the source data field
+	SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField; 
 	sdf->setFieldValue(0, telescopeID);
 }
 
 void RTATelem::CTATriggeredTelescope::setNumberOfPixels(word number) {
-	SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField; //Get a pointer to the source data field
+	/// Get a pointer to the source data field
+	SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField; 
 	sdf->setNumberOfRealDataBlock(number, RBLOCK_PIXEL);
 }
 
 void RTATelem::CTATriggeredTelescope::setPixelId(word pixelIndex, word pixelID) {
-	SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField; //Get a pointer to the source data field
+	/// Get a pointer to the source data field
+	SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField; 
 	SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
 	pixel->setFieldValue(0, pixelID);
 }
 
 void RTATelem::CTATriggeredTelescope::setNumberOfSamples(word pixelIndex, word number) {
-	SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField; //Get a pointer to the source data field
+	/// Get a pointer to the source data field
+	SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField; 
 	SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
 	pixel->setNumberOfRealDataBlock(number, RBLOCK_SAMPLE);
 }
 
 void RTATelem::CTATriggeredTelescope::setSampleValue(word pixelIndex, word sampleIndex, word FADC) {
-	SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField; //Get a pointer to the source data field
+	/// Get a pointer to the source data field
+	SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField; 
 	SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
-	//VARIABLE FORMAT
+	/// VARIABLE FORMAT
 	SDFRBBlock* sample = (SDFRBBlock*) pixel->getBlock(sampleIndex, RBLOCK_SAMPLE);
 	sample->setFieldValue(0, FADC);
-	//FIXED FORMAT
-	//pixel->setFieldValue(sampleIndex+2, FADC);
 }
 
 void RTATelem::CTATriggeredTelescope::writePacket() {
@@ -183,10 +207,10 @@ void RTATelem::CTATriggeredTelescope::printPacket_input() {
 	cout << "DATA FIELD HEADER ----------" << endl;
  	r = inputPacket->dataField->dataFieldHeader->printValue();
 	printListOfString(r);
-	//cout << inputPacket->dataField->dataFieldHeader->stream->printStreamInHexadecimal() << endl;
 	cout << "max dimension: " << inputPacket->dataField->dataFieldHeader->getDimension() << endl;	
 	cout << "SOURCE DATA FIELD ----------" << endl;
-	SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField; //Get a pointer to the source data field
+	/// Get a pointer to the source data field
+	SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField; 
 	sdf->printValueStdout();
 	cout << "TOTAL DIM OF THE PACKET : " << inputPacket->getDimension() << endl;
 	cout << "MAXDIM OF THE PACKET : " << inputPacket->getMaxDimension() << endl;
@@ -194,48 +218,55 @@ void RTATelem::CTATriggeredTelescope::printPacket_input() {
 }
 
 
-void RTATelem::CTATriggeredTelescope::getMetadata(word &arrayID, word &runNumberID, word &eventNumberID) {
+void RTATelem::CTATriggeredTelescope::getMetadata(byte &arrayID, word &runNumberID, dword &eventNumberID) {
 	arrayID = inputPacket->dataField->dataFieldHeader->getFieldValue(3);
 	runNumberID = inputPacket->dataField->dataFieldHeader->getFieldValue(4);
-	eventNumberID = inputPacket->dataField->dataFieldHeader->getFieldValue(5);
+	eventNumberID = inputPacket->dataField->dataFieldHeader->getFieldValue_4_14(5);
+}
+
+signed long RTATelem::CTATriggeredTelescope::getTelescopeTime() {
+	return inputPacket->dataField->dataFieldHeader->getFieldValue_4_14(7);
 }
 
 word RTATelem::CTATriggeredTelescope::getNumberOfTriggeredTelescopes() {
-	return inputPacket->dataField->dataFieldHeader->getFieldValue(6);	
+	return inputPacket->dataField->dataFieldHeader->getFieldValue(9);	
 }
 
 word RTATelem::CTATriggeredTelescope::getIndexOfCurrentTriggeredTelescopes() {
-	return inputPacket->dataField->dataFieldHeader->getFieldValue(7);	
+	return inputPacket->dataField->dataFieldHeader->getFieldValue(10);	
 }
 
 word RTATelem::CTATriggeredTelescope::getTelescopeId() {
-	SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField; //Get a pointer to the source data field
+	/// Get a pointer to the source data field
+	SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField; 
 	return sdf->getFieldValue(0);
 }
 
 word RTATelem::CTATriggeredTelescope::getNumberOfPixels() {
-	SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField; //Get a pointer to the source data field
+	/// Get a pointer to the source data field
+	SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField; 
 	return sdf->getNumberOfRealDataBlock();
 }
 
 word RTATelem::CTATriggeredTelescope::getPixelId(word pixelIndex) {
-	SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField; //Get a pointer to the source data field
+	/// Get a pointer to the source data field
+	SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField; 
 	SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
 	return pixel->getFieldValue(0);
 }
 
 word RTATelem::CTATriggeredTelescope::getNumberOfSamples(word pixelIndex) {
-	SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField; //Get a pointer to the source data field
+	/// Get a pointer to the source data field
+	SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField; 
 	SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
 	return pixel->getNumberOfRealDataBlock();
 }
 
 word RTATelem::CTATriggeredTelescope::getSampleValue(word pixelIndex, word sampleIndex) {
-	SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField; //Get a pointer to the source data field
+	/// Get a pointer to the source data field
+	SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField; 
 	SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
-	//VARIABLE FORMAT
+	/// VARIABLE FORMAT
 	SDFRBBlock* sample = (SDFRBBlock*) pixel->getBlock(sampleIndex, RBLOCK_SAMPLE);
 	return sample->getFieldValue(0);
-	//FIXED FORMAT
-	//return pixel->getFieldValue(sampleIndex+2);
 }
