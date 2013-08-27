@@ -14,8 +14,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef _CTACAMERATRIGGERED_H
-#define _CTACAMERATRIGGERED_H
+#ifndef _CTACAMERATRIGGERDATA_H
+#define _CTACAMERATRIGGERDATA_H
 #include "CTACamera.h"
 
 namespace RTATelem {
@@ -23,7 +23,7 @@ namespace RTATelem {
 /// Creating and writing a packet for each CTA triggered telescope,
 /// containg the FADC value at each sample of the telescope pixel
 /// \brief CTA triggered telescope packet class
-class CTACameraTriggered : public RTATelem::CTACamera {
+class CTACameraTriggerData : public RTATelem::CTACamera {
 
 
 public:
@@ -31,9 +31,9 @@ public:
     /// \param packetConfig The packet configuration file (.stream)
     /// \param tmInputFileName The input file name of the packet
     /// \param tmOutputFileName The output file name of the packet
-    CTACameraTriggered(string packetConfig, string tmInputFileName = "", string tmOutputFileName = "");
+	CTACameraTriggerData(string packetConfig, string tmInputFileName = "", string tmOutputFileName = "");
 
-    ~CTACameraTriggered();
+    ~CTACameraTriggerData();
 
 	/// It sets the telescope ID (identification number)
 	/// \param telescopeID The telescope unique ID
@@ -53,10 +53,6 @@ public:
     /// It sets the index of the telescope converted to packet
     /// \param telescopeIndex The index of the written telescope (0..NumberOfTelescopes-1)
     void setIndexOfCurrentTriggeredTelescopes(byte telescopeIndex);
-
-    /// It sets the number of pixels
-    /// \param number The number of pixels
-    void setNumberOfPixels(word number);
 
     /// It sets the pixel ID (identification number)
     /// \param pixelIndex The index of the pixel (0..NumberOfPixels-1)
@@ -79,9 +75,6 @@ public:
 
     /// It gets the index of the telescope converted to packet
     byte getIndexOfCurrentTriggeredTelescopes();
-
-    /// It gets the number of pixels
-    word getNumberOfPixels();
 
     /// It gets the pixel ID (identification number)
     word getPixelId(word pixelIndex);

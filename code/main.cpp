@@ -21,9 +21,9 @@
 #include <iostream>
 #include <stdlib.h>
 #include "PacketExceptionIO.h"
-#include "CTATriggeredTelescope.h"
-#include "CTAPedestal.h"
-#include "CTAPacket.h"
+#include "CTACameraTriggerData.h"
+#include "CTACameraPedestal.h"
+
 
 using namespace std;
 using namespace PacketLib;
@@ -40,11 +40,11 @@ int main(int argc, char *argv[])
         clock_t t;
 
         /// The Packet containing the FADC value of each triggered telescope
-        RTATelem::CTATriggeredTelescope * trtel = new RTATelem::CTATriggeredTelescope("conf/rta_fadc.stream", "out_fadc.raw", "");
+        RTATelem::CTACameraTriggerData * trtel = new RTATelem::CTACameraTriggerData("conf/rta_fadc.stream", "out_fadc.raw", "");
 
 
         /// The Packet containing the pedestal high values for each telescope
-        RTATelem::CTAPedestal * pedestal = new RTATelem::CTAPedestal("conf/rta_ped.stream", "out_pedestal.raw", "");
+        RTATelem::CTACameraPedestal * pedestal = new RTATelem::CTACameraPedestal("conf/rta_ped.stream", "out_pedestal.raw", "");
 
         byte* b_trtel = trtel->readPacket();
 
@@ -122,10 +122,10 @@ int mainW(int argc, char *argv[])
         clock_t t;
 		 
         /// The Packet containing the FADC value of each triggered telescope
-        RTATelem::CTATriggeredTelescope * trtel = new RTATelem::CTATriggeredTelescope("conf/rta_fadc.stream", "", "out_fadc.raw");
+        RTATelem::CTACameraTriggerData * trtel = new RTATelem::CTACameraTriggerData("conf/rta_fadc.stream", "", "out_fadc.raw");
         //RTATelem::CTATriggeredTelescope * trtel = new RTATelem::CTATriggeredTelescope("conf_ASTRI_S21/STRUCT.stream", "out_fadc.raw", "");
         /// The Packet containing the pedestal high values for each telescope
-       	RTATelem::CTAPedestal * pedestal = new RTATelem::CTAPedestal("conf/rta_ped.stream", "", "out_pedestal.raw");
+       	RTATelem::CTACameraPedestal * pedestal = new RTATelem::CTACameraPedestal("conf/rta_ped.stream", "", "out_pedestal.raw");
 
 		
 

@@ -1,5 +1,5 @@
 /***************************************************************************
- CTAPedestalHigh.h  -  description
+ CTACameraCharacterization.h  -  description
  -------------------
  copyright            : (C) 2013 Andrea Bulgarelli
  email                : bulgarelli@iasfbo.inaf.it
@@ -14,8 +14,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef _CTAPEDESTAL_H
-#define _CTAPEDESTAL_H
+#ifndef _CTACAMERAPEDESTAL_H
+#define _CTACAMERAPEDESTAL_H
 
 #include "CTACamera.h"
 
@@ -24,17 +24,17 @@ namespace RTATelem {
 /// Creating and writing a packet for each CTA telescope,
 /// containg the pedestal high value for each telescope pixel
 /// \brief CTA pedestal high packet class
-class CTACameraCharacterization : public CTACamera {
+class CTACameraPedestal : public RTATelem::CTACamera {
 
 public:
 	/// It takes the configuration file .stream and the input/output file name
 	/// \param packetConfig The packet configuration file (.stream)
 	/// \param tmInputFileName The input file name of the packet
 	/// \param tmOutputFileName The output file name of the packet
-	CTACameraCharacterization(string packetConfig, string tmInputFileName = "",
+	CTACameraPedestal(string packetConfig, string tmInputFileName = "",
 			string tmOutputFileName = "");
 
-	~CTACameraCharacterization();
+	~CTACameraPedestal();
 
 	/// It sets the telescope ID (identification number)
 	/// \param telescopeID The telescope unique ID
@@ -42,10 +42,6 @@ public:
 
 	/// It gets the telescope ID (identification number)
 	word getTelescopeId();
-
-	/// It sets the number of pixels
-	/// \param number The number of pixels
-	void setNumberOfPixels(word number);
 
 	/// It sets the pixel ID (identification number)
 	/// \param pixelIndex The index of the pixel (0..NumberOfPixels-1)
@@ -56,9 +52,6 @@ public:
 	/// \param pixelIndex The index of the pixel (0..NumberOfPixels-1)
 	/// \param PED_HIGH The pedestal high values of the pixel pixelIndex
 	void setPedestalValue(word pixelIndex, word value);
-
-	/// It gets the number of pixels
-	word getNumberOfPixels();
 
 	/// It gets the pixel ID (identification number)
 	word getPixelId(word pixelIndex);

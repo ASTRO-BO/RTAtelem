@@ -1,5 +1,5 @@
 /***************************************************************************
-                          CTAPedestal.cpp  -  description
+                          CTACameraPedestal.cpp  -  description
                              -------------------
     copyright            : (C) 2013 Andrea Bulgarelli
     email                : bulgarelli@iasfbo.inaf.it
@@ -15,7 +15,7 @@
  ***************************************************************************/
 
 
-#include "CTAPedestal.h"
+#include "CTACameraPedestal.h"
 #include "OutputFile.h"
 #include "InputFile.h"
 #include "PacketDataField.h"
@@ -26,36 +26,31 @@
 #define RBLOCK_PIXEL 0
 
 
-void RTATelem::CTAPedestal::setTelescopeId(word telescopeID) {
+void RTATelem::CTACameraPedestal::setTelescopeId(word telescopeID) {
     /// Get a pointer to the source data field
     SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField;
     sdf->setFieldValue(0, telescopeID);
 }
 
-word RTATelem::CTAPedestal::getTelescopeId() {
+word RTATelem::CTACameraPedestal::getTelescopeId() {
     /// Get a pointer to the source data field
     SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField;
     return sdf->getFieldValue(0);
 }
 
 
-RTATelem::CTAPedestal::CTAPedestal(string packetConfig, string tmInputFileName, string tmOutputFileName) :  CTAPacket(packetConfig, tmInputFileName, tmOutputFileName) {
+RTATelem::CTACameraPedestal::CTACameraPedestal(string packetConfig, string tmInputFileName, string tmOutputFileName) :  CTACamera(packetConfig, tmInputFileName, tmOutputFileName) {
 
 }
 
-RTATelem::CTAPedestal::~CTAPedestal() {
+RTATelem::CTACameraPedestal::~CTACameraPedestal() {
 
 }
 
 
-void RTATelem::CTAPedestal::setNumberOfPixels(word number) {
-    /// Get a pointer to the source data field
-    SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField;
-    sdf->setNumberOfRealDataBlock(number, RBLOCK_PIXEL);
-}
 
 
-void RTATelem::CTAPedestal::setPixelId(word pixelIndex, word pixelID) {
+void RTATelem::CTACameraPedestal::setPixelId(word pixelIndex, word pixelID) {
     /// Get a pointer to the source data field
     SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField;
     SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
@@ -63,7 +58,7 @@ void RTATelem::CTAPedestal::setPixelId(word pixelIndex, word pixelID) {
 }
 
 
-void RTATelem::CTAPedestal::setPedestalValue(word pixelIndex, word value) {
+void RTATelem::CTACameraPedestal::setPedestalValue(word pixelIndex, word value) {
     /// Get a pointer to the source data field
     SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField;
     SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
@@ -71,14 +66,9 @@ void RTATelem::CTAPedestal::setPedestalValue(word pixelIndex, word value) {
 }
 
 
-word RTATelem::CTAPedestal::getNumberOfPixels() {
-    /// Get a pointer to the source data field
-    SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField;
-    return sdf->getNumberOfRealDataBlock();
-}
 
 
-word RTATelem::CTAPedestal::getPixelId(word pixelIndex) {
+word RTATelem::CTACameraPedestal::getPixelId(word pixelIndex) {
     /// Get a pointer to the source data field
     SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField;
     SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
@@ -86,29 +76,29 @@ word RTATelem::CTAPedestal::getPixelId(word pixelIndex) {
 }
 
 
-word RTATelem::CTAPedestal::getPedestalValue(word pixelIndex) {
+word RTATelem::CTACameraPedestal::getPedestalValue(word pixelIndex) {
     /// Get a pointer to the source data field
     SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField;
     SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
     return pixel->getFieldValue(1);
 }
 
-word RTATelem::CTAPedestal::getChannel() {
+word RTATelem::CTACameraPedestal::getChannel() {
 	SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField;
 	return sdf->getFieldValue(1);
 }
 
-void RTATelem::CTAPedestal::setChannel(word channel) {
+void RTATelem::CTACameraPedestal::setChannel(word channel) {
 	SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField;
 	sdf->setFieldValue(1, channel);
 }
 
-word RTATelem::CTAPedestal::getPedestalRun() {
+word RTATelem::CTACameraPedestal::getPedestalRun() {
 	SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField;
 	return sdf->getFieldValue(2);
 }
 
-void RTATelem::CTAPedestal::setPedestalRun(word pede) {
+void RTATelem::CTACameraPedestal::setPedestalRun(word pede) {
 	SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField;
 	sdf->setFieldValue(2, pede);
 }
