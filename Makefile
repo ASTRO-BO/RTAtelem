@@ -67,7 +67,7 @@ ICON_DIR = ui
 CC       = gcc
 CXX      = g++
 #Insert the optional parameter to the compiler. The CFLAGS could be changed externally by the user
-CFLAGS   = 
+CFLAGS   = -g -m64 
 #Set INCPATH to add the inclusion paths
 INCPATH = -I ./include  -I $(PACKETLIB)/include -L$(PACKETLIB)/lib
 #Insert the implicit parameter to the compiler:

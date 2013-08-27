@@ -8,44 +8,36 @@ CTAheader.header
 CRC flag
 2
 0b11
--- field 1
+-- field 1 -- set this to the correct value for this structure
 Packet Type
 6
-none
--- field 2
+1
+-- field 2 -- set this to the correct value for this structure
 Packet Subtype
 8
-none
--- field 3 - arrayID (Array) - identifier - metadata
-ArrayID
-16
-none
--- field 4 - RunNumberID (Run) - identifier - metadata
-runNumber
-16
-none
--- field 5 - eventNumberID (Event) MSB (4_14) - identifier - metadata
-eventNumber MSB
-16
-none
--- field 6 - eventNumberID (Event) LSB (4_14) - identifier - metadata
-eventNumber LSB
-16
-none
--- field 7 - trigTime (Time) MSB (4_14)
+0
+-- field 3 - Time secs MSB (4_14)
 LTtime MSB
 16
 none
--- field 8 - trigTime (Time) LSB (4_14)
+-- field 4 - Time secs LSB (4_14)
 LTtime LSB
 16
 none
--- field 9 - number of triggered telescopes
-numberOfTriggeredTelescopes
+-- field 5 - Time ns MSB (4_14)
+LTtime MSB
 16
 none
--- field 10 - index of the triggered telescope (0..numberOfTriggeredTelescopes-1)
-telescopeCounter
+-- field 6 - Time ns LSB (4_14)
+LTtime LSB
+16
+none
+-- field 7 - arrayID (Array) - identifier - metadata
+ArrayID
+16
+none
+-- field 8 - RunNumberID (Run) - identifier - metadata
+runNumber
 16
 none
 [SourceDataField]
@@ -59,11 +51,27 @@ yes
 --number of rblock (if variable part is present)
 1
 [Fixed Part]
---field 0 - SOURCE DATA FIELD HEADER ----------------------------------------
+-- field 0 - eventNumberID (Event) MSB (4_14) - identifier - metadata -- SOURCE DATA HEADER ----------------------------------------
+eventNumber MSB
+16
+none
+-- field 1 - eventNumberID (Event) LSB (4_14) - identifier - metadata
+eventNumber LSB
+16
+none
+--field 2 
 TelescopeID
 16
 none
---field 1 (Number of pixels)
+-- field 3 - number of triggered telescopes
+numberOfTriggeredTelescopes
+8
+none
+-- field 4 - index of the triggered telescope (0..numberOfTriggeredTelescopes-1)
+telescopeCounter
+8
+none
+--field 5 (Number of pixels)
 Number of pixels
 16
 none
@@ -75,18 +83,25 @@ variable
 -- for variable block, number of level of headers in which is present the field with the number of blocks of the variable part (0: fixed part)
 0
 -- for variable block, index of field of the header which rappresent the number of events (the number of blocks) of the packet
-1
+5
 -- for variable block, value to sum to get the real number of events (blocks) 
 0
 triggered_telescope_pixel.rblock
 [Identifiers]
--- ID0 APID
+-- ID0 type
 -- field number
-3
+1
 -- type (0 header, 1 data field)
-0
+1
 -- value
-100
+1
+-- ID1 subtype
+-- field number
+2
+-- type (0 header, 1 data field)
+1
+-- value
+0
 [Tail]
 CRC
 16

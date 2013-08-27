@@ -8,8 +8,8 @@ no
 pixelID
 16
 none
--- field 1 - PEDESTAL HIGH
-PEDESTAL_HIGH
+-- field 1 - PEDESTAL VALUE
+PEDESTAL
 16
 none
-[RBlock1]
+

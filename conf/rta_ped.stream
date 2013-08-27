@@ -8,4 +8,4 @@ true
 [Header Format]
 CTAheader.header
 [Packet Format]
-ped_high_telescope.packet
+ped_telescope.packet

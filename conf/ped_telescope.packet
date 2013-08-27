@@ -1,5 +1,5 @@
 -- name of packet
-CTA Telescope Pedestal High
+CTA Telescope Pedestal
 [PacketHeader]
 -- file that contains the description of the header
 CTAheader.header
@@ -8,24 +8,36 @@ CTAheader.header
 CRC flag
 2
 0b11
--- field 1
+-- field 1 -- set this to the correct value for this structure
 Packet Type
 6
-none
--- field 2
+1
+-- field 2 -- set this to the correct value for this structure
 Packet Subtype
-9
+8
+1
+-- field 3 - Time secs MSB (4_14)
+LTtime MSB
+16
 none
--- field 3 - arrayID (Array) - identifier - metadata
+-- field 4 - Time secs LSB (4_14)
+LTtime LSB
+16
+none
+-- field 5 - Time ns MSB (4_14)
+LTtime MSB
+16
+none
+-- field 6 - Time ns LSB (4_14)
+LTtime LSB
+16
+none
+-- field 7 - arrayID (Array) - identifier - metadata
 ArrayID
 16
 none
--- field 4 - number of telescopes
-numberOfTelescopes
-16
-none
--- field 5 - index of the telescope (0..numberOfTelescopes-1)
-telescopeCounter
+-- field 8 - RunNumberID (Run) - identifier - metadata
+runNumber
 16
 none
 [SourceDataField]
@@ -39,11 +51,19 @@ yes
 --number of rblock (if variable part is present)
 1
 [Fixed Part]
---field 0 - SOURCE DATA FIELD HEADER ----------------------------------------
+--field 0 - SOURCE DATA HEADER ----------------------------------------
 TelescopeID
 16
 none
---field 1 (Number of pixels)
+--field 1 - channel
+Channel
+16
+none
+--field 2 - pedestal run
+pedestalRun
+16
+none
+--field 3 - (Number of pixels)
 Number of pixels
 16
 none
@@ -55,18 +75,25 @@ variable
 -- for variable block, number of level of headers in which is present the field with the number of blocks of the variable part (0: fixed part)
 0
 -- for variable block, index of field of the header which rappresent the number of events (the number of blocks) of the packet
-1
+3
 -- for variable block, value to sum to get the real number of events (blocks) 
 0
-ped_high_telescope_pixel.rblock
+ped_telescope_pixel.rblock
 [Identifiers]
--- ID0 APID
+-- ID0 type
 -- field number
-3
+1
 -- type (0 header, 1 data field)
-0
+1
 -- value
-100
+1
+-- ID1 subtype
+-- field number
+2
+-- type (0 header, 1 data field)
+1
+-- value
+1
 [Tail]
 CRC
 16
