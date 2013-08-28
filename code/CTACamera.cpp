@@ -6,6 +6,8 @@ RTATelem::CTACamera::CTACamera(string packetConfig, string tmInputFileName, stri
 
 }
 
+RTATelem::CTACamera::~CTACamera() {
+}
 
 void RTATelem::CTACamera::setNumberOfPixels(word number) {
     /// Get a pointer to the source data field

@@ -17,8 +17,6 @@ void RTATelem::CTAPacket::printListOfString(string* r) {
 RTATelem::CTAPacket::CTAPacket(string packetConfig, string tmInputFileName,
 		string tmOutputFileName) {
 
-
-
 	in = 0;
 	out = 0;
 	ips = 0;

@@ -33,14 +33,14 @@ public:
     /// \param tmOutputFileName The output file name of the packet
 	CTACameraTriggerData(string packetConfig, string tmInputFileName = "", string tmOutputFileName = "");
 
-    ~CTACameraTriggerData();
+    virtual ~CTACameraTriggerData();
 
 	/// It sets the telescope ID (identification number)
 	/// \param telescopeID The telescope unique ID
-	void setTelescopeId(word telescopeID);
+	virtual void setTelescopeId(word telescopeID);
 
 	/// It gets the telescope ID (identification number)
-	word getTelescopeId();
+	virtual word getTelescopeId();
 
 	void setEventNumber(dword event);
 
@@ -57,7 +57,12 @@ public:
     /// It sets the pixel ID (identification number)
     /// \param pixelIndex The index of the pixel (0..NumberOfPixels-1)
     /// \param pixelID The pixel unique ID
-    void setPixelId(word pixelIndex, word pixelID);
+    virtual void setPixelId(word pixelIndex, word pixelID);
+
+    /// It gets the pixel ID (identification number)
+    virtual word getPixelId(word pixelIndex);
+
+    ByteStream* getPixelData(word pixelIndex);
 
     /// It sets the number of samples
     /// \param pixelIndex The index of the pixel (0..NumberOfPixels-1)
@@ -75,9 +80,6 @@ public:
 
     /// It gets the index of the telescope converted to packet
     byte getIndexOfCurrentTriggeredTelescopes();
-
-    /// It gets the pixel ID (identification number)
-    word getPixelId(word pixelIndex);
 
     /// It gets the number of samples
     word getNumberOfSamples(word pixelIndex);

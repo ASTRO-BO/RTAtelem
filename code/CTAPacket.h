@@ -53,6 +53,7 @@ public:
 
 	~CTAPacket();
 
+	/// Common header for all the packets (packet header + data field header)
 	CTAPacketHeader* header;
 
 	/// Writing the packet

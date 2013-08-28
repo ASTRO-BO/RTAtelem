@@ -23,12 +23,12 @@ SHELL = /bin/sh
 
 #SYSTEM: linux or QNX
 SYSTEM = linux
-PROJECT= Name_of_project
+PROJECT= RTAtelem
 EXE_NAME = RTAtelem
-LIB_NAME = lib_name
+LIB_NAME = libRTAtelem
 VER_FILE_NAME = version.h
 #the name of the directory where the conf file are copied (into $(datadir))
-CONF_DEST_DIR =
+CONF_DEST_DIR = conf
 #the name of the icon for the installation
 ICON_NAME=
 
@@ -138,19 +138,19 @@ $(shell  cut $(INCLUDE_DIR)/$(VER_FILE_NAME) -f 3 > version)
 
 #only for documentation generation
 $(DOXY_SOURCE_DIR)/%.h : %.h
-	doxyfilter < $< > $@
+	cp  $<  $@
 
 $(DOXY_SOURCE_DIR)/%.cpp : %.cpp
-	doxyfilter < $< > $@
+	cp  $<  $@
 	
 ####### 10) Build rules
 
 #all: compile the entire program.
-all: exe
+all: lib
 		#only if conf directory is present:
 		#$(SYMLINK) $(CONF_DIR) $(CONF_DEST_DIR)
 
-lib: staticlib 
+lib: exe staticlib 
 	
 exe: makeobjdir $(OBJECTS)
 		test -d $(EXE_DESTDIR) || mkdir -p $(EXE_DESTDIR)

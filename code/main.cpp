@@ -68,6 +68,18 @@ int main(int argc, char *argv[])
                 cout << "PixelId " << trtel->getPixelId(0) << endl;
                 //cout << "NumberOfSamples " << trtel->getNumberOfSamples(0) << endl;
                 cout << "SampleValue " << trtel->getSampleValue(0, 0) << endl;
+
+                ByteStream* fadc = trtel->getPixelData(0);
+                cout << fadc->printStreamInHexadecimal() << endl;
+                fadc->swapWord();
+                word *c = (word*) fadc->stream;
+//                for(int i=0; i<3; i++)
+//                	cout << i << ": " << fadc[i] << endl;
+                cout << fadc->printStreamInHexadecimal() << endl;
+                cout << "pixel id " << c[0] << endl;
+                cout << "number of slices " << c[1] << endl;
+                cout << "value of first slice " << c[2] << endl;
+
             }
             b_trtel = trtel->readPacket();
 
@@ -78,7 +90,7 @@ int main(int argc, char *argv[])
         byte* b_pedestal = pedestal->readPacket();
         while(b_pedestal != 0) {
             if(b_pedestal) {
-                pedestal->printPacket_input();
+                //pedestal->printPacket_input();
                 cout << "--" << endl;
                 word arrayID;
                 word runNumber;
