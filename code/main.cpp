@@ -71,7 +71,7 @@ int main(int argc, char *argv[])
 
                 ByteStream* fadc = trtel->getPixelData(0);
                 cout << fadc->printStreamInHexadecimal() << endl;
-                fadc->swapWord();
+                fadc->swapWordForIntel();
                 word *c = (word*) fadc->stream;
 //                for(int i=0; i<3; i++)
 //                	cout << i << ": " << fadc[i] << endl;

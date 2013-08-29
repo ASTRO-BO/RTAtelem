@@ -62,6 +62,17 @@ public:
     /// It gets the pixel ID (identification number)
     virtual word getPixelId(word pixelIndex);
 
+    /// Get the data of a pixel as stream of byte. Example about how to use this stream:
+    /// ByteStream* fadc = trtel->getPixelData(0);
+	/// cout << fadc->printStreamInHexadecimal() << endl;
+    /// cout << fadc->getDimension() << endl;
+	/// fadc->swapWordForIntel();
+	/// word *c = (word*) fadc->stream;
+	/// cout << "pixel id " << c[0] << endl;
+	/// cout << "number of slices " << c[1] << endl;
+	/// cout << "value of first slice " << c[2] << endl;
+    /// \param The index of the pixel
+    /// \return ByteStream of the pixel.
     ByteStream* getPixelData(word pixelIndex);
 
     /// It sets the number of samples
