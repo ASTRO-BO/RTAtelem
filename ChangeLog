@@ -1,8 +1,3 @@
-----------------------------------------
-Data and time - Authors - project version
-* change 1
-	** sub-change 1
-	** sub-change 2
-* change 2
-* change 3
-----------------------------------------
+2013-08-29
+tag v1.0.0
+Dependencirs: PacketLib v2.0.5
