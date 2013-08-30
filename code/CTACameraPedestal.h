@@ -35,22 +35,22 @@ public:
 	CTACameraPedestal(string packetConfig, string tmInputFileName = "",
 			string tmOutputFileName = "");
 
-	virtual ~CTACameraPedestal();
+	~CTACameraPedestal();
 
 	/// It sets the telescope ID (identification number)
 	/// \param telescopeID The telescope unique ID
-	virtual void setTelescopeId(word telescopeID);
+	void setTelescopeId(word telescopeID);
 
 	/// It gets the telescope ID (identification number)
-	virtual word getTelescopeId();
+	word getTelescopeId();
 
 	/// It sets the pixel ID (identification number)
 	/// \param pixelIndex The index of the pixel (0..NumberOfPixels-1)
 	/// \param pixelID The pixel unique ID
-	virtual void setPixelId(word pixelIndex, word pixelID);
+	void setPixelId(word pixelIndex, word pixelID);
 
 	/// It gets the pixel ID (identification number)
-	virtual word getPixelId(word pixelIndex);
+	word getPixelId(word pixelIndex);
 
 	/// It sets the pedestal high value
 	/// \param pixelIndex The index of the pixel (0..NumberOfPixels-1)

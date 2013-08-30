@@ -26,7 +26,7 @@ public:
 	CTACamera(string packetConfig, string tmInputFileName = "",
 			string tmOutputFileName = "");
 
-	virtual ~CTACamera();
+	~CTACamera();
 
 	/// It gets the number of pixels
 	word getNumberOfPixels();
@@ -37,18 +37,18 @@ public:
 
 	/// It sets the telescope ID (identification number)
 	/// \param telescopeID The telescope unique ID
-	virtual void setTelescopeId(word telescopeID) = 0;
+	void setTelescopeId(word telescopeID);
 
 	/// It gets the telescope ID (identification number)
-	virtual word getTelescopeId() = 0;
+	word getTelescopeId();
 
 	/// It sets the pixel ID (identification number)
 	/// \param pixelIndex The index of the pixel (0..NumberOfPixels-1)
 	/// \param pixelID The pixel unique ID
-	virtual void setPixelId(word pixelIndex, word pixelID) = 0;
+	void setPixelId(word pixelIndex, word pixelID);
 
 	/// It gets the pixel ID (identification number)
-	virtual word getPixelId(word pixelIndex) = 0;
+	word getPixelId(word pixelIndex);
 };
 
 }

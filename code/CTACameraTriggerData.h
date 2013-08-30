@@ -33,14 +33,14 @@ public:
     /// \param tmOutputFileName The output file name of the packet
 	CTACameraTriggerData(string packetConfig, string tmInputFileName = "", string tmOutputFileName = "");
 
-    virtual ~CTACameraTriggerData();
+    ~CTACameraTriggerData();
 
 	/// It sets the telescope ID (identification number)
 	/// \param telescopeID The telescope unique ID
-	virtual void setTelescopeId(word telescopeID);
+	void setTelescopeId(word telescopeID);
 
 	/// It gets the telescope ID (identification number)
-	virtual word getTelescopeId();
+	word getTelescopeId();
 
 	void setEventNumber(dword event);
 
@@ -57,10 +57,10 @@ public:
     /// It sets the pixel ID (identification number)
     /// \param pixelIndex The index of the pixel (0..NumberOfPixels-1)
     /// \param pixelID The pixel unique ID
-    virtual void setPixelId(word pixelIndex, word pixelID);
+    void setPixelId(word pixelIndex, word pixelID);
 
     /// It gets the pixel ID (identification number)
-    virtual word getPixelId(word pixelIndex);
+    word getPixelId(word pixelIndex);
 
     /// Get the data of a pixel as stream of byte. Example about how to use this stream:
     /// ByteStream* fadc = trtel->getPixelData(0);
