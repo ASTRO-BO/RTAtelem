@@ -150,7 +150,7 @@ int mainW(int argc, char *argv[])
         int numberOfTriggeredTelescopes = 1;
         for(int telindex = 0; telindex<numberOfTriggeredTelescopes; telindex++) {
 
-        	trtel->header->setAPID(10);
+            trtel->header->setAPID(10);
             trtel->header->setSSC(0);
             trtel->header->setMetadata(1, 2);
 
@@ -184,7 +184,7 @@ int mainW(int argc, char *argv[])
         int numberOfTelescopes = 1;
         for(int telindex = 0; telindex<numberOfTelescopes; telindex++) {
 
-        	trtel->header->setAPID(11);
+            pedestal->header->setAPID(11);
             pedestal->header->setSSC(0);
             pedestal->header->setMetadata(1, 2);
             pedestal->setChannel(1);
