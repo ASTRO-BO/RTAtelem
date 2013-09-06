@@ -153,9 +153,9 @@ int mainW(int argc, char *argv[])
             trtel->header->setAPID(10);
             trtel->header->setSSC(0);
             trtel->header->setMetadata(1, 2);
-
             trtel->header->setTime(1500);
 
+            trtel->setEventNumber(evnum);
             trtel->setNumberOfTriggeredTelescopes(numberOfTriggeredTelescopes);
             trtel->setIndexOfCurrentTriggeredTelescopes(telindex);
             trtel->setTelescopeId(telindex*10+5);
