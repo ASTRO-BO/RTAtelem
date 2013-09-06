@@ -95,7 +95,7 @@ int main(int argc, char *argv[])
                 word arrayID;
                 word runNumber;
                 pedestal->header->getMetadata(arrayID, runNumber);
-                cout << "APID: " << trtel->header->getAPID() << endl;
+                cout << "APID: " << pedestal->header->getAPID() << endl;
                 cout << "ssc: " << pedestal->header->getSSC() << endl;
                 cout << "metadata " << arrayID << endl;
                 cout << "TelescopeId " << pedestal->getTelescopeId() << endl;
