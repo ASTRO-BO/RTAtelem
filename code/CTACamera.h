@@ -49,6 +49,8 @@ public:
 
 	/// It gets the pixel ID (identification number)
 	word getPixelId(word pixelIndex);
+
+
 };
 
 }

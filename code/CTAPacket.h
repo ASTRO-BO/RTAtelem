@@ -67,6 +67,9 @@ public:
 
 	/// Printing the packet in input
 	void printPacket_input();
+
+	/// Get a pointer to telemetry packet
+	ByteStream* getInputPacketData();
 };
 
 }

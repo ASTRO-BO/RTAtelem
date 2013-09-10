@@ -28,7 +28,7 @@ EXE_NAME = RTAtelem
 LIB_NAME = libRTAtelem
 VER_FILE_NAME = version.h
 #the name of the directory where the conf file are copied (into $(datadir))
-CONF_DEST_DIR = conf
+CONF_DEST_DIR = rtatelem
 #the name of the icon for the installation
 ICON_NAME=
 
@@ -146,11 +146,11 @@ $(DOXY_SOURCE_DIR)/%.cpp : %.cpp
 ####### 10) Build rules
 
 #all: compile the entire program.
-all: lib
+all: exe lib
 		#only if conf directory is present:
 		#$(SYMLINK) $(CONF_DIR) $(CONF_DEST_DIR)
 
-lib: exe staticlib 
+lib:  staticlib 
 	
 exe: makeobjdir $(OBJECTS)
 		test -d $(EXE_DESTDIR) || mkdir -p $(EXE_DESTDIR)
@@ -205,17 +205,17 @@ distclean: clean
 #and so on to the file names where they should reside for actual use. 
 install: all
 	$(shell echo $(prefix) > prefix)
-	#test -d $(datadir)/$(CONF_DEST_DIR) || mkdir -p $(datadir)/$(CONF_DEST_DIR)
+	test -d $(datadir)/$(CONF_DEST_DIR) || mkdir -p $(datadir)/$(CONF_DEST_DIR)
 	#test -d $(infodir) || mkdir -p $(infodir)	
 
 	# For library installation
 	test -d $(libdir) || mkdir -p $(libdir)
 	test -d $(includedir) || mkdir -p $(includedir)	
 	$(COPY_FILE) $(LIB_DESTDIR)/$(TARGETA) $(libdir)
-	$(COPY_FILE) $(LIB_DESTDIR)/$(TARGET0) $(libdir)
-	$(COPY_FILE) $(LIB_DESTDIR)/$(TARGET1) $(libdir)
-	$(COPY_FILE) $(LIB_DESTDIR)/$(TARGET2) $(libdir)
-	$(COPY_FILE) $(LIB_DESTDIR)/$(TARGETD) $(libdir)
+	#$(COPY_FILE) $(LIB_DESTDIR)/$(TARGET0) $(libdir)
+	#$(COPY_FILE) $(LIB_DESTDIR)/$(TARGET1) $(libdir)
+	#$(COPY_FILE) $(LIB_DESTDIR)/$(TARGET2) $(libdir)
+	#$(COPY_FILE) $(LIB_DESTDIR)/$(TARGETD) $(libdir)
 	$(COPY_FILE) $(INCLUDE) $(includedir)
 	
 	# For exe installation
@@ -226,7 +226,7 @@ install: all
 	#$(COPY_FILE) $(ICON_DIR)/$(ICON_NAME) $(icondir)
 
 	# For conf files installation
-	#$(COPY_FILE) $(CONF_DIR)/* $(datadir)/$(CONF_DEST_DIR)
+	$(COPY_FILE) $(CONF_DIR)/* $(datadir)/$(CONF_DEST_DIR)
 
 
 #uninstall: delete all the installed files--the copies that the `install' target creates. 
