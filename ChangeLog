@@ -1,8 +1,11 @@
+2013-09-10  bulgarelli  <bulgarelli@tesp28.local>
+tag v1.0.0
+Dependency: PacketLib v2.0.5
+
 2013-08-30  bulgarelli  <bulgarelli@tesp28.local>
 
 	* code/CTAPacket.h (CTAPacket): ByteStream* getInputPacketData();
 	* removed virtual from all the method (for python binding)
 
-2013-08-29  bulgarelli  <bulgarelli@tesp28.local>
-tag v1.0.0
-Dependency: PacketLib v2.0.5
+
+

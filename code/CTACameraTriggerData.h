@@ -52,7 +52,7 @@ public:
 
     /// It sets the index of the telescope converted to packet
     /// \param telescopeIndex The index of the written telescope (0..NumberOfTelescopes-1)
-    void setIndexOfCurrentTriggeredTelescopes(byte telescopeIndex);
+    void setIndexOfCurrentTriggeredTelescope(byte telescopeIndex);
 
     /// It sets the pixel ID (identification number)
     /// \param pixelIndex The index of the pixel (0..NumberOfPixels-1)
@@ -90,7 +90,7 @@ public:
     byte getNumberOfTriggeredTelescopes();
 
     /// It gets the index of the telescope converted to packet
-    byte getIndexOfCurrentTriggeredTelescopes();
+    byte getIndexOfCurrentTriggeredTelescope();
 
     /// It gets the number of samples
     word getNumberOfSamples(word pixelIndex);

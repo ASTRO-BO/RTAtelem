@@ -57,12 +57,12 @@ byte RTATelem::CTACameraTriggerData::getNumberOfTriggeredTelescopes() {
 	return (byte) sdf->getFieldValue(3);
 }
 
-void RTATelem::CTACameraTriggerData::setIndexOfCurrentTriggeredTelescopes(byte telescopeIndex) {
+void RTATelem::CTACameraTriggerData::setIndexOfCurrentTriggeredTelescope(byte telescopeIndex) {
 	 SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField;
 	 sdf->setFieldValue(4, (word) telescopeIndex);
 }
 
-byte RTATelem::CTACameraTriggerData::getIndexOfCurrentTriggeredTelescopes() {
+byte RTATelem::CTACameraTriggerData::getIndexOfCurrentTriggeredTelescope() {
 	SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField;
 	return (byte) sdf->getFieldValue(4);
 }

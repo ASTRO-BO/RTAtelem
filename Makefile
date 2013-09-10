@@ -69,7 +69,7 @@ CXX      = g++
 #Insert the optional parameter to the compiler. The CFLAGS could be changed externally by the user
 CFLAGS   = -g -m64 
 #Set INCPATH to add the inclusion paths
-INCPATH = -I ./include  -I $(PACKETLIB)/include -L$(PACKETLIB)/lib
+INCPATH = -I ./include  -I $(CTARTA)/include -L$(CTARTA)/lib
 #Insert the implicit parameter to the compiler:
 ALL_CFLAGS = -fexceptions -Wall $(INCPATH) $(CFLAGS)
 ifeq ($(SYSTEM), QNX)
@@ -146,7 +146,7 @@ $(DOXY_SOURCE_DIR)/%.cpp : %.cpp
 ####### 10) Build rules
 
 #all: compile the entire program.
-all: exe lib
+all:  lib
 		#only if conf directory is present:
 		#$(SYMLINK) $(CONF_DIR) $(CONF_DEST_DIR)
 
