@@ -1,8 +1,6 @@
-2013-09-10  bulgarelli  <bulgarelli@tesp28.local>
+2013-09-10  Andrea Bulgarelli  <bulgarelli@iasfbo.inaf.it>
 tag v1.0.0
-Dependency: PacketLib v2.0.5
-
-2013-08-30  bulgarelli  <bulgarelli@tesp28.local>
+Dependency: PacketLib v2.0.6
 
 	* code/CTAPacket.h (CTAPacket): ByteStream* getInputPacketData();
 	* removed virtual from all the method (for python binding)
