@@ -111,18 +111,20 @@ word RTATelem::CTACameraTriggerData::getPixelId(word pixelIndex) {
     return pixel->getFieldValue(0);
 }
 
-word RTATelem::CTACameraTriggerData::getNumberOfSamples(word pixelIndex) {
-    /// Get a pointer to the source data field
-    SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField;
-    SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
-    return pixel->getNumberOfRealDataBlock();
-}
+
 
 ByteStream* RTATelem::CTACameraTriggerData::getPixelData(word pixelIndex) {
     /// Get a pointer to the source data field
     SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField;
     SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
-    return   pixel->stream;
+    return pixel->getByteStream();
+}
+
+word RTATelem::CTACameraTriggerData::getNumberOfSamples(word pixelIndex) {
+    /// Get a pointer to the source data field
+    SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField;
+    SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
+    return pixel->getNumberOfRealDataBlock();
 }
 
 word RTATelem::CTACameraTriggerData::getSampleValue(word pixelIndex, word sampleIndex) {

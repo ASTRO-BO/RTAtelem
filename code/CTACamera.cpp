@@ -27,6 +27,7 @@ void RTATelem::CTACamera::setTelescopeId(word telescopeID) {
 
 word RTATelem::CTACamera::getTelescopeId() {
 	cerr << "Implement RTATelem::CTACamera::getTelescopeId()" << endl;
+	return 0;
 }
 
 void RTATelem::CTACamera::setPixelId(word pixelIndex, word pixelID) {
@@ -35,4 +36,5 @@ void RTATelem::CTACamera::setPixelId(word pixelIndex, word pixelID) {
 
 word RTATelem::CTACamera::getPixelId(word pixelIndex) {
 	cerr << "Implement RTATelem::CTACamera::getPixelId(word pixelIndex)" << endl;
+	return 0;
 }

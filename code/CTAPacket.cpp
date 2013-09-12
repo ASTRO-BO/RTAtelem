@@ -121,7 +121,7 @@ void RTATelem::CTAPacket::printPacket_input() {
 	cout << "HEADER ----------" << endl;
 	char** r = inputPacket->header->printValue();
 	printListOfString(r);
-	cout << inputPacket->header->stream->printStreamInHexadecimal() << endl;
+	cout << inputPacket->header->getByteStream()->printStreamInHexadecimal() << endl;
 	cout << "max dimension in byte of the header: "
 			<< inputPacket->header->getDimension() << endl;
 	cout << "packet length " << inputPacket->header->getPacketLength() << endl;
