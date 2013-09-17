@@ -114,6 +114,7 @@ byte* RTATelem::CTAPacket::readPacket() {
 	inputPacket = ips->readPacket();
 	if (inputPacket == 0)
 		return 0;
+	//cout << "BS: " << inputPacket->getDimension() << endl;
 	return inputPacket->getInputStream()->stream;
 }
 
@@ -141,4 +142,12 @@ void RTATelem::CTAPacket::printPacket_input() {
 
 ByteStream* RTATelem::CTAPacket::getInputPacketData() {
 	return inputPacket->packet;
+}
+
+dword RTATelem::CTAPacket::getInputPacketDimension(byte* stream) {
+	//cout << "C: " << inputPacket->getDimension() << endl;
+    //inputPacket->verifyPacketValue(stream);
+    //return inputPacket->getDimension();
+
+	return ips->getPacketDimension(stream);
 }
