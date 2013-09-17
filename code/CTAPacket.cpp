@@ -77,6 +77,36 @@ RTATelem::CTAPacket::CTAPacket(string packetConfig, string tmInputFileName,
 
 }
 
+RTATelem::CTAPacket::CTAPacket(string packetConfig) {
+
+	in = 0;
+	out = 0;
+	ips = 0;
+	ops = 0;
+	outputPacket = 0;
+	inputPacket = 0;
+
+	try {
+		char** param = (char**) new char*[2];
+
+
+		/// create input packet stream
+		ips = new InputPacketStream();
+		ips->setFileNameConfig(packetConfig.c_str());
+		ips->createStreamStructure();
+		inputPacket = ips->getPacketType(1);
+
+		header = new CTAPacketHeader(inputPacket, outputPacket);
+
+	}
+	catch (PacketException* e) {
+		cout << "RTATelem::CTAPedestal::CTAPedestal(...): " << e->geterror()
+				<< endl;
+	}
+
+}
+
+
 RTATelem::CTAPacket::~CTAPacket() {
 	if (in)
 		in->close();

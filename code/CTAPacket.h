@@ -51,6 +51,8 @@ public:
 
 	CTAPacket(string packetConfig, string tmInputFileName, string tmOutputFileName);
 
+	CTAPacket(string packetConfig);
+
 	~CTAPacket();
 
 	///It returns the total dimension of the packet contained in the stream (without prefix). The stream* contains also the prefix (if present)
