@@ -43,6 +43,8 @@ protected:
 	Packet* inputPacket;
 	Packet* outputPacket;
 
+	string packetStreamConfig;
+
 	void printListOfString(char** r);
 
 	void printListOfString(string* r);
@@ -59,6 +61,8 @@ public:
 	///\param The stream with the prefix (if present)
 	dword getInputPacketDimension(byte* stream);
 
+	int getInputPacketType(byte* stream);
+
 	/// Common header for all the packets (packet header + data field header)
 	CTAPacketHeader* header;
 
@@ -71,11 +75,17 @@ public:
 	/// Return a ByteStream* or 0 if there is no packets
 	byte* readPacket();
 
+	bool setStream(byte* stream);
+
 	/// Printing the packet in input
 	void printPacket_input();
 
 	/// Get a pointer to telemetry packet
 	ByteStream* getInputPacketData();
+
+	const string& getPacketStreamConfig() const {
+		return packetStreamConfig;
+	}
 };
 
 }

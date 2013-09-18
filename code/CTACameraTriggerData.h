@@ -31,7 +31,9 @@ public:
     /// \param packetConfig The packet configuration file (.stream)
     /// \param tmInputFileName The input file name of the packet
     /// \param tmOutputFileName The output file name of the packet
-	CTACameraTriggerData(string packetConfig, string tmInputFileName = "", string tmOutputFileName = "");
+	CTACameraTriggerData(string packetConfig, string tmInputFileName, string tmOutputFileName);
+
+	CTACameraTriggerData(string packetConfig);
 
     ~CTACameraTriggerData();
 

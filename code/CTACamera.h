@@ -23,8 +23,9 @@ namespace RTATelem {
 class CTACamera: public RTATelem::CTAPacket {
 
 public:
-	CTACamera(string packetConfig, string tmInputFileName = "",
-			string tmOutputFileName = "");
+	CTACamera(string packetConfig, string tmInputFileName, string tmOutputFileName);
+
+	CTACamera(string packetConfig);
 
 	~CTACamera();
 

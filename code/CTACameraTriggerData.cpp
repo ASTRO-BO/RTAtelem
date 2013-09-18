@@ -26,6 +26,15 @@
 #define RBLOCK_PIXEL 0
 #define RBLOCK_SAMPLE 0
 
+RTATelem::CTACameraTriggerData::CTACameraTriggerData(string packetConfig, string tmInputFileName, string tmOutputFileName) : CTACamera(packetConfig, tmInputFileName, tmOutputFileName) {
+
+}
+
+RTATelem::CTACameraTriggerData::CTACameraTriggerData(string packetConfig) : CTACamera(packetConfig) {
+
+
+}
+
 
 void RTATelem::CTACameraTriggerData::setTelescopeId(word telescopeID) {
     /// Get a pointer to the source data field
@@ -39,9 +48,6 @@ word RTATelem::CTACameraTriggerData::getTelescopeId() {
     return sdf->getFieldValue(2);
 }
 
-RTATelem::CTACameraTriggerData::CTACameraTriggerData(string packetConfig, string tmInputFileName, string tmOutputFileName) : CTACamera(packetConfig, tmInputFileName, tmOutputFileName) {
-
-}
 
 RTATelem::CTACameraTriggerData::~CTACameraTriggerData() {
 

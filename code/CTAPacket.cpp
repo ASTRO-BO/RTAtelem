@@ -23,6 +23,7 @@ RTATelem::CTAPacket::CTAPacket(string packetConfig, string tmInputFileName,
 	ops = 0;
 	outputPacket = 0;
 	inputPacket = 0;
+	this->packetStreamConfig = packetConfig;
 
 	try {
 		char** param = (char**) new char*[2];
@@ -71,7 +72,7 @@ RTATelem::CTAPacket::CTAPacket(string packetConfig, string tmInputFileName,
 
 	}
 	catch (PacketException* e) {
-		cout << "RTATelem::CTAPedestal::CTAPedestal(...): " << e->geterror()
+		cout << "RTATelem::CTAPacket::CTAPacket(string packetConfig, string tmInputFileName, string tmOutputFileName): " << e->geterror()
 				<< endl;
 	}
 
@@ -86,6 +87,8 @@ RTATelem::CTAPacket::CTAPacket(string packetConfig) {
 	outputPacket = 0;
 	inputPacket = 0;
 
+	this->packetStreamConfig = packetConfig;
+
 	try {
 		char** param = (char**) new char*[2];
 
@@ -95,12 +98,12 @@ RTATelem::CTAPacket::CTAPacket(string packetConfig) {
 		ips->setFileNameConfig(packetConfig.c_str());
 		ips->createStreamStructure();
 		inputPacket = ips->getPacketType(1);
-
-		header = new CTAPacketHeader(inputPacket, outputPacket);
+		cout << "IP " << inputPacket << endl;
+		//header = new CTAPacketHeader(inputPacket, outputPacket);
 
 	}
 	catch (PacketException* e) {
-		cout << "RTATelem::CTAPedestal::CTAPedestal(...): " << e->geterror()
+		cout << "RTATelem::CTAPacket::CTAPacket(string packetConfig): " << e->geterror()
 				<< endl;
 	}
 
@@ -180,4 +183,14 @@ dword RTATelem::CTAPacket::getInputPacketDimension(byte* stream) {
     //return inputPacket->getDimension();
 
 	return ips->getPacketDimension(stream);
+}
+
+int RTATelem::CTAPacket::getInputPacketType(byte* stream) {
+
+	return ips->detPacketType(stream);
+}
+
+bool RTATelem::CTAPacket::setStream(byte* stream) {
+	cout << inputPacket << endl;
+	inputPacket->setPacketValue(stream);
 }

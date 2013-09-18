@@ -6,6 +6,12 @@ RTATelem::CTACamera::CTACamera(string packetConfig, string tmInputFileName, stri
 
 }
 
+RTATelem::CTACamera::CTACamera(string packetConfig) : CTAPacket(packetConfig) {
+
+
+}
+
+
 RTATelem::CTACamera::~CTACamera() {
 }
 
