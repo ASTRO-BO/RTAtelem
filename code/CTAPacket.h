@@ -72,8 +72,12 @@ public:
 	/// Printing the created packet
 	void printPacket_output();
 
-	/// Return a ByteStream* or 0 if there is no packets
+	/// Read a packet from input
+	/// \return a ByteStream* or 0 if there is no packets
 	byte* readPacket();
+
+	/// Read a packet from input
+	void readPacketPy();
 
 	bool setStream(byte* stream);
 

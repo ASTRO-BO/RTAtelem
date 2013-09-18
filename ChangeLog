@@ -1,3 +1,7 @@
+2013-09-18  bulgarelli  <bulgarelli@abmac.local>
+
+	* code/CTAPacket.h (CTAPacket): byte* readPacketPy(); for Python wrapping issues
+
 2013-09-17  bulgarelli  <bulgarelli@abmac.local>
 
 	* code/CTAPacket.cpp (RTATelem::CTAPacket::CTAPacket): RTATelem::CTAPacket::CTAPacket(string packetConfig)

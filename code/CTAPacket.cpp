@@ -151,6 +151,10 @@ byte* RTATelem::CTAPacket::readPacket() {
 	return inputPacket->getInputStream()->stream;
 }
 
+void RTATelem::CTAPacket::readPacketPy() {
+	readPacket();
+}
+
 void RTATelem::CTAPacket::printPacket_input() {
 	cout << "HEADER ----------" << endl;
 	char** r = inputPacket->header->printValue();
