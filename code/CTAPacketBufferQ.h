@@ -1,5 +1,5 @@
 /***************************************************************************
- CTAPacketBuffer.h  -  A FIFO buffer class for Packets
+ CTAPacketBufferQ.h  -  A FIFO buffer class for Packets
  -------------------
  copyright            : (C) 2013 Andrea Zoli
  email                : zoli@iasfbo.inaf.it
@@ -13,8 +13,8 @@
  *   For commercial purpose see appropriate license terms                  *
  *                                                                         *
  ***************************************************************************/
-#ifndef _CTAPACKETBUFFER_H
-#define _CTAPACKETBUFFER_H
+#ifndef _CTAPACKETBUFFERQ_H
+#define _CTAPACKETBUFFERQ_H
 
 #include <string>
 #include <queue>
@@ -23,12 +23,12 @@
 namespace RTATelem {
 
 /// A FIFO queue of raw packets.
-class CTAPacketBuffer {
+class CTAPacketBufferQ {
 
 public:
-	CTAPacketBuffer(std::string packetConfig, std::string tmInputFileName);
+	CTAPacketBufferQ(std::string packetConfig, std::string tmInputFileName);
 
-	~CTAPacketBuffer();
+	~CTAPacketBufferQ();
 
 	/// Load all the tmInputFile packets into the queue.
 	void load();
@@ -64,8 +64,10 @@ public:
 		return queue.size();
 	}
 
-private:
 	CTAPacket packet;
+
+private:
+
 	std::queue<byte*> queue;
 
 };

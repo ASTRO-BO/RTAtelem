@@ -98,7 +98,7 @@ RTATelem::CTAPacket::CTAPacket(string packetConfig) {
 		ips->setFileNameConfig(packetConfig.c_str());
 		ips->createStreamStructure();
 		inputPacket = ips->getPacketType(1);
-		cout << "IP " << inputPacket << endl;
+		//cout << "IP " << inputPacket << endl;
 		//header = new CTAPacketHeader(inputPacket, outputPacket);
 
 	}

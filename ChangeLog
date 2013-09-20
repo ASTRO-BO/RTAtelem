@@ -1,8 +1,13 @@
-2013-09-18  bulgarelli  <bulgarelli@abmac.local>
+2013-09-20  Andrea Zoli <zoli@iasfbo.inaf.it>
+
+	* deleted CTAPacketBuffer
+	* added CTAPacketBufferV, CTAPacketBufferQ
+
+2013-09-18  Andrea Bulgarelli  <bulgarelli@iasfbo.inaf.it>
 
 	* code/CTAPacket.h (CTAPacket): void readPacketPy(); for Python wrapping issues
 
-2013-09-17  bulgarelli  <bulgarelli@abmac.local>
+2013-09-17  Andrea Bulgarelli  <bulgarelli@iasfbo.inaf.it>
 
 	* code/CTAPacket.cpp (RTATelem::CTAPacket::CTAPacket): RTATelem::CTAPacket::CTAPacket(string packetConfig)
 	* code/CTAPacket.h (CTAPacket): dword getInputPacketDimension(byte* stream);
