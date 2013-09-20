@@ -195,6 +195,6 @@ int RTATelem::CTAPacket::getInputPacketType(byte* stream) {
 }
 
 bool RTATelem::CTAPacket::setStream(byte* stream) {
-	cout << inputPacket << endl;
+	//cout << inputPacket << endl;
 	inputPacket->setPacketValue(stream);
 }
