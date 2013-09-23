@@ -22,6 +22,7 @@ namespace RTATelem
 CTAPacketBufferV::CTAPacketBufferV(string packetConfig, string tmInputFile) : packet(packetConfig, tmInputFile, "")
 {
 	currentIndex = 0;
+	currentIndexBS = 0;
 }
 
 CTAPacketBufferV::~CTAPacketBufferV()
@@ -63,11 +64,37 @@ void CTAPacketBufferV::load(int first, int last)
 	while(counter <= last);
 }
 
-byte* CTAPacketBufferV::get()
+byte* CTAPacketBufferV::getNext()
 {
-	if(currentIndex >= size())
+	if(currentIndex >= vec.size())
 		currentIndex = 0;
 	return vec[currentIndex++];
 }
 
+
+
+ByteStream* CTAPacketBufferV::getByteStream(int index, dword sizeB) {
+
+	byte* stream = vec[index];
+	dword sizep = sizeB;
+	if(!sizep) sizep = packet.getInputPacketDimension(stream);
+	bool bigendian = packet.isBigendian();
+	return new ByteStream(stream, sizep, bigendian);
+
 }
+
+ByteStream* CTAPacketBufferV::getNextByteStream(dword sizeB) {
+
+	if(currentIndexBS >= size())
+		currentIndexBS = 0;
+	return getByteStream(currentIndexBS++, sizeB);
+
+}
+
+bool CTAPacketBufferV::isBigendian() {
+	return packet.isBigendian();
+}
+
+
+}
+

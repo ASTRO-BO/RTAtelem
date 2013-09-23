@@ -90,6 +90,11 @@ public:
 	const string& getPacketStreamConfig() const {
 		return packetStreamConfig;
 	}
+
+
+	bool isBigendian() {
+		return inputPacket->isBigendian();
+	}
 };
 
 }

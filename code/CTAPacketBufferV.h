@@ -45,8 +45,12 @@ public:
 		return vec[index];
 	}
 
+	ByteStream* getByteStream(int index, dword sizeB = 0);
+
+	ByteStream* getNextByteStream(dword sizeB = 0);
+
 	/// Get a raw packet (cyclic vector)
-	byte* get();
+	byte* getNext();
 
 	/// Return the size of the vector.
 	/// \return The size of the vector.
@@ -57,10 +61,13 @@ public:
 
 	CTAPacket packet;
 
+	bool isBigendian();
+
 private:
 
 	std::vector<byte*> vec;
 	long currentIndex;
+	long currentIndexBS;
 
 };
 
