@@ -29,20 +29,10 @@ using namespace boost::python;
 //buffer wrapper
 static object CTAPacket_readPacket(RTATelem::CTAPacket& self) {
   unsigned char* buffer = self.readPacket();
-  int size;
+  int size = self.getInputPacketDimension(buffer);
 
   PyObject* py_buf = PyBuffer_FromMemory(buffer, size);
   object retval = object(handle<>(py_buf));
-  return retval;
-}
-
-//buffer wrapper
-static object CTACameraTriggerData_getPixelData(RTATelem::CTACameraTriggerData& self, long pixelIndex) {
-  ByteStream* bufferstr = self.getPixelData(pixelIndex);
-  int size;
-
-  PyObject* py_bufstr = PyBuffer_FromMemory(bufferstr, size);
-  object retval = object(handle<>(py_bufstr));
   return retval;
 }
 
@@ -70,7 +60,7 @@ BOOST_PYTHON_MODULE(CTACameraTriggerData_ext)
               //.def(init<std::string, std::string, std::string>())
               .add_property("header",make_getter(&RTATelem::CTAPacket::header, return_value_policy<reference_existing_object>()),make_setter(&RTATelem::CTAPacket::header,return_value_policy<reference_existing_object>()))
               .def("writePacket", &RTATelem::CTAPacket::writePacket)
-              .def("readPacket", &CTAPacket_readPacket)
+              .def("readPacket", &CTAPacket_readPacket, (boost::python::arg("self")), "Get buffer")
               .def("readPacketPy", &RTATelem::CTAPacket::readPacketPy)
               .def("printPacket_output", &RTATelem::CTAPacket::printPacket_output)
               //.def("printPacket_input", &RTATelem::CTAPacket::printPacket_input)
@@ -99,8 +89,11 @@ BOOST_PYTHON_MODULE(CTACameraTriggerData_ext)
               .def("getNumberOfSamples", &RTATelem::CTACameraTriggerData::getNumberOfSamples)
               .def("setSampleValue", &RTATelem::CTACameraTriggerData::setSampleValue)
               .def("getSampleValue", &RTATelem::CTACameraTriggerData::getSampleValue)
-              .def("getPixelData", &CTACameraTriggerData_getPixelData)
+              .def("getPixelData", &RTATelem::CTACameraTriggerData::getPixelData, return_value_policy<manage_new_object>())
               ;
 
+        // ByteStream definition
+        scope PacketLib = class_<DummyCTA>("PacketLib");
+        class_<PacketLib::ByteStream >("ByteStream", no_init)
+            .def("getByte", &PacketLib::ByteStream::getByte);
 }
-
