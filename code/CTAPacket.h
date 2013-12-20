@@ -73,7 +73,7 @@ public:
 	void printPacket_output();
 
 	/// Read a packet from input
-	/// \return a ByteStream* or 0 if there is no packets
+	/// \return a ByteStreamPtr or 0 if there is no packets
 	byte* readPacket();
 
 	/// Read a packet from input
@@ -85,7 +85,7 @@ public:
 	void printPacket_input();
 
 	/// Get a pointer to telemetry packet
-	ByteStream* getInputPacketData();
+	ByteStreamPtr getInputPacketData();
 
 	const string& getPacketStreamConfig() const {
 		return packetStreamConfig;

@@ -73,17 +73,17 @@ byte* CTAPacketBufferV::getNext()
 
 
 
-ByteStream* CTAPacketBufferV::getByteStream(int index, dword sizeB) {
+ByteStreamPtr CTAPacketBufferV::getByteStream(int index, dword sizeB) {
 
 	byte* stream = vec[index];
 	dword sizep = sizeB;
 	if(!sizep) sizep = packet.getInputPacketDimension(stream);
 	bool bigendian = packet.isBigendian();
-	return new ByteStream(stream, sizep, bigendian);
+	return ByteStreamPtr(new ByteStream(stream, sizep, bigendian));
 
 }
 
-ByteStream* CTAPacketBufferV::getNextByteStream(dword sizeB) {
+ByteStreamPtr CTAPacketBufferV::getNextByteStream(dword sizeB) {
 
 	if(currentIndexBS >= size())
 		currentIndexBS = 0;

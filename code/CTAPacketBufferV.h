@@ -45,9 +45,9 @@ public:
 		return vec[index];
 	}
 
-	ByteStream* getByteStream(int index, dword sizeB = 0);
+	ByteStreamPtr getByteStream(int index, dword sizeB = 0);
 
-	ByteStream* getNextByteStream(dword sizeB = 0);
+	ByteStreamPtr getNextByteStream(dword sizeB = 0);
 
 	/// Get a raw packet (cyclic vector)
 	byte* getNext();

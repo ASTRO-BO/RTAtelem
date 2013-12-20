@@ -177,7 +177,7 @@ void RTATelem::CTAPacket::printPacket_input() {
 
 }
 
-ByteStream* RTATelem::CTAPacket::getInputPacketData() {
+ByteStreamPtr RTATelem::CTAPacket::getInputPacketData() {
 	return inputPacket->packet;
 }
 

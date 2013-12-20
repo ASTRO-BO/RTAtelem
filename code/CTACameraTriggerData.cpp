@@ -119,7 +119,7 @@ word RTATelem::CTACameraTriggerData::getPixelId(word pixelIndex) {
 
 
 
-ByteStream* RTATelem::CTACameraTriggerData::getPixelData(word pixelIndex) {
+ByteStreamPtr RTATelem::CTACameraTriggerData::getPixelData(word pixelIndex) {
     /// Get a pointer to the source data field
     SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField;
     SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
