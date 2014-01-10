@@ -111,6 +111,8 @@ RTATelem::CTAPacket::CTAPacket(string packetConfig) {
 
 
 RTATelem::CTAPacket::~CTAPacket() {
+	delete ips;
+	delete ops;
 	if (in)
 		in->close();
 	if (out)
