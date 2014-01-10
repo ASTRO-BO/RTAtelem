@@ -145,12 +145,12 @@ void RTATelem::CTAPacket::writePacket() {
 	ops->writePacket(outputPacket);
 }
 
-byte* RTATelem::CTAPacket::readPacket() {
+ByteStreamPtr RTATelem::CTAPacket::readPacket() {
 	inputPacket = ips->readPacket();
 	if (inputPacket == 0)
 		return 0;
 	//cout << "BS: " << inputPacket->getDimension() << endl;
-	return inputPacket->getInputStream()->stream;
+	return inputPacket->getInputStream();
 }
 
 void RTATelem::CTAPacket::readPacketPy() {
@@ -183,7 +183,7 @@ ByteStreamPtr RTATelem::CTAPacket::getInputPacketData() {
 	return inputPacket->packet;
 }
 
-dword RTATelem::CTAPacket::getInputPacketDimension(byte* stream) {
+dword RTATelem::CTAPacket::getInputPacketDimension(ByteStreamPtr stream) {
 	//cout << "C: " << inputPacket->getDimension() << endl;
     //inputPacket->verifyPacketValue(stream);
     //return inputPacket->getDimension();
@@ -191,12 +191,12 @@ dword RTATelem::CTAPacket::getInputPacketDimension(byte* stream) {
 	return ips->getPacketDimension(stream);
 }
 
-int RTATelem::CTAPacket::getInputPacketType(byte* stream) {
+int RTATelem::CTAPacket::getInputPacketType(ByteStreamPtr stream) {
 
 	return ips->detPacketType(stream);
 }
 
-bool RTATelem::CTAPacket::setStream(byte* stream) {
+bool RTATelem::CTAPacket::setStream(ByteStreamPtr stream) {
 	//cout << inputPacket << endl;
-	inputPacket->setPacketValue(stream);
+	inputPacket->setPacketValue(stream->stream);
 }

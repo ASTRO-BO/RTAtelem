@@ -31,7 +31,7 @@ CTAPacketBufferV::~CTAPacketBufferV()
 
 void CTAPacketBufferV::load()
 {
-	byte* packetPtr = packet.readPacket();
+	ByteStreamPtr packetPtr = packet.readPacket();
 	int counter=0;
 	while(packetPtr != 0)
 	{
@@ -44,7 +44,7 @@ void CTAPacketBufferV::load()
 void CTAPacketBufferV::load(int first, int last)
 {
 	int counter = 0;
-	byte* packetPtr;
+	ByteStreamPtr packetPtr;
 
 	// skip elements preceeding first
 	do {
@@ -64,7 +64,7 @@ void CTAPacketBufferV::load(int first, int last)
 	while(counter <= last);
 }
 
-byte* CTAPacketBufferV::getNext()
+ByteStreamPtr CTAPacketBufferV::getNext()
 {
 	if(currentIndex >= vec.size())
 		currentIndex = 0;
@@ -75,7 +75,7 @@ byte* CTAPacketBufferV::getNext()
 
 ByteStreamPtr CTAPacketBufferV::getByteStream(int index, dword sizeB) {
 
-	byte* stream = vec[index];
+	ByteStreamPtr stream = vec[index];
 	dword sizep = sizeB;
 	if(!sizep) sizep = packet.getInputPacketDimension(stream);
 	bool bigendian = packet.isBigendian();

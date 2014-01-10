@@ -40,7 +40,7 @@ public:
 
 	/// Get a raw packet.
 	/// \index the index of the packet.
-	byte* get(int index)
+	ByteStreamPtr get(int index)
 	{
 		return vec[index];
 	}
@@ -50,7 +50,7 @@ public:
 	ByteStreamPtr getNextByteStream(dword sizeB = 0);
 
 	/// Get a raw packet (cyclic vector)
-	byte* getNext();
+	ByteStreamPtr getNext();
 
 	/// Return the size of the vector.
 	/// \return The size of the vector.
@@ -65,7 +65,7 @@ public:
 
 private:
 
-	std::vector<byte*> vec;
+	std::vector<ByteStreamPtr> vec;
 	long currentIndex;
 	long currentIndexBS;
 

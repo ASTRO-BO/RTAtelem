@@ -29,7 +29,7 @@ CTAPacketBufferQ::~CTAPacketBufferQ()
 
 void CTAPacketBufferQ::load()
 {
-	byte* packetPtr = packet.readPacket();
+	ByteStreamPtr packetPtr = packet.readPacket();
 	int counter=0;
 	while(packetPtr != 0)
 	{
@@ -42,7 +42,7 @@ void CTAPacketBufferQ::load()
 void CTAPacketBufferQ::load(int first, int last)
 {
 	int counter = 0;
-	byte* packetPtr;
+	ByteStreamPtr packetPtr;
 
 	// skip elements preceeding first
 	do {

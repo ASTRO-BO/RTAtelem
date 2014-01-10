@@ -40,19 +40,19 @@ public:
 
 	/// Push a raw packet to the queue.
 	/// \param rawPacket The raw packet pointer.
-	void push(byte* rawPacket)
+	void push(ByteStreamPtr rawPacket)
 	{
 		queue.push(rawPacket);
 	}
 
 	/// Pop a raw packet from the queue.
 	/// \return The raw packet pointer.
-	byte* pop()
+	ByteStreamPtr pop()
 	{
 		if(queue.size() == 0)
 			return 0;
 
-		byte* elem = queue.front();
+		ByteStreamPtr elem = queue.front();
 		queue.pop();
 		return elem;
 	}
@@ -68,7 +68,7 @@ public:
 
 private:
 
-	std::queue<byte*> queue;
+	std::queue<ByteStreamPtr> queue;
 
 };
 

@@ -59,9 +59,9 @@ public:
 
 	///It returns the total dimension of the packet contained in the stream (without prefix). The stream* contains also the prefix (if present)
 	///\param The stream with the prefix (if present)
-	dword getInputPacketDimension(byte* stream);
+	dword getInputPacketDimension(ByteStreamPtr stream);
 
-	int getInputPacketType(byte* stream);
+	int getInputPacketType(ByteStreamPtr stream);
 
 	/// Common header for all the packets (packet header + data field header)
 	CTAPacketHeader* header;
@@ -74,12 +74,12 @@ public:
 
 	/// Read a packet from input
 	/// \return a ByteStreamPtr or 0 if there is no packets
-	byte* readPacket();
+	ByteStreamPtr readPacket();
 
 	/// Read a packet from input
 	void readPacketPy();
 
-	bool setStream(byte* stream);
+	bool setStream(ByteStreamPtr stream);
 
 	/// Printing the packet in input
 	void printPacket_input();
