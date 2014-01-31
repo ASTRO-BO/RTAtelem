@@ -38,8 +38,20 @@ export CPLUS_INCLUDE_PATH=/opt/local/include:/opt/local/include:$CPLUS_INCLUDE_P
 export C_INCLUDE_PATH=/opt/local/include:/opt/local/include:$C_INCLUDE_PATH
 export LD_LIBRARY_PATH=/opt/local/lib:$LD_LIBRARY_PATH
 
-############################ Python wrapper
-export PYTHONPATH=$HOME/GITHUB/RTAtelem/PythonWrapper:$PYTHONPATH
+
+#3 Building
+
+make 
+
+#4 Add library path to PYTHONPATH
+export PYTHONPATH=<path>/PythonWrapper:$PYTHONPATH
+
+3) Usage
+
+In python:
+
+> import CTACameraPedestal_ext
+> import CTACameraTriggerData_ext
 
 
 
