@@ -52,18 +52,14 @@ yes
 1
 [Fixed Part]
 --field 0 - SOURCE DATA HEADER ----------------------------------------
-TelescopeID
-16
-none
---field 1 - channel
-Channel
-16
-none
---field 2 - pedestal run
 pedestalRun
 16
 none
---field 3 - (Number of pixels)
+--field 1 - pedestal run
+TelescopeID
+16
+none
+--field 2 - (Number of pixels)
 Number of pixels
 16
 none
@@ -75,7 +71,7 @@ variable
 -- for variable block, number of level of headers in which is present the field with the number of blocks of the variable part (0: fixed part)
 0
 -- for variable block, index of field of the header which rappresent the number of events (the number of blocks) of the packet
-3
+2
 -- for variable block, value to sum to get the real number of events (blocks) 
 0
 ped_telescope_pixel.rblock

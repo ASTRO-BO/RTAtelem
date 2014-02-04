@@ -8,8 +8,19 @@ no
 pixelID
 16
 none
--- field 1 - PEDESTAL VALUE
-PEDESTAL
+-- field 1 - PEDESTAL HIGH VALUE 1
+PEDESTAL HIGH 1
 16
 none
-
+-- field 2 - PEDESTAL HIGH VALUE 2
+PEDESTAL HIGH 2
+16
+none
+-- field 3 - PEDESTAL LOW VALUE 1
+PEDESTAL LOW 1
+16
+none
+-- field 4 - PEDESTAL LOW VALUE 2
+PEDESTAL LOW 2
+16
+none

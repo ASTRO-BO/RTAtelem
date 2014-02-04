@@ -1,7 +1,7 @@
 /***************************************************************************
  CTACameraPedestal_ext.cpp  -  description
  -------------------
- copyright            : (C) 2013 Valentina Fioretti
+ copyright            : (C) 2014 Valentina Fioretti
  email                : fioretti@iasfbo.inaf.it
  ***************************************************************************/
 
@@ -37,42 +37,43 @@ BOOST_PYTHON_MODULE(CTACameraPedestal_ext)
 
          class_<RTATelem::CTAPacketHeader>("CTAPacketHeader", no_init)
               .def("setSSC", &RTATelem::CTAPacketHeader::setSSC)
-              .def("getSSC", &RTATelem::CTAPacketHeader::getSSC)
+              //.def("getSSC", &RTATelem::CTAPacketHeader::getSSC)
               .def("setAPID", &RTATelem::CTAPacketHeader::setAPID)
-              .def("getAPID", &RTATelem::CTAPacketHeader::getAPID)
+              //.def("getAPID", &RTATelem::CTAPacketHeader::getAPID)
               .def("setMetadata", &RTATelem::CTAPacketHeader::setMetadata)
-              .def("getMetadata", &RTATelem::CTAPacketHeader::getMetadata)
+              //.def("getMetadata", &RTATelem::CTAPacketHeader::getMetadata)
               .def("setTime", &RTATelem::CTAPacketHeader::setTime)
-              .def("getTime", &RTATelem::CTAPacketHeader::getTime)
+              //.def("getTime", &RTATelem::CTAPacketHeader::getTime)
               ;
 
          class_<RTATelem::CTAPacket>("CTAPacket", no_init)
               .add_property("header",make_getter(&RTATelem::CTAPacket::header, return_value_policy<reference_existing_object>()),make_setter(&RTATelem::CTAPacket::header,return_value_policy<reference_existing_object>()))
-
               .def("writePacket", &RTATelem::CTAPacket::writePacket)
-              //.def("readPacket", &RTATelem::CTAPacket::readPacket)
+              //.def("readPacket", &CTAPacket_readPacket, (boost::python::arg("self")), "Get buffer")
+              .def("readPacketPy", &RTATelem::CTAPacket::readPacketPy)
               .def("printPacket_output", &RTATelem::CTAPacket::printPacket_output)
               //.def("printPacket_input", &RTATelem::CTAPacket::printPacket_input)
               ; 
               
          class_<RTATelem::CTACamera, bases<RTATelem::CTAPacket> >("CTACamera", no_init)
               .def("setNumberOfPixels", &RTATelem::CTACamera::setNumberOfPixels)
-              .def("getNumberOfPixels", &RTATelem::CTACamera::getNumberOfPixels)
+              //.def("getNumberOfPixels", &RTATelem::CTACamera::getNumberOfPixels)
               ;               
 
          // Define a class A in the current scope, a
          class_<RTATelem::CTACameraPedestal, bases<RTATelem::CTACamera> >("CTACameraPedestal", init<std::string>())
               .def(init<std::string, std::string, std::string>())
-              .def("setTelescopeId", &RTATelem::CTACameraPedestal::setTelescopeId)
-              .def("getTelescopeId", &RTATelem::CTACameraPedestal::getTelescopeId)
-              .def("setPixelId", &RTATelem::CTACameraPedestal::setPixelId)
-              .def("getPixelId", &RTATelem::CTACameraPedestal::getPixelId)
-              .def("setPedestalValue", &RTATelem::CTACameraPedestal::setPedestalValue)
-              .def("getPedestalValue", &RTATelem::CTACameraPedestal::getPedestalValue)
-              .def("setChannel", &RTATelem::CTACameraPedestal::setChannel)
-              .def("getChannel", &RTATelem::CTACameraPedestal::getChannel)
               .def("setPedestalRun", &RTATelem::CTACameraPedestal::setPedestalRun)
-              .def("getPedestalRun", &RTATelem::CTACameraPedestal::getPedestalRun)
+              //.def("getPedestalRun", &RTATelem::CTACameraPedestal::getPedestalRun)
+              .def("setTelescopeId", &RTATelem::CTACameraPedestal::setTelescopeId)
+              //.def("getTelescopeId", &RTATelem::CTACameraPedestal::getTelescopeId)
+              .def("setPixelId", &RTATelem::CTACameraPedestal::setPixelId)
+              //.def("getPixelId", &RTATelem::CTACameraPedestal::getPixelId)
+              .def("setPedestalHighValue", &RTATelem::CTACameraPedestal::setPedestalHighValue)
+              //.def("getPedestalHighValue", &RTATelem::CTACameraPedestal::getPedestalHighValue)
+              .def("setPedestalLowValue", &RTATelem::CTACameraPedestal::setPedestalLowValue)
+              //.def("getPedestalLowValue", &RTATelem::CTACameraPedestal::getPedestalLowValue)
+
               ;
 
 }
