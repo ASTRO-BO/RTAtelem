@@ -1,0 +1,81 @@
+/***************************************************************************
+ CTACameraConv.h  -  description
+ -------------------
+ copyright            : (C) 2014 Valentina Fioretti
+ email                : fioretti@iasfbo.inaf.it
+ ***************************************************************************/
+
+/***************************************************************************
+ *                                                                         *
+ *   This program is free software for non commercial purpose              *
+ *   and for public research institutes; you can redistribute it and/or    *
+ *   modify it under the terms of the GNU General Public License.          *
+ *   For commercial purpose see appropriate license terms                  *
+ *                                                                         *
+ ***************************************************************************/
+
+#ifndef _CTACAMERACONV_H
+#define _CTACAMERACONV_H
+#include "CTACamera.h"
+
+namespace RTATelem {
+
+/// Creating and writing a packet for each CTA telescope,
+/// containg the pedestal value for each telescope pixel
+/// Use setChannel() to set the pedestal channel (e.g. high or low).
+/// \brief CTA pedestal packet class
+class CTACameraConv : public RTATelem::CTACamera {
+
+public:
+	/// It takes the configuration file .stream and the input/output file name
+	/// \param packetConfig The packet configuration file (.stream)
+	/// \param tmInputFileName The input file name of the packet
+	/// \param tmOutputFileName The output file name of the packet
+	CTACameraConv(string packetConfig, string tmInputFileName, string tmOutputFileName);
+
+	CTACameraConv(string packetConfig);
+	
+	~CTACameraConv();
+    
+	/// It sets the telescope ID (identification number)
+	/// \param telescopeID The telescope unique ID
+	void setTelescopeId(word telescopeID);
+
+	/// It gets the telescope ID (identification number)
+	word getTelescopeId();
+
+	/// Set the conversion run (a run identifier within the current array run)
+	word getConversionRun();
+
+	/// Get the conversion run.
+	void setConversionRun(word conv);
+	
+	/// It sets the pixel ID (identification number)
+	/// \param pixelIndex The index of the pixel (0..NumberOfPixels-1)
+	/// \param pixelID The pixel unique ID
+	void setPixelId(word pixelIndex, word pixelID);
+
+	/// It gets the pixel ID (identification number)
+	word getPixelId(word pixelIndex);
+	
+	/// It sets the conversion high value
+	/// \param pixelIndex The index of the pixel (0..NumberOfPixels-1)
+	/// \param convHigh The conversion high values of the pixel pixelIndex
+	void setConversionHighValue(word pixelIndex, float convHigh);
+
+	/// It gets the pixel conversion high value
+	float getConversionHighValue(word pixelIndex);
+
+	/// It sets the conversion low value
+	/// \param pixelIndex The index of the pixel (0..NumberOfPixels-1)
+	/// \param convLow The conversion high values of the pixel pixelIndex
+	void setConversionLowValue(word pixelIndex, float convLow);
+
+	/// It gets the pixel conversion low value
+	float getConversionLowValue(word pixelIndex);
+
+    
+};
+}
+
+#endif

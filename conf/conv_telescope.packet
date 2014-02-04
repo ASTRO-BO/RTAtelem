@@ -1,5 +1,5 @@
 -- name of packet
-CTA Telescope Pedestal
+CTA Telescope Conversion
 [PacketHeader]
 -- file that contains the description of the header
 CTAheader.header
@@ -15,7 +15,7 @@ Packet Type
 -- field 2 -- set this to the correct value for this structure
 Packet Subtype
 8
-1
+2
 -- field 3 - Time secs MSB (4_14)
 LTtime MSB
 16
@@ -52,7 +52,7 @@ yes
 1
 [Fixed Part]
 --field 0 - SOURCE DATA HEADER ----------------------------------------
-pedestalRun
+conversionRun
 16
 none
 --field 1 - Telescope ID
@@ -74,7 +74,7 @@ variable
 2
 -- for variable block, value to sum to get the real number of events (blocks) 
 0
-ped_telescope_pixel.rblock
+conv_telescope_pixel.rblock
 [Identifiers]
 -- ID0 type
 -- field number

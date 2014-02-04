@@ -2,7 +2,9 @@
                           CTACameraPedestal.cpp  -  description
                              -------------------
     copyright            : (C) 2013 Andrea Bulgarelli
+                               2014 Valentina Fioretti
     email                : bulgarelli@iasfbo.inaf.it
+                           fioretti@iasfbo.inaf.it
  ***************************************************************************/
 
 /***************************************************************************
@@ -24,6 +26,7 @@
 
 #define RBLOCK_TELESCOPE 0
 #define RBLOCK_PIXEL 0
+#define RBLOCK_NSUM 0
 
 RTATelem::CTACameraPedestal::CTACameraPedestal(string packetConfig, string tmInputFileName, string tmOutputFileName) : CTACamera(packetConfig, tmInputFileName, tmOutputFileName) {
 
@@ -104,4 +107,53 @@ float RTATelem::CTACameraPedestal::getPedestalLowValue(word pixelIndex) {
     return pixel->getFieldValue_5_1(3);
 }
 
+void RTATelem::CTACameraPedestal::setNumberSummingWindows(word pixelIndex, word nsumWindows) {
+    /// Get a pointer to the source data field
+    SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField;
+    SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
+    pixel->setNumberOfRealDataBlock(nsumWindows, RBLOCK_NSUM);
+}
 
+word RTATelem::CTACameraPedestal::getNumberSummingWindows(word pixelIndex) {
+    SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField;
+    SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
+    return pixel->getNumberOfRealDataBlock();
+}
+
+void RTATelem::CTACameraPedestal::setPedVarHigh(word pixelIndex, word sumWindIndex, float pedvarHigh) {
+    /// Get a pointer to the source data field
+    SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField;
+    SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
+    /// VARIABLE FORMAT
+    SDFRBBlock* sumWindow = (SDFRBBlock*) pixel->getBlock(sumWindIndex, RBLOCK_NSUM);
+    sumWindow->setFieldValue_5_1(0, pedvarHigh);
+}
+
+
+float RTATelem::CTACameraPedestal::getPedVarHigh(word pixelIndex, word sumWindIndex) {
+    /// Get a pointer to the source data field
+    SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField;
+    SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
+    /// VARIABLE FORMAT
+    SDFRBBlock* sumWindow = (SDFRBBlock*) pixel->getBlock(sumWindIndex, RBLOCK_NSUM);
+    return sumWindow->getFieldValue_5_1(0);
+}
+
+void RTATelem::CTACameraPedestal::setPedVarLow(word pixelIndex, word sumWindIndex, float pedvarLow) {
+    /// Get a pointer to the source data field
+    SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField;
+    SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
+    /// VARIABLE FORMAT
+    SDFRBBlock* sumWindow = (SDFRBBlock*) pixel->getBlock(sumWindIndex, RBLOCK_NSUM);
+    sumWindow->setFieldValue_5_1(2, pedvarLow);
+}
+
+
+float RTATelem::CTACameraPedestal::getPedVarLow(word pixelIndex, word sumWindIndex) {
+    /// Get a pointer to the source data field
+    SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField;
+    SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
+    /// VARIABLE FORMAT
+    SDFRBBlock* sumWindow = (SDFRBBlock*) pixel->getBlock(sumWindIndex, RBLOCK_NSUM);
+    return sumWindow->getFieldValue_5_1(0);
+}

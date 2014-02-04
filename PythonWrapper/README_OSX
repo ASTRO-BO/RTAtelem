@@ -18,25 +18,29 @@ BOOST_PYTHON_LIB = -lboost_python-mt
 #2. Environment variables
 
 ############################# RTAtelem
-export CTARTA=$HOME/GITHUB/CTA_RTA
+export CTARTA=$HOME/Projects/CTA_RTA
+export PRO_DIR=$HOME/Projects
 
 ############################# PacketLib
-export LD_LIBRARY_PATH=$HOME/GITHUB/PacketLib/lib:$LD_LIBRARY_PATH
-export CPLUS_INCLUDE_PATH=$HOME/GITHUB/PacketLib/include:$HOME/GITHUB/PacketLib/include:$CPLUS_INCLUDE_PATH
-export C_INCLUDE_PATH=$HOME/GITHUB/PacketLib/include:$HOME/GITHUB/PacketLib/include:$C_INCLUDE_PATH
-export GTB_PACKETLIB_INCLUDE=$HOME/GITHUB/PacketLib/include
-export GTB_PACKETLIB_LIB=$HOME/GITHUB/PacketLib/lib
+export LD_LIBRARY_PATH=$PRO_DIR/PacketLib/lib:$LD_LIBRARY_PATH
+export CPLUS_INCLUDE_PATH=$PRO_DIR/PacketLib/include:$HOME/GITHUB/PacketLib/include:$CPLUS_INCLUDE_PATH
+export C_INCLUDE_PATH=$PRO_DIR/PacketLib/include:$HOME/GITHUB/PacketLib/include:$C_INCLUDE_PATH
+export GTB_PACKETLIB_INCLUDE=$PRO_DIR/PacketLib/include
+export GTB_PACKETLIB_LIB=$PRO_DIR/PacketLib/lib
 
 
 ############################# RTAtelem
-export LD_LIBRARY_PATH=$HOME/GITHUB/RTAtelem/lib:$LD_LIBRARY_PATH
-export CPLUS_INCLUDE_PATH=$HOME/GITHUB/RTAtelem/include:$HOME/GITHUB/RTAtelem/include:$CPLUS_INCLUDE_PATH
-export C_INCLUDE_PATH=$HOME/GITHUB/RTAtelem/include:$HOME/GITHUB/RTAtelem/include:$C_INCLUDE_PATH
+export LD_LIBRARY_PATH=$PRO_DIR/RTAtelem/lib:$LD_LIBRARY_PATH
+export CPLUS_INCLUDE_PATH=$PRO_DIR/RTAtelem/include:$HOME/GITHUB/RTAtelem/include:$CPLUS_INCLUDE_PATH
+export C_INCLUDE_PATH=$PRO_DIR/RTAtelem/include:$HOME/GITHUB/RTAtelem/include:$C_INCLUDE_PATH
 
 ############################# BOOST 1.53.0
 export CPLUS_INCLUDE_PATH=/opt/local/include:/opt/local/include:$CPLUS_INCLUDE_PATH
 export C_INCLUDE_PATH=/opt/local/include:/opt/local/include:$C_INCLUDE_PATH
 export LD_LIBRARY_PATH=/opt/local/lib:$LD_LIBRARY_PATH
+
+############################ Python wrapper
+export PYTHONPATH=$PRO_DIR/RTAtelem/PythonWrapper:$PYTHONPATH
 
 
 #3. Building

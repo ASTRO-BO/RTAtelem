@@ -1,5 +1,5 @@
 /***************************************************************************
- CTACameraPedestal_ext.cpp  -  description
+ CTACameraConv_ext.cpp  -  description
  -------------------
  copyright            : (C) 2014 Valentina Fioretti
  email                : fioretti@iasfbo.inaf.it
@@ -18,7 +18,7 @@
 #include <boost/python/module.hpp>
 #include <boost/python/class.hpp>
 #include <boost/python/scope.hpp>
-#include <CTACameraPedestal.cpp>
+#include <CTACameraConv.cpp>
 #include <CTACamera.cpp>
 #include <CTAPacket.cpp>
 #include <CTAPacketHeader.cpp>
@@ -28,7 +28,7 @@ using namespace boost::python;
 
 class DummyCTA{};
 
-BOOST_PYTHON_MODULE(CTACameraPedestal_ext)
+BOOST_PYTHON_MODULE(CTACameraConv_ext)
 {
          // Change the current scope 
          scope RTATelem
@@ -61,24 +61,18 @@ BOOST_PYTHON_MODULE(CTACameraPedestal_ext)
               ;               
 
          // Define a class A in the current scope, a
-         class_<RTATelem::CTACameraPedestal, bases<RTATelem::CTACamera> >("CTACameraPedestal", init<std::string>())
+         class_<RTATelem::CTACameraConv, bases<RTATelem::CTACamera> >("CTACameraConv", init<std::string>())
               .def(init<std::string, std::string, std::string>())
-              .def("setPedestalRun", &RTATelem::CTACameraPedestal::setPedestalRun)
-              //.def("getPedestalRun", &RTATelem::CTACameraPedestal::getPedestalRun)
-              .def("setTelescopeId", &RTATelem::CTACameraPedestal::setTelescopeId)
-              //.def("getTelescopeId", &RTATelem::CTACameraPedestal::getTelescopeId)
-              .def("setPixelId", &RTATelem::CTACameraPedestal::setPixelId)
-              //.def("getPixelId", &RTATelem::CTACameraPedestal::getPixelId)
-              .def("setPedestalHighValue", &RTATelem::CTACameraPedestal::setPedestalHighValue)
-              //.def("getPedestalHighValue", &RTATelem::CTACameraPedestal::getPedestalHighValue)
-              .def("setPedestalLowValue", &RTATelem::CTACameraPedestal::setPedestalLowValue)
-              //.def("getPedestalLowValue", &RTATelem::CTACameraPedestal::getPedestalLowValue)
-              .def("setNumberSummingWindows", &RTATelem::CTACameraPedestal::setNumberSummingWindows)
-              //.def("getNumberSummingWindows", &RTATelem::CTACameraPedestal::getNumberSummingWindows)
-              .def("setPedVarHigh", &RTATelem::CTACameraPedestal::setPedVarHigh)
-              //.def("getPedVarHigh", &RTATelem::CTACameraPedestal::getPedVarHigh)
-              .def("setPedVarLow", &RTATelem::CTACameraPedestal::setPedVarLow)
-              //.def("getPedVarLow", &RTATelem::CTACameraPedestal::getPedVarLow)             ù
+              .def("setConversionRun", &RTATelem::CTACameraConv::setConversionRun)
+              //.def("getConversionRun", &RTATelem::CTACameraConv::getConversionRun)
+              .def("setTelescopeId", &RTATelem::CTACameraConv::setTelescopeId)
+              //.def("getTelescopeId", &RTATelem::CTACameraConv::getTelescopeId)
+              .def("setPixelId", &RTATelem::CTACameraConv::setPixelId)
+              //.def("getPixelId", &RTATelem::CTACameraConv::getPixelId)
+              .def("setConversionHighValue", &RTATelem::CTACameraConv::setConversionHighValue)
+              //.def("getConversionHighValue", &RTATelem::CTACameraConv::getConversionHighValue)
+              .def("setConversionLowValue", &RTATelem::CTACameraConv::setConversionLowValue)
+              //.def("getConversionLowValue", &RTATelem::CTACameraConv::getConversionLowValue)
               ;
 
 }
