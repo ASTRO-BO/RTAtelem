@@ -76,6 +76,19 @@ public:
 	/// It gets the pixel pedestal low value
 	float getPedestalLowValue(word pixelIndex);
 
+    /// Get the data of a pixel as stream of byte. Example about how to use this stream:
+    /// ByteStreamPtr pedVal = pedtel->getPixelData(0);
+	/// cout << pedVal->printStreamInHexadecimal() << endl;
+    /// cout << pedVal ->getDimension() << endl;
+	/// fadc->swapWordForIntel();
+	/// word *c = (word*) pedVal->stream;
+	/// cout << "pixel id " << c[0] << endl;
+	/// cout << "number of summing windows " << c[1] << endl;
+	/// cout << "value of first pedestal value " << c[2] << endl;
+    /// \param The index of the pixel
+    /// \return ByteStream of the pixel.
+    ByteStreamPtr getPixelData(word pixelIndex);
+    
 	/// It sets the number of summing windows
 	void setNumberSummingWindows(word pixelIndex, word nsumWindows);
 

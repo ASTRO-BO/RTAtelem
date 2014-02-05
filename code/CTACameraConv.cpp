@@ -103,3 +103,10 @@ float RTATelem::CTACameraConv::getConversionLowValue(word pixelIndex) {
     SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
     return pixel->getFieldValue_5_1(3);
 }
+
+ByteStreamPtr RTATelem::CTACameraConv::getPixelData(word pixelIndex) {
+    /// Get a pointer to the source data field
+    SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField;
+    SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
+    return pixel->getByteStream();
+}

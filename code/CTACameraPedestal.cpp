@@ -107,6 +107,14 @@ float RTATelem::CTACameraPedestal::getPedestalLowValue(word pixelIndex) {
     return pixel->getFieldValue_5_1(3);
 }
 
+
+ByteStreamPtr RTATelem::CTACameraPedestal::getPixelData(word pixelIndex) {
+    /// Get a pointer to the source data field
+    SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField;
+    SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
+    return pixel->getByteStream();
+}
+
 void RTATelem::CTACameraPedestal::setNumberSummingWindows(word pixelIndex, word nsumWindows) {
     /// Get a pointer to the source data field
     SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField;
@@ -155,5 +163,5 @@ float RTATelem::CTACameraPedestal::getPedVarLow(word pixelIndex, word sumWindInd
     SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
     /// VARIABLE FORMAT
     SDFRBBlock* sumWindow = (SDFRBBlock*) pixel->getBlock(sumWindIndex, RBLOCK_NSUM);
-    return sumWindow->getFieldValue_5_1(0);
+    return sumWindow->getFieldValue_5_1(2);
 }

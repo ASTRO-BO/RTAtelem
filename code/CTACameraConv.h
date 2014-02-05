@@ -73,7 +73,19 @@ public:
 
 	/// It gets the pixel conversion low value
 	float getConversionLowValue(word pixelIndex);
-
+	
+    /// Get the data of a pixel as stream of byte. Example about how to use this stream:
+    /// ByteStreamPtr convVal = convtel->getPixelData(0);
+	/// cout << convVal->printStreamInHexadecimal() << endl;
+    /// cout << convVal ->getDimension() << endl;
+	/// conv->swapWordForIntel();
+	/// word *c = (word*) convVal->stream;
+	/// cout << "pixel id " << c[0] << endl;
+	/// cout << "number of summing windows " << c[1] << endl;
+	/// cout << "value of first pedestal value " << c[2] << endl;
+    /// \param The index of the pixel
+    /// \return ByteStream of the pixel.
+    ByteStreamPtr getPixelData(word pixelIndex);
     
 };
 }
