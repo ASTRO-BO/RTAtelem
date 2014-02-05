@@ -89,7 +89,7 @@ conv_telescope_pixel.rblock
 -- type (0 header, 1 data field)
 1
 -- value
-1
+2
 [Tail]
 CRC
 16
