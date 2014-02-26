@@ -18,7 +18,7 @@
 
 #include <string>
 #include <queue>
-#include "PacketLibDefinition.h"
+#include <packet/PacketLibDefinition.h>
 
 namespace RTATelem {
 

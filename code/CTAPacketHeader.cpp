@@ -1,8 +1,8 @@
 #include "CTAPacketHeader.h"
-#include "ByteStream.h"
-#include "Output.h"
-#include "Input.h"
-#include "Packet.h"
+#include <packet/ByteStream.h>
+#include <packet/Output.h>
+#include <packet/Input.h>
+#include <packet/Packet.h>
 
 RTATelem::CTAPacketHeader::CTAPacketHeader(Packet* inputPacket, Packet* outputPacket) {
 	this->inputPacket = inputPacket;

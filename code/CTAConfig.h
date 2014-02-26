@@ -17,7 +17,7 @@
 #ifndef _CTACONFIG_H
 #define _CTACONFIG_H
 
-#include "InputFileFITS.h"
+#include <qlbase/InputFileFITS.h>
 #include <iostream>
 #include <stdlib.h>
 

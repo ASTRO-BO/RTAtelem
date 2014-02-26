@@ -19,7 +19,7 @@
 
 #include <iostream>
 #include <stdlib.h>
-#include "Packet.h"
+#include <packet/Packet.h>
 
 using namespace PacketLib;
 
