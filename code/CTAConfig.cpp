@@ -13,6 +13,8 @@
  *                                                                         *
  ***************************************************************************/
 
+#include <algorithm>
+
 #include "CTAConfig.h"
 
 #define CONF_L0HEADER 1
