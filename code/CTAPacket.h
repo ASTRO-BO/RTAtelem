@@ -76,10 +76,10 @@ public:
 
 	/// Read a packet from input
 	/// \return a ByteStreamPtr or 0 if there is no packets
-	ByteStreamPtr readPacket();
+	ByteStreamPtr readPacket(bool bDecode = true);
 
 	/// Read a packet from input
-	void readPacketPy();
+	void readPacketPy(bool bDecode = true);
 
 	bool setStream(ByteStreamPtr stream);
 
