@@ -1,7 +1,7 @@
 /***************************************************************************
                           CTATriggeredTelescope.h  -  description
                              -------------------
-    copyright            : (C) 2013 Andrea Bulgarelli
+    copyright            : (C) 2014 Andrea Bulgarelli
     email                : bulgarelli@iasfbo.inaf.it
  ***************************************************************************/
 
@@ -14,8 +14,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef _CTACAMERATRIGGERDATA_H
-#define _CTACAMERATRIGGERDATA_H
+#ifndef _CTACameraTriggerData1_H
+#define _CTACameraTriggerData1_H
 #include "CTACamera.h"
 
 namespace RTATelem {
@@ -23,7 +23,7 @@ namespace RTATelem {
 /// Creating and writing a packet for each CTA triggered telescope,
 /// containg the FADC value at each sample of the telescope pixel
 /// \brief CTA triggered telescope packet class
-class CTACameraTriggerData : public RTATelem::CTACamera {
+class CTACameraTriggerData1 : public RTATelem::CTACamera {
 
 
 public:
@@ -31,11 +31,11 @@ public:
     /// \param packetConfig The packet configuration file (.stream)
     /// \param tmInputFileName The input file name of the packet
     /// \param tmOutputFileName The output file name of the packet
-	CTACameraTriggerData(string packetConfig, string tmInputFileName, string tmOutputFileName);
+	CTACameraTriggerData1(string packetConfig, string tmInputFileName, string tmOutputFileName);
 
-	CTACameraTriggerData(string packetConfig);
+	CTACameraTriggerData1(string packetConfig);
 
-    ~CTACameraTriggerData();
+    ~CTACameraTriggerData1();
 
 	/// It sets the telescope ID (identification number)
 	/// \param telescopeID The telescope unique ID
