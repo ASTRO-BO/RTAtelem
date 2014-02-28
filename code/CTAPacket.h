@@ -42,6 +42,7 @@ protected:
 	InputPacketStream* ips;
 	Packet* inputPacket;
 	Packet* outputPacket;
+	ByteStreamPtr pyStream;
 
 	string packetStreamConfig;
 
@@ -60,7 +61,8 @@ public:
 	///It returns the total dimension of the packet contained in the stream (without prefix). The stream* contains also the prefix (if present)
 	///\param The stream with the prefix (if present)
 	dword getInputPacketDimension(ByteStreamPtr stream);
-
+	dword getInputPacketDimension();
+	
 	int getInputPacketType(ByteStreamPtr stream);
 
 	/// Common header for all the packets (packet header + data field header)

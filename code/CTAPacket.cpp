@@ -154,7 +154,7 @@ ByteStreamPtr RTATelem::CTAPacket::readPacket() {
 }
 
 void RTATelem::CTAPacket::readPacketPy() {
-	readPacket();
+	pyStream = readPacket();
 }
 
 void RTATelem::CTAPacket::printPacket_input() {
@@ -189,6 +189,14 @@ dword RTATelem::CTAPacket::getInputPacketDimension(ByteStreamPtr stream) {
     //return inputPacket->getDimension();
 
 	return ips->getPacketDimension(stream);
+}
+
+dword RTATelem::CTAPacket::getInputPacketDimension() {
+	//cout << "C: " << inputPacket->getDimension() << endl;
+    //inputPacket->verifyPacketValue(stream);
+    //return inputPacket->getDimension();
+
+	return ips->getPacketDimension(pyStream);
 }
 
 int RTATelem::CTAPacket::getInputPacketType(ByteStreamPtr stream) {
