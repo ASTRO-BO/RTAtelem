@@ -39,6 +39,12 @@ public:
 	/// It gets the Source Sequence Counter
 	word getSSC();
 
+	/// It sets the subtype of the packet (e.g. the number of samples)
+	void setSubType(byte subtype);
+
+	/// It gets the subtype of a packet
+	word getSubType();
+
 	/// It sets the APID
 	/// \param apid The APID
 	void setAPID(word apid);

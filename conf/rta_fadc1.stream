@@ -8,4 +8,4 @@ true
 [Header Format]
 CTAheader.header
 [Packet Format]
-triggered_telescope.packet
+triggered_telescope1.packet

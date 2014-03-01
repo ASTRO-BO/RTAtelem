@@ -37,5 +37,17 @@ none
 Packet Length LSB (4_14) - 1
 16
 none
+-- field 8
+CRC flag
+2
+0b11
+-- field 9 -- set this to the correct value for this structure
+Packet Type
+6
+1
+-- field 10 -- set this to the correct value for this structure - the number of samples
+Packet Subtype
+8
+none
 
 

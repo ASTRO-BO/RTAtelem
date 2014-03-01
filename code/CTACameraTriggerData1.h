@@ -37,6 +37,14 @@ public:
 
     ~CTACameraTriggerData1();
 
+	/// It gets the number of pixels IDs
+	word getNumberOfPixelsID();
+
+	/// It sets the number of pixels IDs
+	/// \param number The number of pixels IDs
+	void setNumberOfPixelsID(word number);
+
+
 	/// It sets the telescope ID (identification number)
 	/// \param telescopeID The telescope unique ID
 	void setTelescopeId(word telescopeID);

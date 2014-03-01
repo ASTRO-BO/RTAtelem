@@ -4,39 +4,27 @@ CTA Triggered Sim Telescope
 -- file that contains the description of the header
 CTAheader.header
 [DataFieldHeader]
--- field 0
-CRC flag
-2
-0b11
--- field 1 -- set this to the correct value for this structure
-Packet Type
-6
-1
--- field 2 -- set this to the correct value for this structure
-Packet Subtype
-8
-0
--- field 3 - Time secs MSB (4_14)
+-- field 0 - Time secs MSB (4_14)
 LTtime MSB
 16
 none
--- field 4 - Time secs LSB (4_14)
+-- field 1 - Time secs LSB (4_14)
 LTtime LSB
 16
 none
--- field 5 - Time ns MSB (4_14)
+-- field 2 - Time ns MSB (4_14)
 LTtime MSB
 16
 none
--- field 6 - Time ns LSB (4_14)
+-- field 3 - Time ns LSB (4_14)
 LTtime LSB
 16
 none
--- field 7 - arrayID (Array) - identifier - metadata
+-- field 4 - arrayID (Array) - identifier - metadata
 ArrayID
 16
 none
--- field 8 - RunNumberID (Run) - identifier - metadata
+-- field 5 - RunNumberID (Run) - identifier - metadata
 runNumber
 16
 none
@@ -90,18 +78,18 @@ triggered_telescope_pixel.rblock
 [Identifiers]
 -- ID0 type
 -- field number
-1
+9
 -- type (0 header, 1 data field)
-1
--- value
-1
--- ID1 subtype
--- field number
-2
--- type (0 header, 1 data field)
-1
+0
 -- value
 0
+-- ID1 subtype
+-- field number
+-- 10
+-- type (0 header, 1 data field)
+-- 0
+-- value (set with the number of samples)
+-- 0
 [Tail]
 CRC
 16

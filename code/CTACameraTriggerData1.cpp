@@ -87,13 +87,6 @@ dword RTATelem::CTACameraTriggerData1::getEventNumber() {
     return sdf->getFieldValue_4_14(0);
 }
 
-void RTATelem::CTACameraTriggerData1::setPixelId(word pixelIndex, word pixelID) {
-    /// Get a pointer to the source data field
-    SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField;
-    SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXELID);
-    pixel->setFieldValue(0, pixelID);
-}
-
 void RTATelem::CTACameraTriggerData1::setNumberOfSamples(word pixelIndex, word number) {
     /// Get a pointer to the source data field
     SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField;
@@ -113,11 +106,22 @@ void RTATelem::CTACameraTriggerData1::setSampleValue(word pixelIndex, word sampl
 
 word RTATelem::CTACameraTriggerData1::getPixelId(word pixelIndex) {
     /// Get a pointer to the source data field
-    SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField;
+
+	SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField;
     SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXELID);
     return pixel->getFieldValue(0);
+
 }
 
+
+void RTATelem::CTACameraTriggerData1::setPixelId(word pixelIndex, word pixelID) {
+    /// Get a pointer to the source data field
+
+    SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField;
+    SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXELID);
+    pixel->setFieldValue(0, pixelID);
+
+}
 
 
 ByteStreamPtr RTATelem::CTACameraTriggerData1::getPixelData(word pixelIndex) {
@@ -143,4 +147,15 @@ word RTATelem::CTACameraTriggerData1::getSampleValue(word pixelIndex, word sampl
     return sample->getFieldValue(0);
 }
 
+void RTATelem::CTACameraTriggerData1::setNumberOfPixelsID(word number) {
+    /// Get a pointer to the source data field
+    SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField;
+    sdf->setNumberOfRealDataBlock(number, RBLOCK_PIXELID);
+}
+
+word RTATelem::CTACameraTriggerData1::getNumberOfPixelsID() {
+    /// Get a pointer to the source data field
+    SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField;
+    return sdf->getNumberOfRealDataBlock(RBLOCK_PIXELID);
+}
 

@@ -64,7 +64,7 @@ ICON_DIR = ui
 
 ####### 4) Compiler, tools and options
 
-CC       = gcc
+CC       = g++
 CXX      = g++
 #Insert the optional parameter to the compiler. The CFLAGS could be changed externally by the user
 CFLAGS   = -m64 -g

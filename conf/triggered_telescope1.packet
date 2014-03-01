@@ -1,42 +1,30 @@
 -- name of packet
-CTA Triggered Sim Telescope
+CTA Triggered Sim Telescope 2
 [PacketHeader]
 -- file that contains the description of the header
 CTAheader.header
 [DataFieldHeader]
--- field 0
-CRC flag
-2
-0b11
--- field 1 -- set this to the correct value for this structure
-Packet Type
-6
-1
--- field 2 -- set this to the correct value for this structure
-Packet Subtype
-8
-0
--- field 3 - Time secs MSB (4_14)
+-- field 0 - Time secs MSB (4_14)
 LTtime MSB
 16
 none
--- field 4 - Time secs LSB (4_14)
+-- field 1 - Time secs LSB (4_14)
 LTtime LSB
 16
 none
--- field 5 - Time ns MSB (4_14)
+-- field 2 - Time ns MSB (4_14)
 LTtime MSB
 16
 none
--- field 6 - Time ns LSB (4_14)
+-- field 3 - Time ns LSB (4_14)
 LTtime LSB
 16
 none
--- field 7 - arrayID (Array) - identifier - metadata
+-- field 4 - arrayID (Array) - identifier - metadata
 ArrayID
 16
 none
--- field 8 - RunNumberID (Run) - identifier - metadata
+-- field 5 - RunNumberID (Run) - identifier - metadata
 runNumber
 16
 none
@@ -75,18 +63,18 @@ none
 Number of pixels
 16
 none
--- field 6
-Number of samples (0-50)
+--field 6 (Number of samples)
+Number of samples
 16
 none
---field 7 (Number of pixel IDs)
-Number of pixel IDs
+--field 7 (Number of pixels ID for zero suppression)
+Number of pixels ID zero-suppressed
 16
 none
 [RBlock1]
 --type of number of blocks of this variable part: fixed = number of block fixed equals to max number of block (fixed | variable)
 variable
---number of blocks for fixed value into variable part, max number of blocks for variable value into variable part (1900)
+--number of blocks for fixed value into variable part, max number of blocks for variable value into variable part
 1900
 -- for variable block, number of level of headers in which is present the field with the number of blocks of the variable part (0: fixed part)
 0
@@ -98,7 +86,7 @@ triggered_telescope_pixel1.rblock
 [RBlock2]
 --type of number of blocks of this variable part: fixed = number of block fixed equals to max number of block (fixed | variable)
 variable
---number of blocks for fixed value into variable part, max number of blocks for variable value into variable part (1900)
+--number of blocks for fixed value into variable part, max number of blocks for variable value into variable part
 1900
 -- for variable block, number of level of headers in which is present the field with the number of blocks of the variable part (0: fixed part)
 0
@@ -110,18 +98,18 @@ triggered_telescope_pixelID.rblock
 [Identifiers]
 -- ID0 type
 -- field number
-1
+9
 -- type (0 header, 1 data field)
-1
+0
 -- value
 1
 -- ID1 subtype
 -- field number
-2
+-- 10
 -- type (0 header, 1 data field)
-1
--- value
-1
+-- 0
+-- value (set with the number of samples)
+-- 1
 [Tail]
 CRC
 16
