@@ -84,6 +84,8 @@ public:
     /// \param The index of the pixel
     /// \return ByteStream of the pixel.
     ByteStreamPtr getPixelData(word pixelIndex);
+	
+	ByteStreamPtr getCameraDataSlow();
 
     /// It sets the number of samples
     /// \param pixelIndex The index of the pixel (0..NumberOfPixels-1)

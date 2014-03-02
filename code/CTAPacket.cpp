@@ -204,7 +204,9 @@ int RTATelem::CTAPacket::getInputPacketType(ByteStreamPtr stream) {
 	return ips->detPacketType(stream);
 }
 
-bool RTATelem::CTAPacket::setStream(ByteStreamPtr stream) {
+bool RTATelem::CTAPacket::setStream(ByteStreamPtr stream, bool onlySection) {
+	this->stream = stream;
+	
 	//cout << inputPacket << endl;
-	inputPacket->setPacketValue(stream->stream);
+	inputPacket->setPacketValue(stream->stream, onlySection);
 }

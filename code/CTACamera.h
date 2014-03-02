@@ -51,7 +51,14 @@ public:
 	/// It gets the pixel ID (identification number)
 	word getPixelId(word pixelIndex);
 
-
+	ByteStreamPtr getCameraData(ByteStreamPtr rawPacket);
+	
+protected:
+	
+	dword getDimensionFixedPart();
+	
+	dword dimfixed;
+	dword dimtail;
 };
 
 }

@@ -128,14 +128,40 @@ ByteStreamPtr RTATelem::CTACameraTriggerData1::getPixelData(word pixelIndex) {
     /// Get a pointer to the source data field
     SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField;
     SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
-    return pixel->getByteStream();
+    ByteStreamPtr p = pixel->getByteStream();
+	p->swapWordForIntel();
+	return p;
+}
+
+ByteStreamPtr RTATelem::CTACameraTriggerData1::getCameraDataSlow() {
+    /// Get a pointer to the source data field
+    SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField;
+	int fixedpartdim = sdf->getFixedPart()->getDimension();
+	
+	ByteStreamPtr sdfbs = sdf->getByteStream();
+
+	ByteStreamPtr camera = ByteStreamPtr(new ByteStream(sdfbs, fixedpartdim));
+
+	/*ByteStreamPtr fixed = sdf->getFixedPart();
+	int fixedpartdim = fixed->getDimension();
+	int sdfdim = sdf->getDimension();
+    
+	sdfbs->swapWordForIntel();
+	
+	 */
+	//ByteStreamPtr camera = sdf->getVariablePart(); //TODO NON FUNZIONA!!!!!!!
+	camera->swapWordForIntel();
+	return camera;
 }
 
 word RTATelem::CTACameraTriggerData1::getNumberOfSamples(word pixelIndex) {
     /// Get a pointer to the source data field
     SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField;
     SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
-    return pixel->getNumberOfRealDataBlock();
+    word nsamples =  pixel->getNumberOfRealDataBlock();
+	if(nsamples == 0)
+		nsamples = sdf->getFieldValue(6);
+	return nsamples;
 }
 
 word RTATelem::CTACameraTriggerData1::getSampleValue(word pixelIndex, word sampleIndex) {
@@ -144,7 +170,12 @@ word RTATelem::CTACameraTriggerData1::getSampleValue(word pixelIndex, word sampl
     SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
     /// VARIABLE FORMAT
     SDFRBBlock* sample = (SDFRBBlock*) pixel->getBlock(sampleIndex, RBLOCK_SAMPLE);
-    return sample->getFieldValue(0);
+	word value = 0;
+	if(sample != 0)
+		value = sample->getFieldValue(0);
+	if(sample == 0)
+		value = pixel->getFieldValue(sampleIndex);
+    return value;
 }
 
 void RTATelem::CTACameraTriggerData1::setNumberOfPixelsID(word number) {

@@ -81,7 +81,7 @@ public:
 	/// Read a packet from input
 	void readPacketPy();
 
-	bool setStream(ByteStreamPtr stream);
+	bool setStream(ByteStreamPtr stream, bool onlySections = false);
 
 	/// Printing the packet in input
 	void printPacket_input();
@@ -97,6 +97,10 @@ public:
 	bool isBigendian() {
 		return inputPacket->isBigendian();
 	}
+	
+protected:
+	
+	ByteStreamPtr stream;
 };
 
 }

@@ -3,11 +3,16 @@
 #define RBLOCK_PIXEL 0
 
 RTATelem::CTACamera::CTACamera(string packetConfig, string tmInputFileName, string tmOutputFileName) : CTAPacket(packetConfig, tmInputFileName, tmOutputFileName) {
-
+	dimfixed = getDimensionFixedPart();
+	dimtail = inputPacket->dataField->tail->getDimension();
+	//cout << "getDimensionFixedPart " << dimfixed << " " << dimtail << endl;
 }
 
 RTATelem::CTACamera::CTACamera(string packetConfig) : CTAPacket(packetConfig) {
-
+	dimfixed = -1;
+	dimfixed = getDimensionFixedPart();
+	dimtail = inputPacket->dataField->tail->getDimension();
+	//cout << "getDimensionFixedPart " << dimfixed << " " << dimtail << endl;
 
 }
 
@@ -43,4 +48,21 @@ void RTATelem::CTACamera::setPixelId(word pixelIndex, word pixelID) {
 word RTATelem::CTACamera::getPixelId(word pixelIndex) {
 	cerr << "Implement RTATelem::CTACamera::getPixelId(word pixelIndex)" << endl;
 	return 0;
+}
+
+dword RTATelem::CTACamera::getDimensionFixedPart() {
+	dword d1 = inputPacket->header->getDimension();
+	dword d2 = inputPacket->dataField->dataFieldHeader->getDimension();
+	SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField;
+	dword d3 = sdf->getDimensionFixedPart();
+	return d1 + d2 + d3;
+}
+
+ByteStreamPtr RTATelem::CTACamera::getCameraData(ByteStreamPtr rawPacket) {
+	if(dimfixed == -1) {
+			dimfixed = getDimensionFixedPart();
+	}
+	ByteStreamPtr camera = ByteStreamPtr(new ByteStream(rawPacket, dimfixed, rawPacket->getDimension()-dimtail));
+	camera->swapWordForIntel();
+	return camera;
 }
