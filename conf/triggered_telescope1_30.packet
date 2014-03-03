@@ -82,7 +82,7 @@ variable
 5
 -- for variable block, value to sum to get the real number of events (blocks) 
 0
-triggered_telescope_pixel1_40.rblock
+triggered_telescope_pixel1_30.rblock
 [RBlock2]
 --type of number of blocks of this variable part: fixed = number of block fixed equals to max number of block (fixed | variable)
 variable

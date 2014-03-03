@@ -2,11 +2,10 @@
 --prefix
 false
 --stream format bigendian
-false
+true
 --dimension of prefix
 0
 [Header Format]
 CTAheader.header
 [Packet Format]
-triggered_telescope1_40.packet
-triggered_telescope1_30.packet
+triggered_telescope0.packet
