@@ -3,16 +3,11 @@
 #define RBLOCK_PIXEL 0
 
 RTATelem::CTACamera::CTACamera(string packetConfig, string tmInputFileName, string tmOutputFileName) : CTAPacket(packetConfig, tmInputFileName, tmOutputFileName) {
-	dimfixed = getDimensionFixedPart();
-	dimtail = inputPacket->dataField->tail->getDimension();
-	//cout << "getDimensionFixedPart " << dimfixed << " " << dimtail << endl;
+	
 }
 
 RTATelem::CTACamera::CTACamera(string packetConfig) : CTAPacket(packetConfig) {
-	dimfixed = -1;
-	dimfixed = getDimensionFixedPart();
-	dimtail = inputPacket->dataField->tail->getDimension();
-	//cout << "getDimensionFixedPart " << dimfixed << " " << dimtail << endl;
+	
 
 }
 
@@ -60,7 +55,8 @@ dword RTATelem::CTACamera::getDimensionFixedPart() {
 
 ByteStreamPtr RTATelem::CTACamera::getCameraData(ByteStreamPtr rawPacket) {
 	if(dimfixed == -1) {
-			dimfixed = getDimensionFixedPart();
+		dimfixed = getDimensionFixedPart();
+		dimtail = inputPacket->dataField->tail->getDimension();
 	}
 	ByteStreamPtr camera = ByteStreamPtr(new ByteStream(rawPacket, dimfixed, rawPacket->getDimension()-dimtail));
 	camera->swapWordForIntel();
