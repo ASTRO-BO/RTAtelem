@@ -31,12 +31,12 @@ CTAPacketBufferV::~CTAPacketBufferV()
 
 void CTAPacketBufferV::load()
 {
-	ByteStreamPtr packetPtr = packet.readPacket();
+	ByteStreamPtr packetPtr = packet.readPacket(false);
 	int counter=0;
 	while(packetPtr != 0)
 	{
 		vec.push_back(packetPtr);
-		packetPtr = packet.readPacket();
+		packetPtr = packet.readPacket(false);
 		counter++;
 	}
 }
@@ -48,7 +48,7 @@ void CTAPacketBufferV::load(int first, int last)
 
 	// skip elements preceeding first
 	while(counter < first) {
-		packetPtr = packet.readPacket();
+		packetPtr = packet.readPacket(false);
 		if(packetPtr == 0) break;
 		counter++;
 	}
@@ -56,7 +56,7 @@ void CTAPacketBufferV::load(int first, int last)
 
 	// envec elements from first to last
 	do {
-		packetPtr = packet.readPacket();
+		packetPtr = packet.readPacket(false);
 		if(packetPtr == 0) break;
 		vec.push_back(packetPtr);
 		counter++;

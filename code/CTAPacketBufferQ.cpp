@@ -29,12 +29,12 @@ CTAPacketBufferQ::~CTAPacketBufferQ()
 
 void CTAPacketBufferQ::load()
 {
-	ByteStreamPtr packetPtr = packet.readPacket();
+	ByteStreamPtr packetPtr = packet.readPacket(false);
 	int counter=0;
 	while(packetPtr != 0)
 	{
 		push(packetPtr);
-		packetPtr = packet.readPacket();
+		packetPtr = packet.readPacket(false);
 		counter++;
 	}
 }
@@ -46,7 +46,7 @@ void CTAPacketBufferQ::load(int first, int last)
 
 	// skip elements preceeding first
 	do {
-		packetPtr = packet.readPacket();
+		packetPtr = packet.readPacket(false);
 		if(packetPtr == 0) break;
 		counter++;
 	}
@@ -54,7 +54,7 @@ void CTAPacketBufferQ::load(int first, int last)
 
 	// enqueue elements from first to last
 	do {
-		packetPtr = packet.readPacket();
+		packetPtr = packet.readPacket(false);
 		if(packetPtr == 0) break;
 		queue.push(packetPtr);
 		counter++;
