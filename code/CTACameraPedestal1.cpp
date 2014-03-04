@@ -45,7 +45,7 @@ RTATelem::CTACameraPedestal1::~CTACameraPedestal1() {
 void RTATelem::CTACameraPedestal1::writePacket() {
     
     header->setType(2);
-    RTATelem::CTAPacket::writePacket(outputPacket);
+    RTATelem::CTAPacket::writePacket();
 }
 
 void RTATelem::CTACameraPedestal1::setPedestalRun(word pede) {

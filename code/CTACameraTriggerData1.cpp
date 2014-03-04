@@ -40,7 +40,7 @@ RTATelem::CTACameraTriggerData1::CTACameraTriggerData1(string packetConfig) : CT
 void RTATelem::CTACameraTriggerData1::writePacket() {
     
     header->setType(1);
-    RTATelem::CTAPacket::writePacket(outputPacket);
+    RTATelem::CTAPacket::writePacket();
 }
 
 void RTATelem::CTACameraTriggerData1::setTelescopeId(word telescopeID) {

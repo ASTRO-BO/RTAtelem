@@ -41,7 +41,7 @@ RTATelem::CTACameraConv1::~CTACameraConv1() {
 void RTATelem::CTACameraConv1::writePacket() {
     
     header->setType(3);
-    RTATelem::CTAPacket::writePacket(outputPacket);
+    RTATelem::CTAPacket::writePacket();
 }
 
 void RTATelem::CTACameraConv1::setConversionRun(word conv) {
