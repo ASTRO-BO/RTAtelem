@@ -34,6 +34,8 @@ public:
 	CTACameraTriggerData1(string packetConfig, string tmInputFileName, string tmOutputFileName);
 
 	CTACameraTriggerData1(string packetConfig);
+	
+	void writePacket();
 
     ~CTACameraTriggerData1();
 

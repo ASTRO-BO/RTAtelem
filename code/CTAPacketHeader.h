@@ -39,6 +39,12 @@ public:
 	/// It gets the Source Sequence Counter
 	word getSSC();
 
+	/// It sets the type of the packet (1 - triggered data, 2 pedestal, 3 conv)
+	void setType(byte type);
+	
+	/// It gets the type of a packet
+	word getType();
+	
 	/// It sets the subtype of the packet (e.g. the number of samples)
 	void setSubType(byte subtype);
 

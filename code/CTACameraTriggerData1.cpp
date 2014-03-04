@@ -39,7 +39,7 @@ RTATelem::CTACameraTriggerData1::CTACameraTriggerData1(string packetConfig) : CT
 
 void RTATelem::CTACameraTriggerData1::writePacket() {
     
-    header->
+    header->setType(1);
     RTATelem::CTAPacket::writePacket(outputPacket);
 }
 

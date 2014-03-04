@@ -27,6 +27,15 @@ word RTATelem::CTAPacketHeader::getSubType() {
 	return inputPacket->header->getFieldValue(10);
 }
 
+void RTATelem::CTAPacketHeader::setType(byte type) {
+	outputPacket->header->setFieldValue(9, type);
+}
+
+
+word RTATelem::CTAPacketHeader::getType() {
+	return inputPacket->header->getFieldValue(9);
+}
+
 
 void RTATelem::CTAPacketHeader::setSSC(word counter) {
     outputPacket->header->setFieldValue(5, counter);
