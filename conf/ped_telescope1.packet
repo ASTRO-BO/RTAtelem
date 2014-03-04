@@ -1,0 +1,96 @@
+-- name of packet
+CTA Telescope Pedestal
+[PacketHeader]
+-- file that contains the description of the header
+CTAheader.header
+[DataFieldHeader]
+-- field 0
+CRC flag
+2
+0b11
+-- field 1 -- set this to the correct value for this structure
+Packet Type
+6
+1
+-- field 2 -- set this to the correct value for this structure
+Packet Subtype
+8
+1
+-- field 3 - Time secs MSB (4_14)
+LTtime MSB
+16
+none
+-- field 4 - Time secs LSB (4_14)
+LTtime LSB
+16
+none
+-- field 5 - Time ns MSB (4_14)
+LTtime MSB
+16
+none
+-- field 6 - Time ns LSB (4_14)
+LTtime LSB
+16
+none
+-- field 7 - arrayID (Array) - identifier - metadata
+ArrayID
+16
+none
+-- field 8 - RunNumberID (Run) - identifier - metadata
+runNumber
+16
+none
+[SourceDataField]
+-- type of packet: noblock, block, rblock (with recoursive block)
+rblock
+[RBlock Configuration]
+-- fixed part present (yes | no)
+yes
+-- variable part present (yes | no). If yes, add [RBlockX] sections.
+yes
+--number of rblock (if variable part is present)
+1
+[Fixed Part]
+--field 0 - SOURCE DATA HEADER ----------------------------------------
+pedestalRun
+16
+none
+--field 1 - Telescope ID
+TelescopeID
+16
+none
+--field 2 - (Number of pixels)
+Number of pixels
+16
+none
+[RBlock1]
+--type of number of blocks of this variable part: fixed = number of block fixed equals to max number of block (fixed | variable)
+variable
+--number of blocks for fixed value into variable part, max number of blocks for variable value into variable part (1900)
+1900
+-- for variable block, number of level of headers in which is present the field with the number of blocks of the variable part (0: fixed part)
+0
+-- for variable block, index of field of the header which rappresent the number of events (the number of blocks) of the packet
+2
+-- for variable block, value to sum to get the real number of events (blocks) 
+0
+ped_telescope_pixel.rblock
+[Identifiers]
+-- ID0 type
+-- field number
+1
+-- type (0 header, 1 data field)
+1
+-- value
+1
+-- ID1 subtype
+-- field number
+2
+-- type (0 header, 1 data field)
+1
+-- value
+1
+[Tail]
+CRC
+16
+none

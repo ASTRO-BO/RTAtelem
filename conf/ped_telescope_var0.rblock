@@ -1,0 +1,23 @@
+[RBlock Configuration]
+-- fixed part present (yes | no)
+yes
+-- variable part present (yes | no). If yes, add [RBlockX] sections.
+no
+[Fixed Part]
+-- field 0 - PEDVAR HIGH 1 
+PedVar High 1
+16
+none
+-- field 1 - PEDVAR HIGH 2 
+PedVar High 2
+16
+none
+-- field 2 - PEDVAR LOW 1 
+PedVar Low 1
+16
+none
+-- field 3 - PEDVAR LOW 2 
+PedVar Low 2
+16
+none
+[RBlock1]
