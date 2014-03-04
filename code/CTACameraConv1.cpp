@@ -66,7 +66,7 @@ word RTATelem::CTACameraConv1::getTelescopeId() {
     return sdf->getFieldValue(1);
 }
 
-
+/*
 
 void RTATelem::CTACameraConv1::setPixelId(word pixelIndex, word pixelID) {
     /// Get a pointer to the source data field
@@ -81,38 +81,40 @@ word RTATelem::CTACameraConv1::getPixelId(word pixelIndex) {
     SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
     return pixel->getFieldValue(0);
 }
-
+*/
 void RTATelem::CTACameraConv1::setConversionHighValue(word pixelIndex, float convHigh) {
     /// Get a pointer to the source data field
     SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField;
     SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
-    pixel->setFieldValue_5_1(1, convHigh);
+    pixel->setFieldValue_5_1(0, convHigh);
 }
 
 float RTATelem::CTACameraConv1::getConversionHighValue(word pixelIndex) {
     /// Get a pointer to the source data field
     SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField;
     SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
-    return pixel->getFieldValue_5_1(1);
+    return pixel->getFieldValue_5_1(0);
 }
 
 void RTATelem::CTACameraConv1::setConversionLowValue(word pixelIndex, float convLow) {
     /// Get a pointer to the source data field
     SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField;
     SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
-    pixel->setFieldValue_5_1(3, convLow);
+    pixel->setFieldValue_5_1(2, convLow);
 }
 
 float RTATelem::CTACameraConv1::getConversionLowValue(word pixelIndex) {
     /// Get a pointer to the source data field
     SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField;
     SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
-    return pixel->getFieldValue_5_1(3);
+    return pixel->getFieldValue_5_1(2);
 }
 
 ByteStreamPtr RTATelem::CTACameraConv1::getPixelData(word pixelIndex) {
     /// Get a pointer to the source data field
     SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField;
     SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
-    return pixel->getByteStream();
+    ByteStreamPtr p = pixel->getByteStream();
+	p->swapWordForIntel();
+	return p;
 }

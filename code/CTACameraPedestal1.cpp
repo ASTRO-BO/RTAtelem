@@ -71,7 +71,7 @@ word RTATelem::CTACameraPedestal1::getTelescopeId() {
 }
 
 
-
+/*
 void RTATelem::CTACameraPedestal1::setPixelId(word pixelIndex, word pixelID) {
     /// Get a pointer to the source data field
     SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField;
@@ -85,33 +85,34 @@ word RTATelem::CTACameraPedestal1::getPixelId(word pixelIndex) {
     SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
     return pixel->getFieldValue(0);
 }
+*/
 
 void RTATelem::CTACameraPedestal1::setPedestalHighValue(word pixelIndex, float pedHigh) {
     /// Get a pointer to the source data field
     SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField;
     SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
-    pixel->setFieldValue_5_1(1, pedHigh);
+    pixel->setFieldValue_5_1(0, pedHigh);
 }
 
 float RTATelem::CTACameraPedestal1::getPedestalHighValue(word pixelIndex) {
     /// Get a pointer to the source data field
     SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField;
     SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
-    return pixel->getFieldValue_5_1(1);
+    return pixel->getFieldValue_5_1(0);
 }
 
 void RTATelem::CTACameraPedestal1::setPedestalLowValue(word pixelIndex, float pedLow) {
     /// Get a pointer to the source data field
     SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField;
     SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
-    pixel->setFieldValue_5_1(3, pedLow);
+    pixel->setFieldValue_5_1(2, pedLow);
 }
 
 float RTATelem::CTACameraPedestal1::getPedestalLowValue(word pixelIndex) {
     /// Get a pointer to the source data field
     SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField;
     SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
-    return pixel->getFieldValue_5_1(3);
+    return pixel->getFieldValue_5_1(2);
 }
 
 
@@ -119,7 +120,9 @@ ByteStreamPtr RTATelem::CTACameraPedestal1::getPixelData(word pixelIndex) {
     /// Get a pointer to the source data field
     SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField;
     SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
-    return pixel->getByteStream();
+    ByteStreamPtr p = pixel->getByteStream();
+	p->swapWordForIntel();
+	return p;
 }
 
 void RTATelem::CTACameraPedestal1::setNumberSummingWindows(word pixelIndex, word nsumWindows) {

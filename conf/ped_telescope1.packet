@@ -37,7 +37,7 @@ yes
 -- variable part present (yes | no). If yes, add [RBlockX] sections.
 yes
 --number of rblock (if variable part is present)
-2
+1
 [Fixed Part]
 --field 0 - SOURCE DATA HEADER ----------------------------------------
 pedestalRun
@@ -49,10 +49,6 @@ TelescopeID
 none
 --field 2 - (Number of pixels)
 Number of pixels
-16
-none
--- field 3 - NUMBER OF SUMMING WINDOWS
-Number of summing windows
 16
 none
 [RBlock1]
@@ -67,18 +63,6 @@ variable
 -- for variable block, value to sum to get the real number of events (blocks) 
 0
 ped_telescope_pixel1.rblock
-[RBlock2]
---type of number of blocks of this variable part: fixed = number of block fixed equals to max number of block (fixed | variable)
-variable
---number of blocks for fixed value into variable part, max number of blocks for variable value into variable part (1900)
-100
--- for variable block, number of level of headers in which is present the field with the number of blocks of the variable part (0: fixed part)
-0
--- for variable block, index of field of the header which rappresent the number of events (the number of blocks) of the packet
-3
--- for variable block, value to sum to get the real number of events (blocks) 
-0
-ped_telescope_var1.rblock
 [Identifiers]
 -- ID0 type
 -- field number
