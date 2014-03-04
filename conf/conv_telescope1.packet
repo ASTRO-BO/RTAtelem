@@ -70,7 +70,7 @@ conv_telescope_pixel1.rblock
 -- type (0 header, 1 data field)
 0
 -- value
-2
+3
 -- ID1 subtype
 -- field number
 -- 2

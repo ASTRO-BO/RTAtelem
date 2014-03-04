@@ -4,23 +4,19 @@ yes
 -- variable part present (yes | no). If yes, add [RBlockX] sections.
 no
 [Fixed Part]
---field 0
-pixelID
-16
-none
--- field 1 - CONVERSION HIGH VALUE 1
+-- field 0 - CONVERSION HIGH VALUE 1
 Conversion High 1
 16
 none
--- field 2 - CONVERSION HIGH VALUE 2
+-- field 1 - CONVERSION HIGH VALUE 2
 Conversion High 2
 16
 none
--- field 3 - CONVERSION LOW VALUE 1
+-- field 2 - CONVERSION LOW VALUE 1
 Conversion Low 1
 16
 none
--- field 4 - CONVERSION LOW VALUE 2
+-- field 3 - CONVERSION LOW VALUE 2
 Conversion Low 2
 16
 none
