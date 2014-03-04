@@ -76,12 +76,12 @@ public:
 
 	/// Read a packet from input
 	/// \return a ByteStreamPtr or 0 if there is no packets
-	ByteStreamPtr readPacket(bool bDecode = true);
+	ByteStreamPtr readPacket();
 
 	/// Read a packet from input
-	void readPacketPy(bool bDecode = true);
+	void readPacketPy();
 
-	bool setStream(ByteStreamPtr stream, bool onlySections = false);
+	bool setStream(ByteStreamPtr stream);
 
 	/// Printing the packet in input
 	void printPacket_input();
@@ -97,10 +97,6 @@ public:
 	bool isBigendian() {
 		return inputPacket->isBigendian();
 	}
-	
-protected:
-	
-	ByteStreamPtr stream;
 };
 
 }
