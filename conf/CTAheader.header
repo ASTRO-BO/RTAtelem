@@ -44,7 +44,7 @@ CRC flag
 -- field 9 -- set this to the correct value for this structure
 Packet Type
 6
-1
+none
 -- field 10 -- set this to the correct value for this structure - the number of samples
 Packet Subtype
 8

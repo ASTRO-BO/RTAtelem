@@ -37,6 +37,12 @@ RTATelem::CTACameraTriggerData1::CTACameraTriggerData1(string packetConfig) : CT
 }
 
 
+void RTATelem::CTACameraTriggerData1::writePacket() {
+    
+    header->
+    RTATelem::CTAPacket::writePacket(outputPacket);
+}
+
 void RTATelem::CTACameraTriggerData1::setTelescopeId(word telescopeID) {
     /// Get a pointer to the source data field
     SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField;
