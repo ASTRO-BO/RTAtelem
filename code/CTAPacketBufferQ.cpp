@@ -45,12 +45,11 @@ void CTAPacketBufferQ::load(int first, int last)
 	ByteStreamPtr packetPtr;
 
 	// skip elements preceeding first
-	do {
+	while(counter < first) {
 		packetPtr = packet.readPacket(false);
 		if(packetPtr == 0) break;
 		counter++;
 	}
-	while(counter < first);
 
 	// enqueue elements from first to last
 	do {
