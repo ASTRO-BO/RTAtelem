@@ -1,8 +1,7 @@
 /***************************************************************************
-                          CTACameraTriggerData.cpp  -  description
-                             -------------------
-    copyright            : (C) 2013 Andrea Bulgarelli
-    email                : bulgarelli@iasfbo.inaf.it
+    begin                : TODO
+    copyright            : (C) 2013-2014 Andrea Bulgarelli, Andrea Zoli
+    email                : bulgarelli@iasfbo.inaf.it, zoli@iasfbo.inaf.it
  ***************************************************************************/
 
 /***************************************************************************
@@ -14,93 +13,62 @@
  *                                                                         *
  ***************************************************************************/
 
-
 #include "CTACameraTriggerData.h"
-#include <packet/OutputFile.h>
-#include <packet/InputFile.h>
-#include <packet/PacketDataField.h>
-#include <packet/SDFRBlock.h>
-#include <packet/OutputPacketStream.h>
 
-#define RBLOCK_TELESCOPE 0
-#define RBLOCK_PIXEL 0
-#define RBLOCK_SAMPLE 0
+namespace RTATelem {
 
-RTATelem::CTACameraTriggerData::CTACameraTriggerData(string packetConfig, string tmInputFileName, string tmOutputFileName) : CTACamera(packetConfig, tmInputFileName, tmOutputFileName) {
+CTACameraTriggerData::CTACameraTriggerData(string packetConfig, string tmInputFileName, string tmOutputFileName) : CTACamera(packetConfig, tmInputFileName, tmOutputFileName) {
 
 }
 
-RTATelem::CTACameraTriggerData::CTACameraTriggerData(string packetConfig) : CTACamera(packetConfig) {
-
+CTACameraTriggerData::CTACameraTriggerData(string packetConfig) : CTACamera(packetConfig) {
 
 }
 
-
-void RTATelem::CTACameraTriggerData::setTelescopeId(word telescopeID) {
+void CTACameraTriggerData::setTelescopeId(word telescopeID) {
     /// Get a pointer to the source data field
     SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField;
     sdf->setFieldValue(2, telescopeID);
 }
 
-word RTATelem::CTACameraTriggerData::getTelescopeId() {
-    /// Get a pointer to the source data field
-    SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField;
-    return sdf->getFieldValue(2);
-}
-
-
-RTATelem::CTACameraTriggerData::~CTACameraTriggerData() {
-
-}
-
-void RTATelem::CTACameraTriggerData::setNumberOfTriggeredTelescopes(byte number) {
+void CTACameraTriggerData::setNumberOfTriggeredTelescopes(byte number) {
     SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField;
     sdf->setFieldValue(3, (word) number);
 }
 
-byte RTATelem::CTACameraTriggerData::getNumberOfTriggeredTelescopes() {
+byte CTACameraTriggerData::getNumberOfTriggeredTelescopes() {
 	SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField;
 	return (byte) sdf->getFieldValue(3);
 }
 
-void RTATelem::CTACameraTriggerData::setIndexOfCurrentTriggeredTelescope(byte telescopeIndex) {
+void CTACameraTriggerData::setIndexOfCurrentTriggeredTelescope(byte telescopeIndex) {
 	 SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField;
 	 sdf->setFieldValue(4, (word) telescopeIndex);
 }
 
-byte RTATelem::CTACameraTriggerData::getIndexOfCurrentTriggeredTelescope() {
+byte CTACameraTriggerData::getIndexOfCurrentTriggeredTelescope() {
 	SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField;
 	return (byte) sdf->getFieldValue(4);
 }
 
-
-
-void RTATelem::CTACameraTriggerData::setEventNumber(dword event) {
+void CTACameraTriggerData::setEventNumber(dword event) {
 	SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField;
     sdf->setFieldValue_4_14(0, event);
 }
 
-
-dword RTATelem::CTACameraTriggerData::getEventNumber() {
+dword CTACameraTriggerData::getEventNumber() {
 	SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField;
     return sdf->getFieldValue_4_14(0);
 }
 
-void RTATelem::CTACameraTriggerData::setPixelId(word pixelIndex, word pixelID) {
-    /// Get a pointer to the source data field
-    SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField;
-    SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
-    pixel->setFieldValue(0, pixelID);
-}
-
-void RTATelem::CTACameraTriggerData::setNumberOfSamples(word pixelIndex, word number) {
+void CTACameraTriggerData::setNumberOfSamples(word pixelIndex, word number) {
     /// Get a pointer to the source data field
     SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField;
     SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
     pixel->setNumberOfRealDataBlock(number, RBLOCK_SAMPLE);
 }
 
-void RTATelem::CTACameraTriggerData::setSampleValue(word pixelIndex, word sampleIndex, word FADC) {
+void CTACameraTriggerData::setSampleValue(word pixelIndex, word sampleIndex, word FADC) {
     /// Get a pointer to the source data field
     SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField;
     SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
@@ -109,37 +77,18 @@ void RTATelem::CTACameraTriggerData::setSampleValue(word pixelIndex, word sample
     sample->setFieldValue(0, FADC);
 }
 
+void CTACameraTriggerData::setPixelId(word pixelIndex, word pixelID) {
+    /// Get a pointer to the source data field
+    SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField;
+    SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
+    pixel->setFieldValue(0, pixelID);
+}
 
-word RTATelem::CTACameraTriggerData::getPixelId(word pixelIndex) {
+word CTACameraTriggerData::getPixelId(word pixelIndex) {
     /// Get a pointer to the source data field
     SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField;
     SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
     return pixel->getFieldValue(0);
 }
 
-
-
-ByteStreamPtr RTATelem::CTACameraTriggerData::getPixelData(word pixelIndex) {
-    /// Get a pointer to the source data field
-    SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField;
-    SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
-    return pixel->getByteStream();
 }
-
-word RTATelem::CTACameraTriggerData::getNumberOfSamples(word pixelIndex) {
-    /// Get a pointer to the source data field
-    SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField;
-    SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
-    return pixel->getNumberOfRealDataBlock();
-}
-
-word RTATelem::CTACameraTriggerData::getSampleValue(word pixelIndex, word sampleIndex) {
-    /// Get a pointer to the source data field
-    SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField;
-    SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
-    /// VARIABLE FORMAT
-    SDFRBBlock* sample = (SDFRBBlock*) pixel->getBlock(sampleIndex, RBLOCK_SAMPLE);
-    return sample->getFieldValue(0);
-}
-
-
