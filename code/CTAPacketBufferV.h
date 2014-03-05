@@ -66,7 +66,7 @@ public:
 private:
 
 	std::vector<ByteStreamPtr> vec;
-	long currentIndex;
+	unsigned int currentIndex;
 	long currentIndexBS;
 
 };

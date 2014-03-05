@@ -90,9 +90,6 @@ RTATelem::CTAPacket::CTAPacket(string packetConfig) {
 	this->packetStreamConfig = packetConfig;
 
 	try {
-		char** param = (char**) new char*[2];
-
-
 		/// create input packet stream
 		ips = new InputPacketStream();
 		ips->setFileNameConfig(packetConfig.c_str());
@@ -208,5 +205,5 @@ bool RTATelem::CTAPacket::setStream(ByteStreamPtr stream, bool onlySection) {
 	this->stream = stream;
 	
 	//cout << inputPacket << endl;
-	inputPacket->setPacketValue(stream->stream, onlySection);
+	return inputPacket->setPacketValue(stream->stream, onlySection);
 }
