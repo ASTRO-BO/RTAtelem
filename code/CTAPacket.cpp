@@ -142,16 +142,16 @@ void RTATelem::CTAPacket::writePacket() {
 	ops->writePacket(outputPacket);
 }
 
-ByteStreamPtr RTATelem::CTAPacket::readPacket(bool bDecode) {
-	inputPacket = ips->readPacket(bDecode);
+ByteStreamPtr RTATelem::CTAPacket::readPacket(int decodeType) {
+	inputPacket = ips->readPacket(decodeType);
 	if (inputPacket == 0)
 		return 0;
 	//cout << "BS: " << inputPacket->getDimension() << endl;
 	return inputPacket->getInputStream();
 }
 
-void RTATelem::CTAPacket::readPacketPy(bool bDecode) {
-	pyStream = readPacket(bDecode);
+void RTATelem::CTAPacket::readPacketPy(int decodeType) {
+	pyStream = readPacket(decodeType);
 }
 
 void RTATelem::CTAPacket::printPacket_input() {
