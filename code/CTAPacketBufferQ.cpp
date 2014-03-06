@@ -16,6 +16,8 @@
 #include "CTAPacket.h"
 #include "CTAPacketBufferQ.h"
 
+using namespace PacketLib;
+
 namespace RTATelem
 {
 

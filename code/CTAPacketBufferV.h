@@ -19,6 +19,9 @@
 #include <string>
 #include <vector>
 #include <packet/PacketLibDefinition.h>
+#include <packet/ByteStream.h>
+
+#include "CTAPacket.h"
 
 namespace RTATelem {
 
@@ -40,17 +43,17 @@ public:
 
 	/// Get a raw packet.
 	/// \index the index of the packet.
-	ByteStreamPtr get(int index)
+	PacketLib::ByteStreamPtr get(int index)
 	{
 		return vec[index];
 	}
 
-	ByteStreamPtr getByteStream(int index, dword sizeB = 0);
+	PacketLib::ByteStreamPtr getByteStream(int index, PacketLib::dword sizeB = 0);
 
-	ByteStreamPtr getNextByteStream(dword sizeB = 0);
+	PacketLib::ByteStreamPtr getNextByteStream(PacketLib::dword sizeB = 0);
 
 	/// Get a raw packet (cyclic vector)
-	ByteStreamPtr getNext();
+	PacketLib::ByteStreamPtr getNext();
 
 	/// Return the size of the vector.
 	/// \return The size of the vector.
@@ -65,7 +68,7 @@ public:
 
 private:
 
-	std::vector<ByteStreamPtr> vec;
+	std::vector<PacketLib::ByteStreamPtr> vec;
 	unsigned int currentIndex;
 	long currentIndexBS;
 

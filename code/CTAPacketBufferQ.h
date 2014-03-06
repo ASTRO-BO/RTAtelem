@@ -19,6 +19,9 @@
 #include <string>
 #include <queue>
 #include <packet/PacketLibDefinition.h>
+#include <packet/ByteStream.h>
+
+#include "CTAPacket.h"
 
 namespace RTATelem {
 
@@ -40,19 +43,19 @@ public:
 
 	/// Push a raw packet to the queue.
 	/// \param rawPacket The raw packet pointer.
-	void push(ByteStreamPtr rawPacket)
+	void push(PacketLib::ByteStreamPtr rawPacket)
 	{
 		queue.push(rawPacket);
 	}
 
 	/// Pop a raw packet from the queue.
 	/// \return The raw packet pointer.
-	ByteStreamPtr pop()
+	PacketLib::ByteStreamPtr pop()
 	{
 		if(queue.size() == 0)
 			return 0;
 
-		ByteStreamPtr elem = queue.front();
+		PacketLib::ByteStreamPtr elem = queue.front();
 		queue.pop();
 		return elem;
 	}
@@ -68,7 +71,7 @@ public:
 
 private:
 
-	std::queue<ByteStreamPtr> queue;
+	std::queue<PacketLib::ByteStreamPtr> queue;
 
 };
 
