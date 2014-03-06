@@ -16,10 +16,12 @@
 #include "CTAPacket.h"
 #include "CTAPacketBufferV.h"
 
+using namespace PacketLib;
+
 namespace RTATelem
 {
 
-CTAPacketBufferV::CTAPacketBufferV(string packetConfig, string tmInputFile) : packet(packetConfig, tmInputFile, "")
+CTAPacketBufferV::CTAPacketBufferV(const string& packetConfig, const string& tmInputFile) : packet(packetConfig, tmInputFile, "")
 {
 	currentIndex = 0;
 	currentIndexBS = 0;

@@ -21,7 +21,7 @@ using namespace PacketLib;
 namespace RTATelem
 {
 
-CTAPacketBufferQ::CTAPacketBufferQ(string packetConfig, string tmInputFile) : packet(packetConfig, tmInputFile, "")
+CTAPacketBufferQ::CTAPacketBufferQ(const string& packetConfig, const string& tmInputFile) : packet(packetConfig, tmInputFile, "")
 {
 }
 

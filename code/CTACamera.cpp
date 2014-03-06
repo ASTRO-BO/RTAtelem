@@ -2,11 +2,11 @@
 
 #define RBLOCK_PIXEL 0
 
-RTATelem::CTACamera::CTACamera(string packetConfig, string tmInputFileName, string tmOutputFileName) : CTAPacket(packetConfig, tmInputFileName, tmOutputFileName) {
+RTATelem::CTACamera::CTACamera(const string& packetConfig, const string& tmInputFileName, const string& tmOutputFileName) : CTAPacket(packetConfig, tmInputFileName, tmOutputFileName) {
 	dimfixed = -1;
 }
 
-RTATelem::CTACamera::CTACamera(string packetConfig) : CTAPacket(packetConfig) {
+RTATelem::CTACamera::CTACamera(const string& packetConfig) : CTAPacket(packetConfig) {
 	dimfixed = -1;
 
 }

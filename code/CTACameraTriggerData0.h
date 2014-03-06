@@ -1,6 +1,6 @@
 /***************************************************************************
-    begin                : TODO
-    copyright            : (C) 2013-2014 Andrea Bulgarelli, Andrea Zoli
+    begin                : Mar 06 2014
+    copyright            : (C) 2014 Andrea Bulgarelli, Andrea Zoli
     email                : bulgarelli@iasfbo.inaf.it, zoli@iasfbo.inaf.it
  ***************************************************************************/
 
@@ -30,9 +30,9 @@ public:
     /// \param packetConfig The packet configuration file (.stream)
     /// \param tmInputFileName The input file name of the packet
     /// \param tmOutputFileName The output file name of the packet
-	CTACameraTriggerData0(string packetConfig, string tmInputFileName, string tmOutputFileName);
+	CTACameraTriggerData0(const string& packetConfig, const string& tmInputFileName, const string& tmOutputFileName);
 
-	CTACameraTriggerData0(string packetConfig);
+	CTACameraTriggerData0(const string& packetConfig);
 
     ~CTACameraTriggerData0();
 

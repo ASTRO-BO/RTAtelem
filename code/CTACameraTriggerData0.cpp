@@ -17,12 +17,12 @@
 
 namespace RTATelem {
 
-CTACameraTriggerData0::CTACameraTriggerData0(string packetConfig, string tmInputFileName, string tmOutputFileName)
+CTACameraTriggerData0::CTACameraTriggerData0(const string& packetConfig, const string& tmInputFileName, const string& tmOutputFileName)
 	: CTACameraTriggerData(packetConfig, tmInputFileName, tmOutputFileName) {
 
 }
 
-CTACameraTriggerData0::CTACameraTriggerData0(string packetConfig) : CTACameraTriggerData(packetConfig) {
+CTACameraTriggerData0::CTACameraTriggerData0(const string& packetConfig) : CTACameraTriggerData(packetConfig) {
 
 }
 

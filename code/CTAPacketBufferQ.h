@@ -29,7 +29,7 @@ namespace RTATelem {
 class CTAPacketBufferQ {
 
 public:
-	CTAPacketBufferQ(std::string packetConfig, std::string tmInputFileName);
+	CTAPacketBufferQ(const std::string& packetConfig, const std::string& tmInputFileName);
 
 	~CTAPacketBufferQ();
 

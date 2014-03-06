@@ -52,9 +52,9 @@ protected:
 
 public:
 
-	CTAPacket(string packetConfig, string tmInputFileName, string tmOutputFileName);
+	CTAPacket(const string& packetConfig, const string& tmInputFileName, const string& tmOutputFileName);
 
-	CTAPacket(string packetConfig);
+	CTAPacket(const string& packetConfig);
 
 	~CTAPacket();
 

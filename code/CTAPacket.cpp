@@ -14,8 +14,7 @@ void RTATelem::CTAPacket::printListOfString(string* r) {
 	cout << *r << endl;
 }
 
-RTATelem::CTAPacket::CTAPacket(string packetConfig, string tmInputFileName,
-		string tmOutputFileName) {
+RTATelem::CTAPacket::CTAPacket(const string& packetConfig, const string& tmInputFileName, const string& tmOutputFileName) {
 
 	in = 0;
 	out = 0;
@@ -78,7 +77,7 @@ RTATelem::CTAPacket::CTAPacket(string packetConfig, string tmInputFileName,
 
 }
 
-RTATelem::CTAPacket::CTAPacket(string packetConfig) {
+RTATelem::CTAPacket::CTAPacket(const string& packetConfig) {
 
 	in = 0;
 	out = 0;
