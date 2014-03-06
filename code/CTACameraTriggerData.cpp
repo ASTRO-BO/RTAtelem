@@ -25,6 +25,12 @@ CTACameraTriggerData::CTACameraTriggerData(string packetConfig) : CTACamera(pack
 
 }
 
+word RTATelem::CTACameraTriggerData::getTelescopeId() {
+	/// Get a pointer to the source data field
+	SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField;
+	return sdf->getFieldValue(2);
+}
+
 void CTACameraTriggerData::setTelescopeId(word telescopeID) {
     /// Get a pointer to the source data field
     SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField;
