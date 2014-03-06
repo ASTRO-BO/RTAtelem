@@ -1,6 +1,6 @@
 2014-03-06 Andrea Zoli <zoli@iasfbo.inaf.it>, Andrea Bulgarelli
 <bulgarelli@iasfbo.inaf.it>, Valentina Fioretti <fioretti@iasfbo.inaf.it>
-TAG v1.2.0
+TAG v1.3.0
 Dependency: PacketLib v3.4.0
 	* conv v1, pede v1, triggered data v1, v1_30, v1_40, v1_50
 	* a lot of fix	
