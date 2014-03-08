@@ -32,24 +32,24 @@ CTACameraTriggerData0::~CTACameraTriggerData0() {
 
 ByteStreamPtr CTACameraTriggerData0::getPixelData(word pixelIndex) {
     /// Get a pointer to the source data field
-    SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField;
-    SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
+    SourceDataField* sdf = (SourceDataField*) inputPacket->getPacketSourceDataField();
+    SDFBlock* pixel = (SDFBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
     return pixel->getByteStream();
 }
 
 word CTACameraTriggerData0::getNumberOfSamples(word pixelIndex) {
     /// Get a pointer to the source data field
-    SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField;
-    SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
+    SourceDataField* sdf = (SourceDataField*) inputPacket->getPacketSourceDataField();
+    SDFBlock* pixel = (SDFBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
     return pixel->getNumberOfRealDataBlock();
 }
 
 word CTACameraTriggerData0::getSampleValue(word pixelIndex, word sampleIndex) {
     /// Get a pointer to the source data field
-    SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField;
-    SDFRBBlock* pixel = (SDFRBBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
+    SourceDataField* sdf = (SourceDataField*) inputPacket->getPacketSourceDataField();
+    SDFBlock* pixel = (SDFBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
     /// VARIABLE FORMAT
-    SDFRBBlock* sample = (SDFRBBlock*) pixel->getBlock(sampleIndex, RBLOCK_SAMPLE);
+    SDFBlock* sample = (SDFBlock*) pixel->getBlock(sampleIndex, RBLOCK_SAMPLE);
     return sample->getFieldValue(0);
 }
 

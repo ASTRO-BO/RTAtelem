@@ -83,7 +83,7 @@ public:
 	/// \param decodeType 0 - do not decode, 1 - decode only sections, 2 - decode all blocks
 	void readPacketPy(int decodeType);
 
-	bool setStream(ByteStreamPtr stream, bool onlySections = false);
+	bool setStream(ByteStreamPtr stream, int decodeType);
 
 	/// Printing the packet in input
 	void printPacket_input();
