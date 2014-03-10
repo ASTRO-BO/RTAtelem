@@ -103,6 +103,12 @@ void CTAStream::readPacketEnc()
 	_stream = readPacket();
 }
 
+
+dword CTAStream::getInputPacketDimension(PacketLib::ByteStreamPtr stream)
+{
+	return _ips->getPacketDimension(stream);
+}
+
 dword CTAStream::getInputPacketDimensionEnc()
 {
 	return _ips->getPacketDimension(_stream);
