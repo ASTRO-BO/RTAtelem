@@ -55,6 +55,11 @@ public:
 	bool isBigendian() {
 		return _packet->isBigendian();
 	}
+
+	enum CTAPacketType getPacketType()
+	{
+		return _type;
+	}
 	
 protected:
 
