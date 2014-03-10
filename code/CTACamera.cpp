@@ -17,13 +17,13 @@ RTATelem::CTACamera::~CTACamera() {
 
 void RTATelem::CTACamera::setNumberOfPixels(word number) {
     /// Get a pointer to the source data field
-    SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField;
+    SourceDataField* sdf = (SourceDataField*) outputPacket->getPacketSourceDataField();
     sdf->setNumberOfRealDataBlock(number, RBLOCK_PIXEL);
 }
 
 word RTATelem::CTACamera::getNumberOfPixels() {
     /// Get a pointer to the source data field
-    SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField;
+    SourceDataField* sdf = (SourceDataField*) inputPacket->getPacketSourceDataField();
     return sdf->getNumberOfRealDataBlock();
 }
 
@@ -45,20 +45,20 @@ word RTATelem::CTACamera::getPixelId(word pixelIndex) {
 	return 0;
 }
 
-dword RTATelem::CTACamera::getDimensionFixedPart() {
-	dword d1 = inputPacket->header->getDimension();
-	dword d2 = inputPacket->dataField->dataFieldHeader->getDimension();
-	SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField;
-	dword d3 = sdf->getDimensionFixedPart();
-	return d1 + d2 + d3;
+dword RTATelem::CTACamera::sizeFixedPart() {
+	//dword d1 = inputPacket->getPacketHeader()->size();
+	//dword d2 = inputPacket->getPacketDataFieldHeader()->size();
+	//SourceDataField* sdf = (SourceDataField*) inputPacket->getPacketSourceDataField();
+	//dword d3 = sdf->sizeFixedPart();
+	return inputPacket->sizeFixedPart();
 }
 
 ByteStreamPtr RTATelem::CTACamera::getCameraData(ByteStreamPtr rawPacket) {
 	if(dimfixed == -1) {
-		dimfixed = getDimensionFixedPart();
-		dimtail = inputPacket->dataField->tail->getDimension();
+		dimfixed = sizeFixedPart();
+		dimtail = inputPacket->sizeTail();
 	}
-	ByteStreamPtr camera = ByteStreamPtr(new ByteStream(rawPacket, dimfixed, rawPacket->getDimension()-dimtail));
+	ByteStreamPtr camera = ByteStreamPtr(new ByteStream(rawPacket, dimfixed, rawPacket->size()-dimtail));
 	camera->swapWordForIntel();
 	return camera;
 }

@@ -117,23 +117,23 @@ RTATelem::CTAPacket::~CTAPacket() {
 
 void RTATelem::CTAPacket::printPacket_output() {
 	cout << "HEADER ----------" << endl;
-	char** r = outputPacket->header->printValue();
+	char** r = outputPacket->getPacketHeader()->printValue();
 	printListOfString(r);
-	cout << outputPacket->header->outputstream->printStreamInHexadecimal()
+	cout << outputPacket->getPacketHeader()->outputstream->printStreamInHexadecimal()
 			<< endl;
-	cout << "max dimension: " << outputPacket->header->getDimension() << endl;
+	cout << "max dimension: " << outputPacket->getPacketHeader()->size() << endl;
 	cout << "DATA FIELD HEADER ----------" << endl;
-	r = outputPacket->dataField->dataFieldHeader->printValue();
+	r = outputPacket->getPacketDataFieldHeader()->printValue();
 	printListOfString(r);
 	cout << "max dimension: "
-			<< outputPacket->dataField->dataFieldHeader->getDimension() << endl;
+			<< outputPacket->getPacketDataFieldHeader()->size() << endl;
 	cout << "SOURCE DATA FIELD ----------" << endl;
 	/// Get a pointer to the source data field
-	SDFRBlock* sdf = (SDFRBlock*) outputPacket->dataField->sourceDataField;
-	cout << "max dimension: " << sdf->getDimension() << endl;
+	SourceDataField* sdf = (SourceDataField*) outputPacket->getPacketSourceDataField();
+	cout << "max dimension: " << sdf->size() << endl;
 	sdf->printValueStdout();
-	cout << "DIM: " << outputPacket->getDimension() << endl;
-	cout << "MAXDIM: " << outputPacket->getMaxDimension() << endl;
+	cout << "DIM: " << outputPacket->size() << endl;
+	cout << "MAXDIM: " << outputPacket->sizeMax() << endl;
 
 }
 
@@ -141,56 +141,56 @@ void RTATelem::CTAPacket::writePacket() {
 	ops->writePacket(outputPacket);
 }
 
-ByteStreamPtr RTATelem::CTAPacket::readPacket(int decodeType) {
-	inputPacket = ips->readPacket(decodeType);
+ByteStreamPtr RTATelem::CTAPacket::readPacket() {
+	inputPacket = ips->readPacket();
 	if (inputPacket == 0)
 		return 0;
-	//cout << "BS: " << inputPacket->getDimension() << endl;
+	//cout << "BS: " << inputPacket->size() << endl;
 	return inputPacket->getInputStream();
 }
 
-void RTATelem::CTAPacket::readPacketPy(int decodeType) {
-	pyStream = readPacket(decodeType);
+void RTATelem::CTAPacket::readPacketPy() {
+	pyStream = readPacket();
 }
 
 void RTATelem::CTAPacket::printPacket_input() {
 	cout << "HEADER ----------" << endl;
-	char** r = inputPacket->header->printValue();
+	char** r = inputPacket->getPacketHeader()->printValue();
 	printListOfString(r);
-	cout << inputPacket->header->getByteStream()->printStreamInHexadecimal() << endl;
+	cout << inputPacket->getPacketHeader()->getByteStream()->printStreamInHexadecimal() << endl;
 	cout << "max dimension in byte of the header: "
-			<< inputPacket->header->getDimension() << endl;
-	cout << "packet length " << inputPacket->header->getPacketLength() << endl;
+			<< inputPacket->getPacketHeader()->size() << endl;
+	cout << "packet length " << inputPacket->getPacketHeader()->getPacketLength() << endl;
 	cout << "DATA FIELD HEADER ----------" << endl;
-	r = inputPacket->dataField->dataFieldHeader->printValue();
+	r = inputPacket->getPacketDataFieldHeader()->printValue();
 	printListOfString(r);
 	cout << "max dimension: "
-			<< inputPacket->dataField->dataFieldHeader->getDimension() << endl;
+			<< inputPacket->getPacketDataFieldHeader()->size() << endl;
 	cout << "SOURCE DATA FIELD ----------" << endl;
 	/// Get a pointer to the source data field
-	SDFRBlock* sdf = (SDFRBlock*) inputPacket->dataField->sourceDataField;
+	SourceDataField* sdf = (SourceDataField*) inputPacket->getPacketSourceDataField();
 	sdf->printValueStdout();
-	cout << "TOTAL DIM OF THE PACKET : " << inputPacket->getDimension() << endl;
-	cout << "MAXDIM OF THE PACKET : " << inputPacket->getMaxDimension() << endl;
+	cout << "TOTAL DIM OF THE PACKET : " << inputPacket->size() << endl;
+	cout << "MAXDIM OF THE PACKET : " << inputPacket->sizeMax() << endl;
 
 }
 
 ByteStreamPtr RTATelem::CTAPacket::getInputPacketData() {
-	return inputPacket->packet;
+	return inputPacket->getBSPacket();
 }
 
 dword RTATelem::CTAPacket::getInputPacketDimension(ByteStreamPtr stream) {
-	//cout << "C: " << inputPacket->getDimension() << endl;
+	//cout << "C: " << inputPacket->size() << endl;
     //inputPacket->verifyPacketValue(stream);
-    //return inputPacket->getDimension();
+    //return inputPacket->size();
 
 	return ips->getPacketDimension(stream);
 }
 
 dword RTATelem::CTAPacket::getInputPacketDimension() {
-	//cout << "C: " << inputPacket->getDimension() << endl;
+	//cout << "C: " << inputPacket->size() << endl;
     //inputPacket->verifyPacketValue(stream);
-    //return inputPacket->getDimension();
+    //return inputPacket->size();
 
 	return ips->getPacketDimension(pyStream);
 }
@@ -200,9 +200,9 @@ int RTATelem::CTAPacket::getInputPacketType(ByteStreamPtr stream) {
 	return ips->detPacketType(stream);
 }
 
-bool RTATelem::CTAPacket::setStream(ByteStreamPtr stream, bool onlySection) {
+bool RTATelem::CTAPacket::setStream(ByteStreamPtr stream, bool checkPacketLength) {
 	this->stream = stream;
 	
 	//cout << inputPacket << endl;
-	return inputPacket->setPacketValue(stream->stream, onlySection);
+	return inputPacket->set(stream, checkPacketLength);
 }

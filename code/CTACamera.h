@@ -55,7 +55,7 @@ public:
 	
 protected:
 	
-	dword getDimensionFixedPart();
+	dword sizeFixedPart();
 	
 	dword dimfixed;
 	dword dimtail;

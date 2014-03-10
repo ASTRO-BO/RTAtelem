@@ -39,7 +39,7 @@ public:
     /// Get the data of a pixel as stream of byte. Example about how to use this stream:
     /// ByteStreamPtr fadc = trtel->getPixelData(0);
 	/// cout << fadc->printStreamInHexadecimal() << endl;
-    /// cout << fadc->getDimension() << endl;
+    /// cout << fadc->size() << endl;
 	/// fadc->swapWordForIntel();
 	/// word *c = (word*) fadc->stream;
 	/// cout << "pixel id " << c[0] << endl;

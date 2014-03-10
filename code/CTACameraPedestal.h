@@ -79,7 +79,7 @@ public:
     /// Get the data of a pixel as stream of byte. Example about how to use this stream:
     /// ByteStreamPtr pedVal = pedtel->getPixelData(0);
 	/// cout << pedVal->printStreamInHexadecimal() << endl;
-    /// cout << pedVal ->getDimension() << endl;
+    /// cout << pedVal ->size() << endl;
 	/// fadc->swapWordForIntel();
 	/// word *c = (word*) pedVal->stream;
 	/// cout << "pixel id " << c[0] << endl;
