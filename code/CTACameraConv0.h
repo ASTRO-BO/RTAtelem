@@ -16,7 +16,8 @@
 
 #ifndef _CTACAMERACONV0_H
 #define _CTACAMERACONV0_H
-#include "CTACamera.h"
+
+#include "CTACameraConv.h"
 
 namespace RTATelem {
 
@@ -24,18 +25,11 @@ namespace RTATelem {
 /// containg the pedestal value for each telescope pixel
 /// Use setChannel() to set the pedestal channel (e.g. high or low).
 /// \brief CTA pedestal packet class
-class CTACameraConv0 : public RTATelem::CTACamera {
+class CTACameraConv0 : public RTATelem::CTACameraConv {
 
 public:
-	/// It takes the configuration file .stream and the input/output file name
-	/// \param packetConfig The packet configuration file (.stream)
-	/// \param tmInputFileName The input file name of the packet
-	/// \param tmOutputFileName The output file name of the packet
-	CTACameraConv0(string packetConfig, string tmInputFileName, string tmOutputFileName);
-
-	CTACameraConv0(string packetConfig);
-	
-	~CTACameraConv0();
+    /// It wraps a PacketLib Packet.
+	CTACameraConv0(Packet* packet);
     
 	/// It sets the telescope ID (identification number)
 	/// \param telescopeID The telescope unique ID

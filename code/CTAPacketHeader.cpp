@@ -4,66 +4,67 @@
 #include <packet/Input.h>
 #include <packet/Packet.h>
 
-RTATelem::CTAPacketHeader::CTAPacketHeader(Packet* inputPacket, Packet* outputPacket) {
-	this->inputPacket = inputPacket;
-	this->outputPacket = outputPacket;
+// TODO uniformare output e input
+RTATelem::CTAPacketHeader::CTAPacketHeader(Packet* packet)
+	: _packet(packet) {
+
 }
 
 void RTATelem::CTAPacketHeader::setAPID(word apid) {
-    outputPacket->getPacketHeader()->setFieldValue(3, apid);
+    _packet->getPacketHeader()->setFieldValue(3, apid);
 }
 
 word RTATelem::CTAPacketHeader::getAPID() {
-    return inputPacket->getPacketHeader()->getFieldValue(3);
+    return _packet->getPacketHeader()->getFieldValue(3);
 }
 
 
 void RTATelem::CTAPacketHeader::setSubType(byte subtype) {
-	outputPacket->getPacketHeader()->setFieldValue(10, subtype);
+	_packet->getPacketHeader()->setFieldValue(10, subtype);
 }
 
 
 word RTATelem::CTAPacketHeader::getSubType() {
-	return inputPacket->getPacketHeader()->getFieldValue(10);
+	return _packet->getPacketHeader()->getFieldValue(10);
 }
 
 void RTATelem::CTAPacketHeader::setType(byte type) {
-	outputPacket->getPacketHeader()->setFieldValue(9, type);
+	_packet->getPacketHeader()->setFieldValue(9, type);
 }
 
 
 word RTATelem::CTAPacketHeader::getType() {
-	return inputPacket->getPacketHeader()->getFieldValue(9);
+	return _packet->getPacketHeader()->getFieldValue(9);
 }
 
 
 void RTATelem::CTAPacketHeader::setSSC(word counter) {
-    outputPacket->getPacketHeader()->setFieldValue(5, counter);
+    _packet->getPacketHeader()->setFieldValue(5, counter);
 }
 
 word RTATelem::CTAPacketHeader::getSSC() {
-    return inputPacket->getPacketHeader()->getFieldValue(5);
+    return _packet->getPacketHeader()->getFieldValue(5);
 }
 
 void RTATelem::CTAPacketHeader::setMetadata(word arrayID, word runNumberID) {
-    outputPacket->getPacketDataFieldHeader()->setFieldValue(4, arrayID);
-    outputPacket->getPacketDataFieldHeader()->setFieldValue(5, runNumberID);
-    //outputPacket->getPacketDataFieldHeader()->setFieldValue_4_14(5, eventNumberID);
+    _packet->getPacketDataFieldHeader()->setFieldValue(4, arrayID);
+    _packet->getPacketDataFieldHeader()->setFieldValue(5, runNumberID);
+    //_packet->getPacketDataFieldHeader()->setFieldValue_4_14(5, eventNumberID);
 }
 
 void RTATelem::CTAPacketHeader::getMetadata(word &arrayID, word &runNumberID) {
-    arrayID = inputPacket->getPacketDataFieldHeader()->getFieldValue(4);
-    runNumberID = inputPacket->getPacketDataFieldHeader()->getFieldValue(5);
-    //eventNumberID = inputPacket->getPacketDataFieldHeader()->getFieldValue_4_14(5);
+    arrayID = _packet->getPacketDataFieldHeader()->getFieldValue(4);
+    runNumberID = _packet->getPacketDataFieldHeader()->getFieldValue(5);
+    //eventNumberID = _packet->getPacketDataFieldHeader()->getFieldValue_4_14(5);
 }
 
 void RTATelem::CTAPacketHeader::setTime(signed long time) {
-    outputPacket->getPacketDataFieldHeader()->setFieldValue_4_14(0, time);
+    _packet->getPacketDataFieldHeader()->setFieldValue_4_14(0, time);
 }
 
 
 signed long RTATelem::CTAPacketHeader::getTime() {
-    return inputPacket->getPacketDataFieldHeader()->getFieldValue_4_14(0);
+    return _packet->getPacketDataFieldHeader()->getFieldValue_4_14(0);
 }
 
 

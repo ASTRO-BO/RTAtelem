@@ -20,14 +20,10 @@
 
 namespace RTATelem {
 
-class CTACamera: public RTATelem::CTAPacket {
+class CTACamera: public CTAPacket {
 
 public:
-	CTACamera(const string& packetConfig, const string& tmInputFileName, const string& tmOutputFileName);
-
-	CTACamera(const string& packetConfig);
-
-	~CTACamera();
+	CTACamera(Packet* packet);
 
 	/// It gets the number of pixels
 	word getNumberOfPixels();

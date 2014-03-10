@@ -26,15 +26,8 @@ namespace RTATelem {
 class CTACameraTriggerData0 : public CTACameraTriggerData {
 
 public:
-    /// It takes the configuration file .stream and the input/output file name
-    /// \param packetConfig The packet configuration file (.stream)
-    /// \param tmInputFileName The input file name of the packet
-    /// \param tmOutputFileName The output file name of the packet
-	CTACameraTriggerData0(const string& packetConfig, const string& tmInputFileName, const string& tmOutputFileName);
-
-	CTACameraTriggerData0(const string& packetConfig);
-
-    ~CTACameraTriggerData0();
+    /// It wraps a PacketLib Packet.
+	CTACameraTriggerData0(Packet* packet);
 
     /// Get the data of a pixel as stream of byte. Example about how to use this stream:
     /// ByteStreamPtr fadc = trtel->getPixelData(0);

@@ -28,17 +28,10 @@ namespace RTATelem {
 class CTACameraTriggerData1 : public CTACameraTriggerData {
 
 public:
-    /// It takes the configuration file .stream and the input/output file name
-    /// \param packetConfig The packet configuration file (.stream)
-    /// \param tmInputFileName The input file name of the packet
-    /// \param tmOutputFileName The output file name of the packet
-	CTACameraTriggerData1(const string& packetConfig, const string& tmInputFileName, const string& tmOutputFileName);
+    /// It wraps a PacketLib Packet.
+	CTACameraTriggerData1(Packet* packet);
 
-	CTACameraTriggerData1(const string& packetConfig);
-
-    ~CTACameraTriggerData1();
-
-	void writePacket();
+	PacketLib::ByteStreamPtr getInputPacketData();
 
 	/// It sets the number of pixels IDs
 	/// \param number The number of pixels IDs

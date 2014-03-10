@@ -26,18 +26,11 @@ namespace RTATelem {
 /// containg the pedestal value for each telescope pixel
 /// Use setChannel() to set the pedestal channel (e.g. high or low).
 /// \brief CTA pedestal packet class
-class CTACameraPedestal0 : public RTATelem::CTACamera {
+class CTACameraPedestal0 : public RTATelem::CTACameraPedestal {
 
 public:
-	/// It takes the configuration file .stream and the input/output file name
-	/// \param packetConfig The packet configuration file (.stream)
-	/// \param tmInputFileName The input file name of the packet
-	/// \param tmOutputFileName The output file name of the packet
-	CTACameraPedestal0(string packetConfig, string tmInputFileName, string tmOutputFileName);
-
-	CTACameraPedestal0(string packetConfig);
-	
-	~CTACameraPedestal0();
+	/// Wraps PacketLib Packet.
+	CTACameraPedestal0(Packet* packet);
     
 	/// It sets the telescope ID (identification number)
 	/// \param telescopeID The telescope unique ID

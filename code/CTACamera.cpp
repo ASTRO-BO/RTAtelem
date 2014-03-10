@@ -2,28 +2,20 @@
 
 #define RBLOCK_PIXEL 0
 
-RTATelem::CTACamera::CTACamera(const string& packetConfig, const string& tmInputFileName, const string& tmOutputFileName) : CTAPacket(packetConfig, tmInputFileName, tmOutputFileName) {
+RTATelem::CTACamera::CTACamera(Packet* packet)
+	: CTAPacket(packet) {
 	dimfixed = -1;
-}
-
-RTATelem::CTACamera::CTACamera(const string& packetConfig) : CTAPacket(packetConfig) {
-	dimfixed = -1;
-
-}
-
-
-RTATelem::CTACamera::~CTACamera() {
 }
 
 void RTATelem::CTACamera::setNumberOfPixels(word number) {
     /// Get a pointer to the source data field
-    SourceDataField* sdf = (SourceDataField*) outputPacket->getPacketSourceDataField();
+    SourceDataField* sdf = (SourceDataField*) _packet->getPacketSourceDataField();
     sdf->setNumberOfRealDataBlock(number, RBLOCK_PIXEL);
 }
 
 word RTATelem::CTACamera::getNumberOfPixels() {
     /// Get a pointer to the source data field
-    SourceDataField* sdf = (SourceDataField*) inputPacket->getPacketSourceDataField();
+    SourceDataField* sdf = (SourceDataField*) _packet->getPacketSourceDataField();
     return sdf->getNumberOfRealDataBlock();
 }
 
@@ -46,17 +38,17 @@ word RTATelem::CTACamera::getPixelId(word pixelIndex) {
 }
 
 dword RTATelem::CTACamera::sizeFixedPart() {
-	//dword d1 = inputPacket->getPacketHeader()->size();
-	//dword d2 = inputPacket->getPacketDataFieldHeader()->size();
-	//SourceDataField* sdf = (SourceDataField*) inputPacket->getPacketSourceDataField();
+	//dword d1 = _packet->getPacketHeader()->size();
+	//dword d2 = _packet->getPacketDataFieldHeader()->size();
+	//SourceDataField* sdf = (SourceDataField*) _packet->getPacketSourceDataField();
 	//dword d3 = sdf->sizeFixedPart();
-	return inputPacket->sizeFixedPart();
+	return _packet->sizeFixedPart();
 }
 
 ByteStreamPtr RTATelem::CTACamera::getCameraData(ByteStreamPtr rawPacket) {
 	if(dimfixed == -1) {
 		dimfixed = sizeFixedPart();
-		dimtail = inputPacket->sizeTail();
+		dimtail = _packet->sizeTail();
 	}
 	ByteStreamPtr camera = ByteStreamPtr(new ByteStream(rawPacket, dimfixed, rawPacket->size()-dimtail));
 	camera->swapWordForIntel();

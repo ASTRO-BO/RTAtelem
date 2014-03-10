@@ -29,15 +29,8 @@ namespace RTATelem {
 class CTACameraPedestal : public RTATelem::CTACamera {
 
 public:
-	/// It takes the configuration file .stream and the input/output file name
-	/// \param packetConfig The packet configuration file (.stream)
-	/// \param tmInputFileName The input file name of the packet
-	/// \param tmOutputFileName The output file name of the packet
-	CTACameraPedestal(string packetConfig, string tmInputFileName, string tmOutputFileName);
-
-	CTACameraPedestal(string packetConfig);
-	
-	~CTACameraPedestal();
+	/// Wraps PacketLib Packet.
+	CTACameraPedestal(Packet* packet);
     
 	/// It sets the telescope ID (identification number)
 	/// \param telescopeID The telescope unique ID

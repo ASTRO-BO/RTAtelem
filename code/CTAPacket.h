@@ -1,8 +1,6 @@
 /***************************************************************************
- CTAPacket.h
- -------------------
- copyright            : (C) 2013 Andrea Bulgarelli
- email                : bulgarelli@iasfbo.inaf.it
+ copyright            : (C) 2013-2014 Andrea Bulgarelli, Andrea Zoli
+ email                : bulgarelli@iasfbo.inaf.it, zoli@iasfbo.inaf.it
  ***************************************************************************/
 
 /***************************************************************************
@@ -16,92 +14,66 @@
 
 #ifndef _CTAPACKET_H
 #define _CTAPACKET_H
-#include <iostream>
-#include <stdlib.h>
-#include <packet/OutputPacketStream.h>
-#include <packet/InputPacketStream.h>
-#include <packet/ByteStream.h>
-#include <packet/Output.h>
-#include <packet/Input.h>
+
 #include <packet/Packet.h>
+#include <packet/ByteStream.h>
 #include "CTAPacketHeader.h"
 
-using namespace std;
-using namespace PacketLib;
-
 namespace RTATelem {
+
+enum CTAPacketType
+{
+	CTA_CAMERA_UNDEFINED = 0,
+	CTA_CAMERA_TRIGGERDATA_0,
+	CTA_CAMERA_TRIGGERDATA_1,
+	CTA_CAMERA_PEDESTAL_0,
+	CTA_CAMERA_PEDESTAL_1,
+	CTA_CAMERA_CONV_0,
+	CTA_CAMERA_CONV_1,
+};
 
 /// Base class for RTA source packets
 /// \brief Base class for RTA source packets
 class CTAPacket {
 
-protected:
-	Output* out;
-	Input* in;
-	OutputPacketStream* ops;
-	InputPacketStream* ips;
-	Packet* inputPacket;
-	Packet* outputPacket;
-	ByteStreamPtr pyStream;
-
-	string packetStreamConfig;
-
-	void printListOfString(char** r);
-
-	void printListOfString(string* r);
-
 public:
-
-	CTAPacket(const string& packetConfig, const string& tmInputFileName, const string& tmOutputFileName);
-
-	CTAPacket(const string& packetConfig);
-
-	~CTAPacket();
-
-	///It returns the total dimension of the packet contained in the stream (without prefix). The stream* contains also the prefix (if present)
-	///\param The stream with the prefix (if present)
-	dword getInputPacketDimension(ByteStreamPtr stream);
-	dword getInputPacketDimension();
-	
-	int getInputPacketType(ByteStreamPtr stream);
 
 	/// Common header for all the packets (packet header + data field header)
 	CTAPacketHeader* header;
 
-	/// Writing the packet
-	void writePacket();
+	CTAPacket(PacketLib::Packet* packet);
 
-	/// Printing the created packet
-	void printPacket_output();
-
-	/// Read a packet from input
-	/// \param decodeType 0 - do not decode, 1 - decode only sections, 2 - decode all blocks
-	/// \return a ByteStreamPtr or 0 if there is no packets
-	ByteStreamPtr readPacket();
-
-	/// Read a packet from input
-	void readPacketPy();
-
-	bool setStream(ByteStreamPtr stream, bool checkPacketLength = true);
-
-	/// Printing the packet in input
-	void printPacket_input();
+	/// Printing the packet
+	void printPacket();
 
 	/// Get a pointer to telemetry packet
-	ByteStreamPtr getInputPacketData();
-
-	const string& getPacketStreamConfig() const {
-		return packetStreamConfig;
+	PacketLib::ByteStreamPtr getInputPacketData()
+	{
+		return _packet->getBSPacket();
 	}
-
-
+	
 	bool isBigendian() {
-		return inputPacket->isBigendian();
+		return _packet->isBigendian();
 	}
 	
 protected:
-	
-	ByteStreamPtr stream;
+
+	enum CTAPacketType _type;
+
+	PacketLib::Packet* _packet;
+
+	void _printListOfString(char** r)
+	{
+		int i = 0;
+		while (r[i] != 0)
+			std::cout << r[i++] << std::endl;
+	}
+
+	//TODO maybe it is not needed
+/*	void _printListOfString(std::string* r)
+	{
+		std::cout << *r << std::endl;
+	}*/
 };
 
 }

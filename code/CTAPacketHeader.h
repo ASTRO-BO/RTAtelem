@@ -30,7 +30,7 @@ class CTAPacketHeader {
 
 public:
 
-	CTAPacketHeader(Packet* inputPacket, Packet* outputPacket);
+	CTAPacketHeader(Packet* packet);
 
 	/// It sets the Source Sequence Counter
 	/// \param counter The value of the Source Sequence
@@ -76,11 +76,9 @@ public:
 
 private:
 
-	Packet* inputPacket;
-
-	Packet* outputPacket;
-
+	Packet* _packet;
 };
+
 }
 
 #endif

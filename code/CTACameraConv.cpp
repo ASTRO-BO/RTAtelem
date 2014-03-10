@@ -25,38 +25,30 @@
 #define RBLOCK_TELESCOPE 0
 #define RBLOCK_PIXEL 0
 
-RTATelem::CTACameraConv::CTACameraConv(string packetConfig, string tmInputFileName, string tmOutputFileName) : CTACamera(packetConfig, tmInputFileName, tmOutputFileName) {
-
-}
-
-RTATelem::CTACameraConv::CTACameraConv(string packetConfig) : CTACamera(packetConfig) {
-
-
-}
-
-RTATelem::CTACameraConv::~CTACameraConv() {
+RTATelem::CTACameraConv::CTACameraConv(Packet* packet)
+	: CTACamera(packet) {
 
 }
 
 void RTATelem::CTACameraConv::setConversionRun(word conv) {
-	SourceDataField* sdf = (SourceDataField*) outputPacket->getPacketSourceDataField();
+	SourceDataField* sdf = (SourceDataField*) _packet->getPacketSourceDataField();
 	sdf->setFieldValue(0, conv);
 }
 
 word RTATelem::CTACameraConv::getConversionRun() {
-	SourceDataField* sdf = (SourceDataField*) inputPacket->getPacketSourceDataField();
+	SourceDataField* sdf = (SourceDataField*) _packet->getPacketSourceDataField();
 	return sdf->getFieldValue(0);
 }
 
 void RTATelem::CTACameraConv::setTelescopeId(word telescopeID) {
     /// Get a pointer to the source data field
-    SourceDataField* sdf = (SourceDataField*) outputPacket->getPacketSourceDataField();
+    SourceDataField* sdf = (SourceDataField*) _packet->getPacketSourceDataField();
     sdf->setFieldValue(1, telescopeID);
 }
 
 word RTATelem::CTACameraConv::getTelescopeId() {
     /// Get a pointer to the source data field
-    SourceDataField* sdf = (SourceDataField*) inputPacket->getPacketSourceDataField();
+    SourceDataField* sdf = (SourceDataField*) _packet->getPacketSourceDataField();
     return sdf->getFieldValue(1);
 }
 
@@ -64,49 +56,49 @@ word RTATelem::CTACameraConv::getTelescopeId() {
 
 void RTATelem::CTACameraConv::setPixelId(word pixelIndex, word pixelID) {
     /// Get a pointer to the source data field
-    SourceDataField* sdf = (SourceDataField*) outputPacket->getPacketSourceDataField();
+    SourceDataField* sdf = (SourceDataField*) _packet->getPacketSourceDataField();
     SDFBlock* pixel = (SDFBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
     pixel->setFieldValue(0, pixelID);
 }
 
 word RTATelem::CTACameraConv::getPixelId(word pixelIndex) {
     /// Get a pointer to the source data field
-    SourceDataField* sdf = (SourceDataField*) inputPacket->getPacketSourceDataField();
+    SourceDataField* sdf = (SourceDataField*) _packet->getPacketSourceDataField();
     SDFBlock* pixel = (SDFBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
     return pixel->getFieldValue(0);
 }
 
 void RTATelem::CTACameraConv::setConversionHighValue(word pixelIndex, float convHigh) {
     /// Get a pointer to the source data field
-    SourceDataField* sdf = (SourceDataField*) outputPacket->getPacketSourceDataField();
+    SourceDataField* sdf = (SourceDataField*) _packet->getPacketSourceDataField();
     SDFBlock* pixel = (SDFBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
     pixel->setFieldValue_5_1(1, convHigh);
 }
 
 float RTATelem::CTACameraConv::getConversionHighValue(word pixelIndex) {
     /// Get a pointer to the source data field
-    SourceDataField* sdf = (SourceDataField*) inputPacket->getPacketSourceDataField();
+    SourceDataField* sdf = (SourceDataField*) _packet->getPacketSourceDataField();
     SDFBlock* pixel = (SDFBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
     return pixel->getFieldValue_5_1(1);
 }
 
 void RTATelem::CTACameraConv::setConversionLowValue(word pixelIndex, float convLow) {
     /// Get a pointer to the source data field
-    SourceDataField* sdf = (SourceDataField*) outputPacket->getPacketSourceDataField();
+    SourceDataField* sdf = (SourceDataField*) _packet->getPacketSourceDataField();
     SDFBlock* pixel = (SDFBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
     pixel->setFieldValue_5_1(3, convLow);
 }
 
 float RTATelem::CTACameraConv::getConversionLowValue(word pixelIndex) {
     /// Get a pointer to the source data field
-    SourceDataField* sdf = (SourceDataField*) inputPacket->getPacketSourceDataField();
+    SourceDataField* sdf = (SourceDataField*) _packet->getPacketSourceDataField();
     SDFBlock* pixel = (SDFBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
     return pixel->getFieldValue_5_1(3);
 }
 
 ByteStreamPtr RTATelem::CTACameraConv::getPixelData(word pixelIndex) {
     /// Get a pointer to the source data field
-    SourceDataField* sdf = (SourceDataField*) inputPacket->getPacketSourceDataField();
+    SourceDataField* sdf = (SourceDataField*) _packet->getPacketSourceDataField();
     SDFBlock* pixel = (SDFBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
     return pixel->getByteStream();
 }
