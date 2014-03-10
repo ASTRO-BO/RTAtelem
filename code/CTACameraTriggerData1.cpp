@@ -61,7 +61,7 @@ ByteStreamPtr CTACameraTriggerData1::getCameraDataSlow() {
     /// Get a pointer to the source data field
 	/*
     SourceDataField* sdf = (SourceDataField*) inputPacket->getPacketSourceDataField();
-	int fixedpartdim = sdf->getFixedPart()->getDimension();
+	int fixedpartdim = sdf->getFixedPart()->size();
 	
 	ByteStreamPtr sdfbs = sdf->getByteStream();
 
@@ -70,8 +70,8 @@ ByteStreamPtr CTACameraTriggerData1::getCameraDataSlow() {
 	
 	return inputPacket->getBSSourceDataFieldsVariablePart();
 	/*ByteStreamPtr fixed = sdf->getFixedPart();
-	int fixedpartdim = fixed->getDimension();
-	int sdfdim = sdf->getDimension();
+	int fixedpartdim = fixed->size();
+	int sdfdim = sdf->size();
     
 	sdfbs->swapWordForIntel();
 	

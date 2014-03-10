@@ -77,7 +77,7 @@ public:
     /// Get the data of a pixel as stream of byte. Example about how to use this stream:
     /// ByteStreamPtr convVal = convtel->getPixelData(0);
 	/// cout << convVal->printStreamInHexadecimal() << endl;
-    /// cout << convVal ->getDimension() << endl;
+    /// cout << convVal ->size() << endl;
 	/// conv->swapWordForIntel();
 	/// word *c = (word*) convVal->stream;
 	/// cout << "pixel id " << c[0] << endl;

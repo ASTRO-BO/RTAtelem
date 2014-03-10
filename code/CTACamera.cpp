@@ -45,20 +45,20 @@ word RTATelem::CTACamera::getPixelId(word pixelIndex) {
 	return 0;
 }
 
-dword RTATelem::CTACamera::getDimensionFixedPart() {
-	//dword d1 = inputPacket->getPacketHeader()->getDimension();
-	//dword d2 = inputPacket->getPacketDataFieldHeader()->getDimension();
+dword RTATelem::CTACamera::sizeFixedPart() {
+	//dword d1 = inputPacket->getPacketHeader()->size();
+	//dword d2 = inputPacket->getPacketDataFieldHeader()->size();
 	//SourceDataField* sdf = (SourceDataField*) inputPacket->getPacketSourceDataField();
-	//dword d3 = sdf->getDimensionFixedPart();
-	return inputPacket->getDimensionFixedPart();
+	//dword d3 = sdf->sizeFixedPart();
+	return inputPacket->sizeFixedPart();
 }
 
 ByteStreamPtr RTATelem::CTACamera::getCameraData(ByteStreamPtr rawPacket) {
 	if(dimfixed == -1) {
-		dimfixed = getDimensionFixedPart();
-		dimtail = inputPacket->getDimensionTail();
+		dimfixed = sizeFixedPart();
+		dimtail = inputPacket->sizeTail();
 	}
-	ByteStreamPtr camera = ByteStreamPtr(new ByteStream(rawPacket, dimfixed, rawPacket->getDimension()-dimtail));
+	ByteStreamPtr camera = ByteStreamPtr(new ByteStream(rawPacket, dimfixed, rawPacket->size()-dimtail));
 	camera->swapWordForIntel();
 	return camera;
 }

@@ -77,13 +77,12 @@ public:
 	/// Read a packet from input
 	/// \param decodeType 0 - do not decode, 1 - decode only sections, 2 - decode all blocks
 	/// \return a ByteStreamPtr or 0 if there is no packets
-	ByteStreamPtr readPacket(int decodeType);
+	ByteStreamPtr readPacket();
 
 	/// Read a packet from input
-	/// \param decodeType 0 - do not decode, 1 - decode only sections, 2 - decode all blocks
-	void readPacketPy(int decodeType);
+	void readPacketPy();
 
-	bool setStream(ByteStreamPtr stream, int decodeType);
+	bool setStream(ByteStreamPtr stream, bool checkPacketLength = true);
 
 	/// Printing the packet in input
 	void printPacket_input();
