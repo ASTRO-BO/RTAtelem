@@ -73,12 +73,6 @@ protected:
 		while (r[i] != 0)
 			std::cout << r[i++] << std::endl;
 	}
-
-	//TODO maybe it is not needed
-/*	void _printListOfString(std::string* r)
-	{
-		std::cout << *r << std::endl;
-	}*/
 };
 
 }
