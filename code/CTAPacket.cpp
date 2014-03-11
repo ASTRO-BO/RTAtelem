@@ -20,9 +20,26 @@ namespace RTATelem
 {
 
 CTAPacket::CTAPacket(Packet* packet)
-	: _type(CTA_CAMERA_UNDEFINED), _packet(packet)
+	: header(0), _type(CTA_CAMERA_UNDEFINED)
 {
-	header = new CTAPacketHeader(packet);
+	setPacket(packet);
+}
+
+void CTAPacket::setPacket(PacketLib::Packet* packet)
+{
+	if(packet)
+	{
+		_packet = packet;
+		if(!header)
+			header = new CTAPacketHeader(packet);
+	}
+}
+
+
+void CTAPacket::decode(bool checkPacketLength)
+{
+	if(_packet)
+		_packet->set(_packet->getBSPacket(), checkPacketLength);
 }
 
 void CTAPacket::printPacket()

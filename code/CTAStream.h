@@ -24,6 +24,7 @@
 #include <packet/OutputPacketStream.h>
 #include <packet/InputPacketStream.h>
 #include <packet/ByteStream.h>
+#include "CTAPacket.h"
 
 using PacketLib::dword;
 
@@ -40,6 +41,9 @@ public:
 	/// Read a packet from input
 	/// \return a ByteStreamPtr or 0 if there is no more packets
 	PacketLib::ByteStreamPtr readPacket();
+
+	/// Allocate a new packet of type PacketType.
+	CTAPacket* getNewPacket(enum CTAPacketType type);
 
 	/// Writing the packet
 	void writePacket(PacketLib::ByteStreamPtr p);

@@ -43,12 +43,13 @@ public:
 
 	CTAPacket(PacketLib::Packet* packet);
 
+	void setPacket(PacketLib::Packet* packet);
+
 	/// Printing the packet
 	void printPacket();
 
 	/// Get a pointer to telemetry packet
-	PacketLib::ByteStreamPtr getInputPacketData()
-	{
+	PacketLib::ByteStreamPtr getInputPacketData() {
 		return _packet->getBSPacket();
 	}
 	
@@ -56,10 +57,11 @@ public:
 		return _packet->isBigendian();
 	}
 
-	enum CTAPacketType getPacketType()
-	{
+	enum CTAPacketType getPacketType() {
 		return _type;
 	}
+
+	void decode(bool checkPacketLength);
 	
 protected:
 
@@ -67,8 +69,7 @@ protected:
 
 	PacketLib::Packet* _packet;
 
-	void _printListOfString(char** r)
-	{
+	void _printListOfString(char** r) {
 		int i = 0;
 		while (r[i] != 0)
 			std::cout << r[i++] << std::endl;

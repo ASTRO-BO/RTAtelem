@@ -13,6 +13,12 @@
  ***************************************************************************/
 
 #include "CTAStream.h"
+#include "CTACameraTriggerData0.h"
+#include "CTACameraTriggerData1.h"
+#include "CTACameraPedestal.h"
+#include "CTACameraPedestal1.h"
+#include "CTACameraConv0.h"
+#include "CTACameraConv1.h"
 #include <packet/InputFile.h>
 #include <packet/OutputFile.h>
 
@@ -91,6 +97,61 @@ ByteStreamPtr CTAStream::readPacket()
 		return 0;
 
 	return inputPacket->getInputStream();
+}
+
+CTAPacket* CTAStream::getNewPacket(enum CTAPacketType type)
+{
+	// get id from enum
+	PacketLib::byte id = 0;
+	switch(type)
+	{
+		case CTA_CAMERA_TRIGGERDATA_1:
+			id = 1;
+			break;
+
+		case CTA_CAMERA_UNDEFINED:
+		default:
+			id = 0;
+	}
+
+	// get Packet from id
+	PacketLib::PacketStream* ps = 0;
+	if(_ips)
+		ps = _ips;
+	if(_ops)
+		ps = _ops;
+	if(ps == 0)
+		return 0;
+	Packet* p = ps->getPacketType(id);
+
+	// allocate the right CTAPacket
+	CTAPacket* packet;
+	switch(type)
+	{
+		case CTA_CAMERA_TRIGGERDATA_0:
+			packet = new CTACameraTriggerData0(p);
+			break;
+		case CTA_CAMERA_TRIGGERDATA_1:
+			packet = new CTACameraTriggerData1(p);
+			break;
+		case CTA_CAMERA_PEDESTAL_0:
+			packet = new CTACameraPedestal(p);
+			break;
+		case CTA_CAMERA_PEDESTAL_1:
+			packet = new CTACameraPedestal1(p);
+			break;
+		case CTA_CAMERA_CONV_0:
+			packet = new CTACameraConv0(p);
+			break;
+		case CTA_CAMERA_CONV_1:
+			packet = new CTACameraConv1(p);
+			break;
+		case CTA_CAMERA_UNDEFINED:
+		default:
+			packet = 0;
+	}
+
+	return packet;
 }
 
 void CTAStream::writePacket(ByteStreamPtr p)

@@ -13,12 +13,6 @@
  ***************************************************************************/
 
 #include "CTADecoder.h"
-#include "CTACameraTriggerData0.h"
-#include "CTACameraTriggerData1.h"
-#include "CTACameraPedestal.h"
-#include "CTACameraPedestal1.h"
-#include "CTACameraConv0.h"
-#include "CTACameraConv1.h"
 #include <packet/Packet.h>
 
 using PacketLib::ByteStreamPtr;
@@ -28,7 +22,9 @@ namespace RTATelem
 {
 
 CTADecoder::CTADecoder(const string& packetConfig)
-	: _config(packetConfig)
+	: _config(packetConfig), _cameraTD0(0), _cameraTD1(0),
+	  _cameraP0(0), _cameraP1(0), _cameraC0(0), _cameraC1(0),
+	  _unknownPacket(0)
 {
 	try
 	{
@@ -43,37 +39,40 @@ CTADecoder::CTADecoder(const string& packetConfig)
 
 }
 
-CTAPacket* CTADecoder::decode(ByteStreamPtr stream)
+CTAPacket& CTADecoder::getPacket(ByteStreamPtr stream)
 {
-	CTAPacket* packet = 0;
+	CTAPacket& packetRef = _unknownPacket;
 
-	PacketLib::Packet* p = _ps.getPacket(stream);
-	byte id = p->getPacketID();
+	byte id = _ps.detPacketType(stream);
+	PacketLib::Packet* p = _ps.getPacketType(id);
 	switch(id)
 	{
-		case CTA_CAMERA_TRIGGERDATA_0:
-			packet = new CTACameraTriggerData0(p);
-			break;
-		case CTA_CAMERA_TRIGGERDATA_1:
-			packet = new CTACameraTriggerData1(p);
-			break;
-		case CTA_CAMERA_PEDESTAL_0:
-			packet = new CTACameraPedestal(p);
-			break;
-		case CTA_CAMERA_PEDESTAL_1:
-			packet = new CTACameraPedestal1(p);
-			break;
-		case CTA_CAMERA_CONV_0:
-			packet = new CTACameraConv0(p);
-			break;
-		case CTA_CAMERA_CONV_1:
-			packet = new CTACameraConv1(p);
+		case 1:
+			packetRef = _cameraTD1;
 			break;
 		default:
-			packet = 0;
+			std::cerr << "Warning on CTADecoder::getPacketType: ";
+			std::cerr << " unhandled id " << id << std::endl;
 	}
 
-	return packet;
+	packetRef.setPacket(p);
+
+	return packetRef;
+}
+
+enum CTAPacketType CTADecoder::getPacketType(ByteStreamPtr stream)
+{
+	byte id = _ps.detPacketType(stream);
+	switch(id)
+	{
+		case 1:
+			return CTA_CAMERA_TRIGGERDATA_1;
+		default:
+			std::cerr << "Warning on CTADecoder::getPacketType: ";
+			std::cerr << " unhandled id " << id << std::endl;
+	}
+
+	return CTA_CAMERA_UNDEFINED;
 }
 
 }
