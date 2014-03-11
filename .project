@@ -3,7 +3,7 @@
 	<name>RTAtelem</name>
 	<comment></comment>
 	<projects>
-		<project>PacketLib</project>
+		<project>RTAPacketLib</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
@@ -24,7 +24,7 @@
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.buildArguments</key>
-					<value>install prefix=~/local</value>
+					<value>install -j5 prefix=${CTARTA}</value>
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.buildCommand</key>
