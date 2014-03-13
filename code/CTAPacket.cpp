@@ -30,8 +30,7 @@ void CTAPacket::setPacket(PacketLib::Packet* packet)
 	if(packet)
 	{
 		_packet = packet;
-		if(!header)
-			header = new CTAPacketHeader(packet);
+		header = new CTAPacketHeader(packet);
 	}
 }
 
