@@ -4,7 +4,6 @@
 #include <packet/Input.h>
 #include <packet/Packet.h>
 
-// TODO uniformare output e input
 RTATelem::CTAPacketHeader::CTAPacketHeader(Packet* packet)
 	: _packet(packet) {
 
