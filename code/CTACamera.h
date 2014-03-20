@@ -34,18 +34,18 @@ public:
 
 	/// It sets the telescope ID (identification number)
 	/// \param telescopeID The telescope unique ID
-	void setTelescopeId(word telescopeID);
+	virtual void setTelescopeId(word telescopeID);
 
 	/// It gets the telescope ID (identification number)
-	word getTelescopeId();
+	virtual word getTelescopeId();
 
 	/// It sets the pixel ID (identification number)
 	/// \param pixelIndex The index of the pixel (0..NumberOfPixels-1)
 	/// \param pixelID The pixel unique ID
-	void setPixelId(word pixelIndex, word pixelID);
+	virtual void setPixelId(word pixelIndex, word pixelID);
 
 	/// It gets the pixel ID (identification number)
-	word getPixelId(word pixelIndex);
+	word virtual getPixelId(word pixelIndex);
 
 	ByteStreamPtr getCameraData(ByteStreamPtr rawPacket);
 	
