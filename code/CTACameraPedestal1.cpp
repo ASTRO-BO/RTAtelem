@@ -32,10 +32,10 @@
 RTATelem::CTACameraPedestal1::CTACameraPedestal1(Packet* packet)
 	: CTACameraPedestal(packet) {
 	_type = CTA_CAMERA_PEDESTAL_0;
+		header->setType(2);
 }
 
 PacketLib::ByteStreamPtr RTATelem::CTACameraPedestal1::getInputPacketData() {
-    header->setType(2);
 	return RTATelem::CTAPacket::getInputPacketData();
 }
 

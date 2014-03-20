@@ -20,10 +20,10 @@ namespace RTATelem {
 CTACameraTriggerData1::CTACameraTriggerData1(Packet* packet)
  : CTACameraTriggerData(packet) {
 	_type = CTA_CAMERA_TRIGGERDATA_1;
+	 header->setType(1);
 }
 
 PacketLib::ByteStreamPtr CTACameraTriggerData1::getInputPacketData() {
-    header->setType(1);
 	return RTATelem::CTAPacket::getInputPacketData();
 }
 

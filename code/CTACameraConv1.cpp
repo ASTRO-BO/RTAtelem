@@ -29,10 +29,10 @@
 RTATelem::CTACameraConv1::CTACameraConv1(Packet* packet)
 	: CTACameraConv(packet) {
 	_type = CTA_CAMERA_CONV_1;
+		header->setType(3);
 }
 
 PacketLib::ByteStreamPtr RTATelem::CTACameraConv1::getInputPacketData() {
-    header->setType(3);
     return RTATelem::CTAPacket::getInputPacketData();
 }
 
