@@ -29,6 +29,7 @@
 RTATelem::CTACameraConv1::CTACameraConv1(Packet* packet)
 	: CTACameraConv(packet) {
 	_type = CTA_CAMERA_CONV_1;
+	if(header)
 		header->setType(3);
 }
 

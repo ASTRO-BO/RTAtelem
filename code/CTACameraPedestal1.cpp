@@ -32,6 +32,7 @@
 RTATelem::CTACameraPedestal1::CTACameraPedestal1(Packet* packet)
 	: CTACameraPedestal(packet) {
 	_type = CTA_CAMERA_PEDESTAL_0;
+	if(header)
 		header->setType(2);
 }
 
