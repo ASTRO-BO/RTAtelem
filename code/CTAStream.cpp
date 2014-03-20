@@ -154,9 +154,9 @@ CTAPacket* CTAStream::getNewPacket(enum CTAPacketType type)
 	return packet;
 }
 
-void CTAStream::writePacket(ByteStreamPtr p)
+void CTAStream::writePacket(CTAPacket* p)
 {
-	_ops->writePacket(p);
+	_ops->writePacket(p->getPacket());
 }
 
 void CTAStream::readPacketEnc()

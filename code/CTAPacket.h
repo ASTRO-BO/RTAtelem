@@ -45,6 +45,11 @@ public:
 
 	void setPacket(PacketLib::Packet* packet);
 
+	PacketLib::Packet* getPacket()
+	{
+		return _packet;
+	}
+
 	/// Printing the packet
 	void printPacket();
 

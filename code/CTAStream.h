@@ -46,7 +46,7 @@ public:
 	CTAPacket* getNewPacket(enum CTAPacketType type);
 
 	/// Writing the packet
-	void writePacket(PacketLib::ByteStreamPtr p);
+	void writePacket(CTAPacket* p);
 
 	///It returns the total dimension of the packet contained in the stream (without prefix). The stream* contains also the prefix (if present)
 	///\param The stream with the prefix (if present)
