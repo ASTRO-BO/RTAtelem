@@ -48,10 +48,10 @@ public:
 	/// It sets the pixel ID (identification number)
 	/// \param pixelIndex The index of the pixel (0..NumberOfPixels-1)
 	/// \param pixelID The pixel unique ID
-	void setPixelId(word pixelIndex, word pixelID);
+//	void setPixelId(word pixelIndex, word pixelID);
 
 	/// It gets the pixel ID (identification number)
-	word getPixelId(word pixelIndex);
+//	word getPixelId(word pixelIndex);
 	
 	/// It sets the conversion high value
 	/// \param pixelIndex The index of the pixel (0..NumberOfPixels-1)
