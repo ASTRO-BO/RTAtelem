@@ -52,7 +52,8 @@ public:
 protected:
 	
 	dword sizeFixedPart();
-	
+
+	bool dimfixedUndefined;
 	dword dimfixed;
 	dword dimtail;
 };

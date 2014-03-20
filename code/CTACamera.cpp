@@ -3,8 +3,7 @@
 #define RBLOCK_PIXEL 0
 
 RTATelem::CTACamera::CTACamera(Packet* packet)
-	: CTAPacket(packet) {
-	dimfixed = -1;
+	: CTAPacket(packet), dimfixedUndefined(true) {
 }
 
 void RTATelem::CTACamera::setNumberOfPixels(word number) {
@@ -46,9 +45,10 @@ dword RTATelem::CTACamera::sizeFixedPart() {
 }
 
 ByteStreamPtr RTATelem::CTACamera::getCameraData(ByteStreamPtr rawPacket) {
-	if(dimfixed == -1) {
+	if(dimfixedUndefined) {
 		dimfixed = sizeFixedPart();
 		dimtail = _packet->sizeTail();
+		dimfixedUndefined = false;
 	}
 	ByteStreamPtr camera = ByteStreamPtr(new ByteStream(rawPacket, dimfixed, rawPacket->size()-dimtail));
 	camera->swapWordForIntel();
