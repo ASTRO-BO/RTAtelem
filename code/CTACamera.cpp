@@ -18,9 +18,11 @@ word RTATelem::CTACamera::getNumberOfPixels() {
     return sdf->getNumberOfRealDataBlock();
 }
 
+/*
 void RTATelem::CTACamera::setTelescopeId(word telescopeID) {
 	cerr << "Implement RTATelem::CTACamera::setTelescopeId(word telescopeID)" << endl;
 }
+
 
 word RTATelem::CTACamera::getTelescopeId() {
 	cerr << "Implement RTATelem::CTACamera::getTelescopeId()" << endl;
@@ -35,6 +37,7 @@ word RTATelem::CTACamera::getPixelId(word pixelIndex) {
 	cerr << "Implement RTATelem::CTACamera::getPixelId(word pixelIndex)" << endl;
 	return 0;
 }
+*/
 
 dword RTATelem::CTACamera::sizeFixedPart() {
 	//dword d1 = _packet->getPacketHeader()->size();

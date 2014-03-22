@@ -32,20 +32,22 @@ public:
 	/// \param number The number of pixels
 	void setNumberOfPixels(word number);
 
+	/*
 	/// It sets the telescope ID (identification number)
 	/// \param telescopeID The telescope unique ID
-	virtual void setTelescopeId(word telescopeID);
+	virtual void setTelescopeId(word telescopeID) = 0;
 
 	/// It gets the telescope ID (identification number)
-	virtual word getTelescopeId();
+	virtual word getTelescopeId() = 0;
 
 	/// It sets the pixel ID (identification number)
 	/// \param pixelIndex The index of the pixel (0..NumberOfPixels-1)
 	/// \param pixelID The pixel unique ID
-	virtual void setPixelId(word pixelIndex, word pixelID);
+	virtual void setPixelId(word pixelIndex, word pixelID) = 0;
 
 	/// It gets the pixel ID (identification number)
-	word virtual getPixelId(word pixelIndex);
+	word virtual getPixelId(word pixelIndex) = 0;
+	*/
 
 	ByteStreamPtr getCameraData(ByteStreamPtr rawPacket);
 	
