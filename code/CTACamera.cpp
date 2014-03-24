@@ -14,8 +14,12 @@ void RTATelem::CTACamera::setNumberOfPixels(word number) {
 
 word RTATelem::CTACamera::getNumberOfPixels() {
     /// Get a pointer to the source data field
-    SourceDataField* sdf = (SourceDataField*) _packet->getPacketSourceDataField();
-    return sdf->getNumberOfRealDataBlock();
+    //SourceDataField* sdf = (SourceDataField*) _packet->getPacketSourceDataField();
+    //return sdf->getNumberOfRealDataBlock();
+	/// alternative solution (faster)
+	ByteStreamPtr fixedSdf = _packet->getBSSourceDataFieldsFixedPart();
+	word* part = (word*) fixedSdf->stream;
+	return part[4]; //number of pixel M
 }
 
 /*

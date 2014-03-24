@@ -47,7 +47,7 @@ CTAPacket& CTADecoder::getPacket(ByteStreamPtr stream)
 	PacketLib::Packet* p = _ps.getPacketType(id);
 	switch(id)
 	{
-		case 1:
+		case 1: case 2: case 3:
 			packetRef = _cameraTD1;
 			break;
 		default:
@@ -65,7 +65,7 @@ enum CTAPacketType CTADecoder::getPacketType(ByteStreamPtr stream)
 	byte id = _ps.detPacketType(stream);
 	switch(id)
 	{
-		case 1:
+		case 1: case 2: case 3:
 			return CTA_CAMERA_TRIGGERDATA_1;
 		default:
 			std::cerr << "Warning on CTADecoder::getPacketType: ";

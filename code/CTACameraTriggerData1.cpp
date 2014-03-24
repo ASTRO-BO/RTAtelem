@@ -75,12 +75,18 @@ ByteStreamPtr CTACameraTriggerData1::getCameraDataSlow() {
 
 word CTACameraTriggerData1::getNumberOfSamples(word pixelIndex) {
     /// Get a pointer to the source data field
-    SourceDataField* sdf = (SourceDataField*) _packet->getPacketSourceDataField();
+    /*
+	SourceDataField* sdf = (SourceDataField*) _packet->getPacketSourceDataField();
     SDFBlock* pixel = (SDFBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
     word nsamples =  pixel->getNumberOfRealDataBlock();
 	if(nsamples == 0)
 		nsamples = sdf->getFieldValue(6);
 	return nsamples;
+	*/
+	ByteStreamPtr fixedSdf = _packet->getBSSourceDataFieldsFixedPart();
+	word* part = (word*) fixedSdf->stream;
+	return part[5]; //number of pixel M
+
 }
 
 word CTACameraTriggerData1::getSampleValue(word pixelIndex, word sampleIndex) {

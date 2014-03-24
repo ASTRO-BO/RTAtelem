@@ -108,7 +108,15 @@ CTAPacket* CTAStream::getNewPacket(enum CTAPacketType type)
 		case CTA_CAMERA_TRIGGERDATA_1:
 			id = 1;
 			break;
-
+		case CTA_CAMERA_TRIGGERDATA_1_30:
+			id = 1;
+			break;
+		case CTA_CAMERA_TRIGGERDATA_1_40:
+			id = 2;
+			break;
+		case CTA_CAMERA_TRIGGERDATA_1_50:
+			id = 3;
+			break;
 		case CTA_CAMERA_UNDEFINED:
 		default:
 			id = 0;
@@ -131,7 +139,7 @@ CTAPacket* CTAStream::getNewPacket(enum CTAPacketType type)
 		case CTA_CAMERA_TRIGGERDATA_0:
 			packet = new CTACameraTriggerData0(p);
 			break;
-		case CTA_CAMERA_TRIGGERDATA_1:
+		case CTA_CAMERA_TRIGGERDATA_1: case CTA_CAMERA_TRIGGERDATA_1_30: case CTA_CAMERA_TRIGGERDATA_1_40: case CTA_CAMERA_TRIGGERDATA_1_50:
 			packet = new CTACameraTriggerData1(p);
 			break;
 		case CTA_CAMERA_PEDESTAL_0:
