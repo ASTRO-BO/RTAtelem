@@ -32,6 +32,11 @@ public:
 
 	CTAPacketHeader(Packet* packet);
 
+	void setPacket(Packet* packet)
+	{
+		_packet = packet;
+	}
+
 	/// It sets the Source Sequence Counter
 	/// \param counter The value of the Source Sequence
 	void setSSC(word counter);

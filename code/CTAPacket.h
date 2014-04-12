@@ -42,7 +42,7 @@ class CTAPacket {
 public:
 
 	/// Common header for all the packets (packet header + data field header)
-	CTAPacketHeader* header;
+	CTAPacketHeader header;
 
 	CTAPacket(PacketLib::Packet* packet);
 
