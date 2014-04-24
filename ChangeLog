@@ -1,6 +1,26 @@
-2014-04-25 Andrea Bulgarelli, Andrea Zoli, Valentina Fioretti
+2014-05-24 Andrea Zoli
+TAG v1.4.4
+	* Fix memory leak on CTAPacketHeader.
+
+2014-04-12 Andrea Bulgarelli, Andrea Zoli, Valentina Fioretti
 TAG v1.4.3
-+ working version at 2 - 2.5 GB/s shown at the DATA meeting in Rome and at the Consortium Meeting in Munich
+	* Working version at 2 - 2.5 GB/s shown at the DATA meeting in Rome and at the Consortium Meeting in Munich
+	* Added *.o, version and prefix to .gitignore.
+	* CTACameraTriggerData::getTelescopeId optimization
+	* new CTACamera::getNumberOfPixels, CTACameraTriggerData1::getNumberOfSamples, added management of 1_30 1_40 1_50 in the CTAStream and CTADecoder
+	* Metadata FITS file added
+	* Fix CTACamera polymorphism for some setters.
+	* Check for nullptr in CTACameraConv1, CTACameraTriggerData1 and CTACameraPedestal1 ctors.
+	* Fix unsigned-signed int test, using a bool to test dimfixed initialization.
+	* header->setType moved into the constructor of a class
+	* Use CTAPacket instead of ByteStreamPtr on CTAStream::writePacket().
+	* CTAPacket header creation.
+	* Add eclipse project files.
+	* Fix CTAStream::getInputPacketDimension().
+	* Add CTAPacket::getType().
+	* Change the interface of CTAPacket into CTAPacket, CTAStream and
+CTADecoder.
+	* Remove CTAPacketBufferQ, CTAPacketBufferV classes.
 
 2014-04-10 Andrea Bulgarelli <bulgarelli@iasfbo.inaf.it>
 TAG v1.4.1
