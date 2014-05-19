@@ -62,7 +62,7 @@ void RTATelem::CTAPacketHeader::setMetadata(word arrayID, word runNumberID) {
 	{
 	    _packet->getPacketDataFieldHeader()->setFieldValue(4, arrayID);
 	    _packet->getPacketDataFieldHeader()->setFieldValue(5, runNumberID);
-	    //_packet->getPacketDataFieldHeader()->setFieldValue_4_14(5, eventNumberID);
+	    //_packet->getPacketDataFieldHeader()->setFieldValue_32ui(5, eventNumberID);
 	}
 }
 
@@ -71,18 +71,18 @@ void RTATelem::CTAPacketHeader::getMetadata(word &arrayID, word &runNumberID) {
 	{
 	    arrayID = _packet->getPacketDataFieldHeader()->getFieldValue(4);
 	    runNumberID = _packet->getPacketDataFieldHeader()->getFieldValue(5);
-	    //eventNumberID = _packet->getPacketDataFieldHeader()->getFieldValue_4_14(5);
+	    //eventNumberID = _packet->getPacketDataFieldHeader()->getFieldValue_32ui(5);
 	}
 }
 
 void RTATelem::CTAPacketHeader::setTime(signed long time) {
 	if(_packet)
-	    _packet->getPacketDataFieldHeader()->setFieldValue_4_14(0, time);
+	    _packet->getPacketDataFieldHeader()->setFieldValue_32ui(0, time);
 }
 
 
 signed long RTATelem::CTAPacketHeader::getTime() {
 	if(!_packet)
 		return -1;
-    return _packet->getPacketDataFieldHeader()->getFieldValue_4_14(0);
+    return _packet->getPacketDataFieldHeader()->getFieldValue_32ui(0);
 }

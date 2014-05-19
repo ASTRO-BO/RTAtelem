@@ -67,12 +67,12 @@ byte CTACameraTriggerData::getIndexOfCurrentTriggeredTelescope() {
 
 void CTACameraTriggerData::setEventNumber(dword event) {
 	SourceDataField* sdf = (SourceDataField*) _packet->getPacketSourceDataField();
-    sdf->setFieldValue_4_14(0, event);
+    sdf->setFieldValue_32ui(0, event);
 }
 
 dword CTACameraTriggerData::getEventNumber() {
 	SourceDataField* sdf = (SourceDataField*) _packet->getPacketSourceDataField();
-    return sdf->getFieldValue_4_14(0);
+    return sdf->getFieldValue_32ui(0);
 }
 
 void CTACameraTriggerData::setNumberOfSamples(word pixelIndex, word number) {
