@@ -41,11 +41,7 @@ yes
 [Fixed Part]
 -- field 0 - eventNumberID (Event) MSB (4_14) - identifier - metadata -- SOURCE DATA HEADER ----------------------------------------
 eventNumber MSB
-16
-none
--- field 1 - eventNumberID (Event) LSB (4_14) - identifier - metadata
-eventNumber LSB
-16
+uint32
 none
 --field 2 
 TelescopeID

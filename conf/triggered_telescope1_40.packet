@@ -39,35 +39,31 @@ yes
 --number of rblock (if variable part is present)
 2
 [Fixed Part]
--- field 0 - eventNumberID (Event) MSB (4_14) - identifier - metadata -- SOURCE DATA HEADER ----------------------------------------
-eventNumber MSB
-16
+-- field 0 - eventNumberID (Event) (4_14) - identifier - metadata -- SOURCE DATA HEADER ----------------------------------------
+eventNumber
+uint32
 none
--- field 1 - eventNumberID (Event) LSB (4_14) - identifier - metadata
-eventNumber LSB
-16
-none
---field 2 
+--field 1
 TelescopeID
 16
 none
--- field 3 - number of triggered telescopes
+-- field 2 - number of triggered telescopes
 numberOfTriggeredTelescopes
 8
 none
--- field 4 - index of the triggered telescope (0..numberOfTriggeredTelescopes-1)
+-- field 3 - index of the triggered telescope (0..numberOfTriggeredTelescopes-1)
 telescopeCounter
 8
 none
---field 5 (Number of pixels)
+--field 4 (Number of pixels)
 Number of pixels
 16
 none
---field 6 (Number of samples)
+--field 5 (Number of samples)
 Number of samples
 16
 none
---field 7 (Number of pixels ID for zero suppression)
+--field 6 (Number of pixels ID for zero suppression)
 Number of pixels ID zero-suppressed
 16
 none

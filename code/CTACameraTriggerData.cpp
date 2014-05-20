@@ -24,27 +24,28 @@ CTACameraTriggerData::CTACameraTriggerData(Packet* packet)
 
 word RTATelem::CTACameraTriggerData::getTelescopeId() {
 	/// Get a pointer to the source data field
-	//SourceDataField* sdf = (SourceDataField*) _packet->getPacketSourceDataField();
-	//return (word) sdf->getFieldValue(2);
-	ByteStreamPtr fixedSdf = _packet->getBSSourceDataFieldsFixedPart();
+	SourceDataField* sdf = (SourceDataField*) _packet->getPacketSourceDataField();
+	return (word) sdf->getFieldValue(1);
+	/*ByteStreamPtr fixedSdf = _packet->getBSSourceDataFieldsFixedPart();
 	word* part = (word*) fixedSdf->stream;
 	return part[2];
+	*/
 }
 
 void CTACameraTriggerData::setTelescopeId(word telescopeID) {
     /// Get a pointer to the source data field
     SourceDataField* sdf = (SourceDataField*) _packet->getPacketSourceDataField();
-    sdf->setFieldValue(2, telescopeID);
+    sdf->setFieldValue(1, telescopeID);
 }
 
 void CTACameraTriggerData::setNumberOfTriggeredTelescopes(byte number) {
     SourceDataField* sdf = (SourceDataField*) _packet->getPacketSourceDataField();
-    sdf->setFieldValue(3, (word) number);
+    sdf->setFieldValue(2, (word) number);
 }
 
 byte CTACameraTriggerData::getNumberOfTriggeredTelescopes() {
 	SourceDataField* sdf = (SourceDataField*) _packet->getPacketSourceDataField();
-	return (byte) sdf->getFieldValue(3);
+	return (byte) sdf->getFieldValue(2);
 	//ByteStreamPtr fixedSdf = _packet->getBSSourceDataFieldsFixedPart();
 	//byte* part = (byte*) fixedSdf->stream;
 	//return part[6];
@@ -53,12 +54,12 @@ byte CTACameraTriggerData::getNumberOfTriggeredTelescopes() {
 
 void CTACameraTriggerData::setIndexOfCurrentTriggeredTelescope(byte telescopeIndex) {
 	 SourceDataField* sdf = (SourceDataField*) _packet->getPacketSourceDataField();
-	 sdf->setFieldValue(4, (word) telescopeIndex);
+	 sdf->setFieldValue(3, (word) telescopeIndex);
 }
 
 byte CTACameraTriggerData::getIndexOfCurrentTriggeredTelescope() {
 	SourceDataField* sdf = (SourceDataField*) _packet->getPacketSourceDataField();
-	return (byte) sdf->getFieldValue(4);
+	return (byte) sdf->getFieldValue(3);
 	/*ByteStreamPtr fixedSdf = _packet->getBSSourceDataFieldsFixedPart();
 	byte* part = (byte*) fixedSdf->stream;
 	return part[7];
