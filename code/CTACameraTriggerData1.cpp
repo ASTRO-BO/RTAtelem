@@ -84,7 +84,7 @@ word CTACameraTriggerData1::getNumberOfSamples(word pixelIndex) {
 	*/
 	ByteStreamPtr fixedSdf = _packet->getBSSourceDataFieldsFixedPart();
 	word* part = (word*) fixedSdf->stream;
-	return part[5]; //number of pixel M
+	return part[5]; //number of samples M
 
 }
 
@@ -92,13 +92,17 @@ word CTACameraTriggerData1::getSampleValue(word pixelIndex, word sampleIndex) {
     /// Get a pointer to the source data field
     SourceDataField* sdf = (SourceDataField*) _packet->getPacketSourceDataField();
     SDFBlock* pixel = (SDFBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
-    /// VARIABLE FORMAT
-    SDFBlock* sample = (SDFBlock*) pixel->getBlock(sampleIndex, RBLOCK_SAMPLE);
+    
 	word value = 0;
+	
+	/// VARIABLE FORMAT
+    /*SDFBlock* sample = (SDFBlock*) pixel->getBlock(sampleIndex, RBLOCK_SAMPLE);
 	if(sample != 0)
 		value = sample->getFieldValue(0);
+	
 	if(sample == 0)
-		value = pixel->getFieldValue(sampleIndex);
+	*/
+	value = pixel->getFieldValue(sampleIndex);
     return value;
 }
 

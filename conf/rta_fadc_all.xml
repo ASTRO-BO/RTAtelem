@@ -11,6 +11,7 @@
     <field name="Packet Type" type="uint6" packetid="1" />
     <field name="Packet Subtype" type="uint8" packetid="40" />
   </header>
+  
   <packet name="triggered_telescope1_30GEN" description="CTA Triggered Sim Telescope 30 samples">
     <datafieldheader>
       <field name="LTtime" type="uint64" />
@@ -65,6 +66,7 @@
       <field name="CRC" type="uint16" />
     </tail>
   </packet>
+  
   <packet name="triggered_telescope1_40GEN" description="CTA Triggered Sim Telescope 40 samples">
     <datafieldheader>
       <field name="LTtime" type="uint64" />
@@ -129,6 +131,7 @@
       <field name="CRC" type="uint16" />
     </tail>
   </packet>
+  
   <packet name="triggered_telescope1_50GEN" description="CTA Triggered Sim Telescope 50 samples">
     <datafieldheader>
       <field name="LTtime" type="uint64" />

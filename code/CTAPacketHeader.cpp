@@ -23,26 +23,26 @@ word RTATelem::CTAPacketHeader::getAPID() {
 
 void RTATelem::CTAPacketHeader::setSubType(byte subtype) {
 	if(_packet)
-		_packet->getPacketHeader()->setFieldValue(10, subtype);
+		_packet->getPacketHeader()->setFieldValue(9, subtype);
 }
 
 
 word RTATelem::CTAPacketHeader::getSubType() {
 	if(!_packet)
 		return -1;
-	return _packet->getPacketHeader()->getFieldValue(10);
+	return _packet->getPacketHeader()->getFieldValue(9);
 }
 
 void RTATelem::CTAPacketHeader::setType(byte type) {
 	if(_packet)
-		_packet->getPacketHeader()->setFieldValue(9, type);
+		_packet->getPacketHeader()->setFieldValue(8, type);
 }
 
 
 word RTATelem::CTAPacketHeader::getType() {
 	if(!_packet)
 		return -1;
-	return _packet->getPacketHeader()->getFieldValue(9);
+	return _packet->getPacketHeader()->getFieldValue(8);
 }
 
 

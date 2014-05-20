@@ -75,7 +75,7 @@ variable
 -- for variable block, number of level of headers in which is present the field with the number of blocks of the variable part (0: fixed part)
 0
 -- for variable block, index of field of the header which rappresent the number of events (the number of blocks) of the packet
-5
+4
 -- for variable block, value to sum to get the real number of events (blocks) 
 0
 triggered_telescope_pixel1_50.rblock
@@ -87,21 +87,21 @@ variable
 -- for variable block, number of level of headers in which is present the field with the number of blocks of the variable part (0: fixed part)
 0
 -- for variable block, index of field of the header which rappresent the number of events (the number of blocks) of the packet
-7
+6
 -- for variable block, value to sum to get the real number of events (blocks) 
 0
 triggered_telescope_pixelID.rblock
 [Identifiers]
 -- ID0 type
 -- field number
-9
+8
 -- type (0 header, 1 data field)
 0
 -- value
 1
 -- ID1 subtype
 -- field number
-10
+9
 -- type (0 header, 1 data field)
 0
 -- value (set with the number of samples)

@@ -30,22 +30,18 @@ Source Sequence Counter
 14
 none
 -- field 6
-Packet Length MSB (4_14) - 1
-16
+Packet Length - 1
+uint32
 none
 -- field 7
-Packet Length LSB (4_14) - 1
-16
-none
--- field 8
 CRC flag
 2
 0b11
--- field 9 -- set this to the correct value for this structure
+-- field 8 -- set this to the correct value for this structure
 Packet Type
 6
 none
--- field 10 -- set this to the correct value for this structure - the number of samples
+-- field 9 -- set this to the correct value for this structure - the number of samples
 Packet Subtype
 8
 none
