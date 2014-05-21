@@ -77,12 +77,12 @@ void RTATelem::CTAPacketHeader::getMetadata(word &arrayID, word &runNumberID) {
 
 void RTATelem::CTAPacketHeader::setTime(signed long time) {
 	if(_packet)
-	    _packet->getPacketDataFieldHeader()->setFieldValue_4_14(0, time);
+	    _packet->getPacketDataFieldHeader()->setFieldValue_32ui(0, time);
 }
 
 
 signed long RTATelem::CTAPacketHeader::getTime() {
 	if(!_packet)
 		return -1;
-    return _packet->getPacketDataFieldHeader()->getFieldValue_4_14(0);
+    return _packet->getPacketDataFieldHeader()->getFieldValue_32ui(0);
 }

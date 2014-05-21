@@ -44,7 +44,7 @@ void CTACameraTriggerData::setNumberOfTriggeredTelescopes(byte number) {
 
 byte CTACameraTriggerData::getNumberOfTriggeredTelescopes() {
 	SourceDataField* sdf = (SourceDataField*) _packet->getPacketSourceDataField();
-	return (byte) sdf->getFieldValue(3);
+	return (byte) sdf->getFieldValue("numberOfTriggeredTelescopes"); //3
 	//ByteStreamPtr fixedSdf = _packet->getBSSourceDataFieldsFixedPart();
 	//byte* part = (byte*) fixedSdf->stream;
 	//return part[6];
@@ -58,7 +58,7 @@ void CTACameraTriggerData::setIndexOfCurrentTriggeredTelescope(byte telescopeInd
 
 byte CTACameraTriggerData::getIndexOfCurrentTriggeredTelescope() {
 	SourceDataField* sdf = (SourceDataField*) _packet->getPacketSourceDataField();
-	return (byte) sdf->getFieldValue(4);
+	return (byte) sdf->getFieldValue("telescopeCounter"); //4
 	/*ByteStreamPtr fixedSdf = _packet->getBSSourceDataFieldsFixedPart();
 	byte* part = (byte*) fixedSdf->stream;
 	return part[7];
@@ -67,12 +67,12 @@ byte CTACameraTriggerData::getIndexOfCurrentTriggeredTelescope() {
 
 void CTACameraTriggerData::setEventNumber(dword event) {
 	SourceDataField* sdf = (SourceDataField*) _packet->getPacketSourceDataField();
-    sdf->setFieldValue_4_14(0, event);
+    sdf->setFieldValue_32ui(0, event);
 }
 
 dword CTACameraTriggerData::getEventNumber() {
 	SourceDataField* sdf = (SourceDataField*) _packet->getPacketSourceDataField();
-    return sdf->getFieldValue_4_14(0);
+    return sdf->getFieldValue_32ui(0); //0
 }
 
 void CTACameraTriggerData::setNumberOfSamples(word pixelIndex, word number) {
