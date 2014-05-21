@@ -8,8 +8,8 @@
     <field name="Source Sequence Counter" type="uint14" />
     <field name="Packet Length" type="uint32" id="packetlength" />
     <field name="CRC flag" type="uint2" default="3" />
-    <field name="Packet Type" type="uint6" packetid="1" />
-    <field name="Packet Subtype" type="uint8" packetid="40" />
+    <field name="Packet Type" type="uint6" id="id1" />
+    <field name="Packet Subtype" type="uint8" id="id2" />
   </header>
   <packet name="triggered_telescope1_30GEN" description="CTA Triggered Sim Telescope 30 samples">
     <datafieldheader>
@@ -64,6 +64,10 @@
     <tail>
       <field name="CRC" type="uint16" />
     </tail>
+    <identifiers>
+      <identifier idref="id1" value="1" />
+      <identifier idref="id2" value="30" />
+    </identifiers>
   </packet>
   <packet name="triggered_telescope1_40GEN" description="CTA Triggered Sim Telescope 40 samples">
     <datafieldheader>
@@ -128,6 +132,10 @@
     <tail>
       <field name="CRC" type="uint16" />
     </tail>
+    <identifiers>
+      <identifier idref="id1" value="1" />
+      <identifier idref="id2" value="40" />
+    </identifiers>
   </packet>
   <packet name="triggered_telescope1_50GEN" description="CTA Triggered Sim Telescope 50 samples">
     <datafieldheader>
@@ -202,5 +210,9 @@
     <tail>
       <field name="CRC" type="uint16" />
     </tail>
+    <identifiers>
+      <identifier idref="id1" value="1" />
+      <identifier idref="id2" value="50" />
+    </identifiers>
   </packet>
 </stream>
