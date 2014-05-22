@@ -1,13 +1,13 @@
 <stream name="rta_fadc1" xmlns="http://iasfbo.inaf.it/telemetry">
   <header name="CTAHeaderGEN" description="Header CTA" idref="packetlength">
-    <field name="Version number" type="uint3" default="4" />
-    <field name="Type" type="uint1" default="0" />
-    <field name="DHFH" type="uint1" default="1" />
+    <field name="Version number" type="uint3" constvalue="4" />
+    <field name="Type" type="uint1" constvalue="0" />
+    <field name="DHFH" type="uint1" constvalue="1" />
     <field name="APID" type="uint11" />
-    <field name="SF" type="uint2" default="3" />
+    <field name="SF" type="uint2" constvalue="3" />
     <field name="Source Sequence Counter" type="uint14" />
     <field name="Packet Length" type="uint32" id="packetlength" />
-    <field name="CRC flag" type="uint2" default="3" />
+    <field name="CRC flag" type="uint2" constvalue="3" />
     <field name="Packet Type" type="uint6" id="id1" />
     <field name="Packet Subtype" type="uint8" id="id2" />
   </header>
