@@ -111,13 +111,13 @@ void RTATelem::CTACameraPedestal::setNumberSummingWindows(word pixelIndex, word 
     /// Get a pointer to the source data field
     SourceDataField* sdf = (SourceDataField*) _packet->getPacketSourceDataField();
     SDFBlock* pixel = (SDFBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
-    pixel->setNumberOfRealDataBlock(nsumWindows, RBLOCK_NSUM);
+    pixel->setNumberOfBlocks(nsumWindows, RBLOCK_NSUM);
 }
 
 word RTATelem::CTACameraPedestal::getNumberSummingWindows(word pixelIndex) {
     SourceDataField* sdf = (SourceDataField*) _packet->getPacketSourceDataField();
     SDFBlock* pixel = (SDFBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
-    return pixel->getNumberOfRealDataBlock();
+    return pixel->getNumberOfBlocks();
 }
 
 void RTATelem::CTACameraPedestal::setPedVarHigh(word pixelIndex, word sumWindIndex, float pedvarHigh) {

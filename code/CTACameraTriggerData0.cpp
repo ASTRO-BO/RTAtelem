@@ -35,7 +35,7 @@ word CTACameraTriggerData0::getNumberOfSamples(word pixelIndex) {
     /// Get a pointer to the source data field
     SourceDataField* sdf = (SourceDataField*) _packet->getPacketSourceDataField();
     SDFBlock* pixel = (SDFBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
-    return pixel->getNumberOfRealDataBlock();
+    return pixel->getNumberOfBlocks();
 }
 
 word CTACameraTriggerData0::getSampleValue(word pixelIndex, word sampleIndex) {

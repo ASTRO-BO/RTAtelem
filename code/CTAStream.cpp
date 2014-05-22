@@ -164,7 +164,8 @@ CTAPacket* CTAStream::getNewPacket(enum CTAPacketType type)
 
 void CTAStream::writePacket(CTAPacket* p)
 {
-	_ops->writePacket(p->getPacket());
+	
+	_ops->writePacket(p->getPacket()->encode());
 }
 
 void CTAStream::readPacketEnc()

@@ -79,7 +79,7 @@ void CTACameraTriggerData::setNumberOfSamples(word pixelIndex, word number) {
     /// Get a pointer to the source data field
     SourceDataField* sdf = (SourceDataField*) _packet->getPacketSourceDataField();
     SDFBlock* pixel = (SDFBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
-    pixel->setNumberOfRealDataBlock(number, RBLOCK_SAMPLE);
+    pixel->setNumberOfBlocks(number, RBLOCK_SAMPLE);
 }
 
 void CTACameraTriggerData::setSampleValue(word pixelIndex, word sampleIndex, word FADC) {

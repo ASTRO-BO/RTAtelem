@@ -30,13 +30,13 @@ PacketLib::ByteStreamPtr CTACameraTriggerData1::getInputPacketData() {
 void CTACameraTriggerData1::setNumberOfPixelsID(word number) {
     /// Get a pointer to the source data field
     SourceDataField* sdf = (SourceDataField*) _packet->getPacketSourceDataField();
-    sdf->setNumberOfRealDataBlock(number, RBLOCK_PIXELID);
+    sdf->setNumberOfBlocks(number, RBLOCK_PIXELID);
 }
 
 word CTACameraTriggerData1::getNumberOfPixelsID() {
     /// Get a pointer to the source data field
     SourceDataField* sdf = (SourceDataField*) _packet->getPacketSourceDataField();
-    return sdf->getNumberOfRealDataBlock(RBLOCK_PIXELID);
+    return sdf->getNumberOfBlocks(RBLOCK_PIXELID);
 }
 
 ByteStreamPtr CTACameraTriggerData1::getPixelData(word pixelIndex) {
@@ -77,7 +77,7 @@ word CTACameraTriggerData1::getNumberOfSamples(word pixelIndex) {
     /*
 	SourceDataField* sdf = (SourceDataField*) _packet->getPacketSourceDataField();
     SDFBlock* pixel = (SDFBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
-    word nsamples =  pixel->getNumberOfRealDataBlock();
+    word nsamples =  pixel->getNumberOfBlocks();
 	if(nsamples == 0)
 		nsamples = sdf->getFieldValue(6);
 	return nsamples;

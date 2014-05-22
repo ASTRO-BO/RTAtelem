@@ -9,13 +9,13 @@ RTATelem::CTACamera::CTACamera(Packet* packet)
 void RTATelem::CTACamera::setNumberOfPixels(word number) {
     /// Get a pointer to the source data field
     SourceDataField* sdf = (SourceDataField*) _packet->getPacketSourceDataField();
-    sdf->setNumberOfRealDataBlock(number, RBLOCK_PIXEL);
+    sdf->setNumberOfBlocks(number, RBLOCK_PIXEL);
 }
 
 word RTATelem::CTACamera::getNumberOfPixels() {
     /// Get a pointer to the source data field
     //SourceDataField* sdf = (SourceDataField*) _packet->getPacketSourceDataField();
-    //return sdf->getNumberOfRealDataBlock();
+    //return sdf->getNumberOfBlocks();
 	/// alternative solution (faster)
 	ByteStreamPtr fixedSdf = _packet->getBSSourceDataFieldsFixedPart();
 	word* part = (word*) fixedSdf->stream;

@@ -38,7 +38,7 @@ void CTAPacket::setPacket(PacketLib::Packet* packet)
 void CTAPacket::decode(bool checkPacketLength)
 {
 	if(_packet)
-		_packet->set(_packet->getBSPacket(), checkPacketLength);
+		_packet->decode(_packet->getBSPacket(), checkPacketLength);
 }
 
 void CTAPacket::printPacket()
