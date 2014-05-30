@@ -77,9 +77,6 @@ public:
     /// \param FADC The FADC values of the sample sampleIndex of the pixel pixelIndex
     void setSampleValueFixed(word pixelIndex, word sampleIndex, word FADC);
 	
-    /// It gets the number of pixel blocks 
-    //word setPixelBlocks(word pixelIndex);
-
 
     /// It sets the number of samples
     /// \param pixelIndex The index of the pixel (0..NumberOfPixels-1)
