@@ -65,6 +65,22 @@ public:
     /// It gets the pixel ID (identification number)
     word getPixelId(word pixelIndex);
 
+	/// It sets the number of pixel blocks 
+    /// \param pixelIndex The index of the pixel (0..NumberOfPixels-1)
+    /// \param pixelID The pixel unique ID
+    void setPixelBlocks(word numberOfCameraPixels);
+	
+
+	/// It sets the sample value for a fixed number of samples
+    /// \param pixelIndex The index of the pixel (0..NumberOfPixels-1)
+    /// \param sampleIndex The index of the sample (0..NumberOfSamples-1)
+    /// \param FADC The FADC values of the sample sampleIndex of the pixel pixelIndex
+    void setSampleValueFixed(word pixelIndex, word sampleIndex, word FADC);
+	
+    /// It gets the number of pixel blocks 
+    //word setPixelBlocks(word pixelIndex);
+
+
     /// It sets the number of samples
     /// \param pixelIndex The index of the pixel (0..NumberOfPixels-1)
     /// \param number The number of samples of the pixel pixelIndex

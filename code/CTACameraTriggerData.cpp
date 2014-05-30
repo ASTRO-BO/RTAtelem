@@ -91,6 +91,18 @@ void CTACameraTriggerData::setSampleValue(word pixelIndex, word sampleIndex, wor
     sample->setFieldValue(0, FADC);
 }
 
+void CTACameraTriggerData::setPixelBlocks(word numberOfCameraPixels) {
+    /// Get a pointer to the source data field
+    SourceDataField* sdf = (SourceDataField*) _packet->getPacketSourceDataField();
+    sdf->setNumberOfBlocks(numberOfCameraPixels);
+}
+
+void CTACameraTriggerData::setSampleValueFixed(word pixelIndex, word sampleIndex, word FADC) {
+    /// Get a pointer to the source data field
+    SourceDataField* sdf = (SourceDataField*) _packet->getPacketSourceDataField();
+    sdf->getBlock(pixelIndex)->setFieldValue(sampleIndex, FADC);
+}
+
 void CTACameraTriggerData::setPixelId(word pixelIndex, word pixelID) {
     /// Get a pointer to the source data field
     SourceDataField* sdf = (SourceDataField*) _packet->getPacketSourceDataField();
