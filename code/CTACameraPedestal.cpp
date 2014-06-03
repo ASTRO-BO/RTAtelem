@@ -32,7 +32,7 @@ RTATelem::CTACameraPedestal::CTACameraPedestal(Packet* packet)
 	: CTACamera(packet) {
 
 }
-
+/*
 void RTATelem::CTACameraPedestal::setPedestalRun(word pede) {
 	SourceDataField* sdf = (SourceDataField*) _packet->getPacketSourceDataField();
 	sdf->setFieldValue(0, pede);
@@ -157,3 +157,4 @@ float RTATelem::CTACameraPedestal::getPedVarLow(word pixelIndex, word sumWindInd
     SDFBlock* sumWindow = (SDFBlock*) pixel->getBlock(sumWindIndex, RBLOCK_NSUM);
     return sumWindow->getFieldValue_32f(2);
 }
+*/

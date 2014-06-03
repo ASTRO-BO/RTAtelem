@@ -19,8 +19,12 @@
 #ifndef _CTACAMERAPEDESTAL1_H
 #define _CTACAMERAPEDESTAL1_H
 #include "CTACamera.h"
+#include "CTACameraPedestal.h"
 
 namespace RTATelem {
+
+
+//#define RBLOCK_PIXELID 1
 
 /// Creating and writing a packet for each CTA telescope,
 /// containg the pedestal value for each telescope pixel
@@ -55,6 +59,21 @@ public:
 	/// It gets the pixel ID (identification number)
 //	word getPixelId(word pixelIndex);
 	
+	
+	/// It sets the number of pixels IDs
+	/// \param number The number of pixels IDs
+	void setNumberOfPixelsID(word number);
+
+	/// It gets the number of pixels IDs
+	word getNumberOfPixelsID();
+
+	/// It sets the number of summing windows
+	/// \param number The number of sum windows
+	void setNumberOfSummingWindows(word pixelIndex, word number);
+
+	/// It gets the number of pixels IDs
+	word getNumberOfSummingWindows(word pixelIndex);
+	
 	/// It sets the pedestal high value
 	/// \param pixelIndex The index of the pixel (0..NumberOfPixels-1)
 	/// \param PED_HIGH The pedestal high values of the pixel pixelIndex
@@ -88,7 +107,7 @@ public:
 	void setNumberSummingWindows(word pixelIndex, word nsumWindows);
 
 	/// It gets the number of summing windows
-	word getNumberSummingWindows(word pixelIndex);
+	word getNumberSummingWindows();
 
     /// It sets the pedvar high value
     /// \param pixelIndex The index of the pixel (0..NumberOfPixels-1)
@@ -99,15 +118,30 @@ public:
     /// It gets the pedvar High value
     float getPedVarHigh(word pixelIndex, word sumWindIndex);
 
-
     /// It sets the pedvar low value
     /// \param pixelIndex The index of the pixel (0..NumberOfPixels-1)
     /// \param sumWindIndex The index of the summing window (0..NumberOfSummingWindows-1)
     /// \param pedvarLow The pedvar Low values of the summing window sumWindIndex of the pixel pixelIndex
     void setPedVarLow(word pixelIndex, word sumWindIndex, float pedvarLow);
 
-    /// It gets the pedvar Low value
+    /// It gets the pedvar High value
     float getPedVarLow(word pixelIndex, word sumWindIndex);
+    
+    /// It sets the summing window
+    /// \param sumWindIndex The index of the summing window (0..NumberOfSummingWindows-1)
+    /// \param sumWind The summing window values of the summing window sumWindIndex 
+    void setSumWindows(word sumWindIndex, word sumWind);
+
+    /// It gets the summing window
+    word getSumWindows(word sumWindIndex);
+
+    /// It sets the time zero for each pixel
+    /// \param sumWindIndex The index of the summing window (0..NumberOfSummingWindows-1)
+    /// \param sumWind The summing window values of the summing window sumWindIndex 
+    void setTimeZero(word pixelIndex, float tzero);
+
+    /// It gets the summing window
+    float getTimeZero(word pixelIndex);
     
 };
 }
