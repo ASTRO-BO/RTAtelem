@@ -1,8 +1,19 @@
-2014-05-24 Andrea Zoli
+2014-07-25 Andrea Zoli <zoli@iasfbo.inaf.it>, Andrea Bulgarelli
+<bulgarelli@iasfbo.inaf.it>, Valentina Fioretti <fioretti@iasfbo.inaf.it>
+TAG v1.5.0
+	* changes for set/getFieldValue_TYPE().
+	* Add xml config files.
+	* Packet::encode in packetlib.
+	* CTACameraTriggerData fixed for handling fadc_all.xml.
+	* CTACameraTriggerData.h cleaned comments.
+	* Update CTACameraPedestal1.
+
+2014-05-24 Andrea Zoli <zoli@iasfbo.inaf.it>
 TAG v1.4.4
 	* Fix memory leak on CTAPacketHeader.
 
-2014-04-12 Andrea Bulgarelli, Andrea Zoli, Valentina Fioretti
+2014-04-12 Andrea Bulgarelli <bulgarelli@iasfbo.inaf.it>, Andrea Zoli
+<zoli@iasfbo.inaf.it>, Valentina Fioretti <fioretti@iasfbo.inaf.it>
 TAG v1.4.3
 	* Working version at 2 - 2.5 GB/s shown at the DATA meeting in Rome and at the Consortium Meeting in Munich
 	* Added *.o, version and prefix to .gitignore.
