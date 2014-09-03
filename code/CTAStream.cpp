@@ -106,6 +106,7 @@ CTAPacket* CTAStream::getNewPacket(enum CTAPacketType type)
 	switch(type)
 	{
 		case CTA_CAMERA_TRIGGERDATA_1:
+		case CTA_CAMERA_PEDESTAL_1:
 			id = 1;
 			break;
 		case CTA_CAMERA_TRIGGERDATA_1_30:

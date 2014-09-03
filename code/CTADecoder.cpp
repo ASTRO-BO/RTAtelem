@@ -65,8 +65,12 @@ enum CTAPacketType CTADecoder::getPacketType(ByteStreamPtr stream)
 	byte id = _ps.detPacketType(stream);
 	switch(id)
 	{
-		case 1: case 2: case 3:
+		case 1:
+			return CTA_CAMERA_TRIGGERDATA_1; // modificato da VF
+			return CTA_CAMERA_PEDESTAL_1;
+		case 2: case 3:
 			return CTA_CAMERA_TRIGGERDATA_1;
+
 		default:
 			std::cerr << "Warning on CTADecoder::getPacketType: ";
 			std::cerr << " unhandled id " << id << std::endl;

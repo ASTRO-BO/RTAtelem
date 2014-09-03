@@ -59,21 +59,22 @@ public:
 	/// It gets the pixel ID (identification number)
 //	word getPixelId(word pixelIndex);
 	
-	
+	/*
 	/// It sets the number of pixels IDs
 	/// \param number The number of pixels IDs
 	void setNumberOfPixelsID(word number);
 
 	/// It gets the number of pixels IDs
 	word getNumberOfPixelsID();
+*/
 
-	/// It sets the number of summing windows
-	/// \param number The number of sum windows
-	void setNumberOfSummingWindows(word pixelIndex, word number);
+	/// It gets the number of pixels
+	word getNumberOfCalibrationPixels();
 
-	/// It gets the number of pixels IDs
-	word getNumberOfSummingWindows(word pixelIndex);
-	
+	/// It sets the number of pixels
+	/// \param number The number of pixels
+	void setNumberOfCalibrationPixels(word number);
+
 	/// It sets the pedestal high value
 	/// \param pixelIndex The index of the pixel (0..NumberOfPixels-1)
 	/// \param PED_HIGH The pedestal high values of the pixel pixelIndex
@@ -107,7 +108,7 @@ public:
 	void setNumberSummingWindows(word pixelIndex, word nsumWindows);
 
 	/// It gets the number of summing windows
-	word getNumberSummingWindows();
+	word getNumberSummingWindows(word pixelIndex);
 
     /// It sets the pedvar high value
     /// \param pixelIndex The index of the pixel (0..NumberOfPixels-1)
