@@ -11,7 +11,7 @@
     <field name="Packet Type" type="uint6" id="id1" />
     <field name="Packet Subtype" type="uint8" id="id2" />
   </header>
-  <packet name="cal_pedestal1" description="CTA Calibration Pedestal and Pedvar">
+  <packet name="ped_telescope1" description="CTA Calibration Pedestal and Pedvar">
     <datafieldheader>
       <field name="LTtime" type="uint64" />
       <field name="ArrayID" type="uint16" />
