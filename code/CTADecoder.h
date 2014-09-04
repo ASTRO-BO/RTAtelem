@@ -23,7 +23,7 @@
 #include "CTACameraTriggerData1.h"
 #include "CTACameraPedestal.h"
 #include "CTACameraPedestal1.h"
-#include "CTACameraConv0.h"
+#include "CTACameraConv.h"
 #include "CTACameraConv1.h"
 
 namespace RTATelem
@@ -53,7 +53,7 @@ private:
 	CTACameraTriggerData1 _cameraTD1;
 	CTACameraPedestal _cameraP0;
 	CTACameraPedestal1 _cameraP1;
-	CTACameraConv0 _cameraC0;
+	CTACameraConv _cameraC0;
 	CTACameraConv1 _cameraC1;
 	CTAPacket _unknownPacket;
 };

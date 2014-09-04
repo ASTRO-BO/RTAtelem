@@ -22,14 +22,12 @@
 #include <packet/SDFBlock.h>
 #include <packet/OutputPacketStream.h>
 
-#define RBLOCK_TELESCOPE 0
-#define RBLOCK_PIXEL 0
 
 RTATelem::CTACameraConv::CTACameraConv(Packet* packet)
 	: CTACamera(packet) {
 
 }
-
+/*
 void RTATelem::CTACameraConv::setConversionRun(word conv) {
 	SourceDataField* sdf = (SourceDataField*) _packet->getPacketSourceDataField();
 	sdf->setFieldValue(0, conv);
@@ -102,3 +100,4 @@ ByteStreamPtr RTATelem::CTACameraConv::getPixelData(word pixelIndex) {
     SDFBlock* pixel = (SDFBlock*) sdf->getBlock(pixelIndex, RBLOCK_PIXEL);
     return pixel->getByteStream();
 }
+*/

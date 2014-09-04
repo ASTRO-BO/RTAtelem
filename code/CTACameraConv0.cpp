@@ -28,7 +28,7 @@
 
 RTATelem::CTACameraConv0::CTACameraConv0(Packet* packet)
 	: CTACameraConv(packet) {
-	 _type = CTA_CAMERA_CONV_0;
+	 _type = CTA_CAMERA_CONVERSION_0;
 }
 
 void RTATelem::CTACameraConv0::setConversionRun(word conv) {

@@ -17,7 +17,7 @@
 #include "CTACameraTriggerData1.h"
 #include "CTACameraPedestal.h"
 #include "CTACameraPedestal1.h"
-#include "CTACameraConv0.h"
+#include "CTACameraConv.h"
 #include "CTACameraConv1.h"
 #include <packet/InputFile.h>
 #include <packet/OutputFile.h>
@@ -107,6 +107,7 @@ CTAPacket* CTAStream::getNewPacket(enum CTAPacketType type)
 	{
 		case CTA_CAMERA_TRIGGERDATA_1:
 		case CTA_CAMERA_PEDESTAL_1:
+		case CTA_CAMERA_CONVERSION_1:
 			id = 1;
 			break;
 		case CTA_CAMERA_TRIGGERDATA_1_30:
@@ -149,10 +150,10 @@ CTAPacket* CTAStream::getNewPacket(enum CTAPacketType type)
 		case CTA_CAMERA_PEDESTAL_1:
 			packet = new CTACameraPedestal1(p);
 			break;
-		case CTA_CAMERA_CONV_0:
-			packet = new CTACameraConv0(p);
+		case CTA_CAMERA_CONVERSION_0:
+			packet = new CTACameraConv(p);
 			break;
-		case CTA_CAMERA_CONV_1:
+		case CTA_CAMERA_CONVERSION_1:
 			packet = new CTACameraConv1(p);
 			break;
 		case CTA_CAMERA_UNDEFINED:

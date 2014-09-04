@@ -51,7 +51,7 @@ CTAPacket& CTADecoder::getPacket(ByteStreamPtr stream)
 			packetRef = _cameraTD1;
 			break;
 		default:
-			std::cerr << "Warning on CTADecoder::getPacketType: ";
+			std::cerr << "Warning on CTADecoder::getPacket: ";
 			std::cerr << " unhandled id " << id << std::endl;
 	}
 
@@ -68,6 +68,7 @@ enum CTAPacketType CTADecoder::getPacketType(ByteStreamPtr stream)
 		case 1:
 			return CTA_CAMERA_TRIGGERDATA_1; // modificato da VF
 			return CTA_CAMERA_PEDESTAL_1;
+			return CTA_CAMERA_CONVERSION_1;
 		case 2: case 3:
 			return CTA_CAMERA_TRIGGERDATA_1;
 

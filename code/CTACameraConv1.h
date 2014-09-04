@@ -1,8 +1,10 @@
 /***************************************************************************
  CTACameraConv1.h  -  description
  -------------------
- copyright            : (C) 2014 Valentina Fioretti
- email                : fioretti@iasfbo.inaf.it
+ copyright            : (C) 2013 Andrea Bulgarelli
+                            2014 Valentina Fioretti
+ email                : bulgarelli@iasfbo.inaf.it
+                        fioretti@iasfbo.inaf.it
  ***************************************************************************/
 
 /***************************************************************************
@@ -17,17 +19,19 @@
 #ifndef _CTACAMERACONV1_H
 #define _CTACAMERACONV1_H
 #include "CTACamera.h"
+#include "CTACameraConv.h"
 
 namespace RTATelem {
 
+
+
 /// Creating and writing a packet for each CTA telescope,
-/// containg the pedestal value for each telescope pixel
-/// Use setChannel() to set the pedestal channel (e.g. high or low).
-/// \brief CTA pedestal packet class
-class CTACameraConv1 : public RTATelem::CTACameraConv {
+/// containing the conversion factor value for each telescope pixel
+/// \brief CTA conversion packet class
+class CTACameraConv1 : public CTACameraConv {
 
 public:
-    /// It wraps a PacketLib Packet.
+	/// Wraps PacketLib Packet.
 	CTACameraConv1(Packet* packet);
 
 	PacketLib::ByteStreamPtr getInputPacketData();
@@ -43,22 +47,21 @@ public:
 	word getConversionRun();
 
 	/// Get the conversion run.
-	void setConversionRun(word conv);
+	void setConversionRun(word conversionRun);
 	
-	/// It sets the pixel ID (identification number)
-	/// \param pixelIndex The index of the pixel (0..NumberOfPixels-1)
-	/// \param pixelID The pixel unique ID
-//	void setPixelId(word pixelIndex, word pixelID);
+	/// It gets the number of pixels
+	word getNumberOfCalibrationPixels();
 
-	/// It gets the pixel ID (identification number)
-//	word getPixelId(word pixelIndex);
-	
+	/// It sets the number of pixels
+	/// \param number The number of pixels
+	void setNumberOfCalibrationPixels(word number);
+
 	/// It sets the conversion high value
 	/// \param pixelIndex The index of the pixel (0..NumberOfPixels-1)
 	/// \param convHigh The conversion high values of the pixel pixelIndex
 	void setConversionHighValue(word pixelIndex, float convHigh);
 
-	/// It gets the pixel conversion high value
+	/// It gets the pixel pedestal high value
 	float getConversionHighValue(word pixelIndex);
 
 	/// It sets the conversion low value
@@ -68,20 +71,20 @@ public:
 
 	/// It gets the pixel conversion low value
 	float getConversionLowValue(word pixelIndex);
-	
+
     /// Get the data of a pixel as stream of byte. Example about how to use this stream:
-    /// ByteStreamPtr convVal = convtel->getPixelData(0);
-	/// cout << convVal->printStreamInHexadecimal() << endl;
-    /// cout << convVal ->size() << endl;
-	/// conv->swapWordForIntel();
-	/// word *c = (word*) convVal->stream;
+    /// ByteStreamPtr pedVal = pedtel->getPixelData(0);
+	/// cout << pedVal->printStreamInHexadecimal() << endl;
+    /// cout << pedVal ->size() << endl;
+	/// fadc->swapWordForIntel();
+	/// word *c = (word*) pedVal->stream;
 	/// cout << "pixel id " << c[0] << endl;
 	/// cout << "number of summing windows " << c[1] << endl;
 	/// cout << "value of first pedestal value " << c[2] << endl;
     /// \param The index of the pixel
     /// \return ByteStream of the pixel.
     ByteStreamPtr getPixelData(word pixelIndex);
-    
+
 };
 }
 

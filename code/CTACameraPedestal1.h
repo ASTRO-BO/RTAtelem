@@ -28,8 +28,6 @@ namespace RTATelem {
 
 /// Creating and writing a packet for each CTA telescope,
 /// containg the pedestal value for each telescope pixel
-/// Use setChannel() to set the pedestal channel (e.g. high or low).
-/// \brief CTA pedestal packet class
 class CTACameraPedestal1 : public CTACameraPedestal {
 
 public:
@@ -49,25 +47,8 @@ public:
 	word getPedestalRun();
 
 	/// Get the pedestal run.
-	void setPedestalRun(word pede);
+	void setPedestalRun(word pedestalRun);
 	
-	/// It sets the pixel ID (identification number)
-	/// \param pixelIndex The index of the pixel (0..NumberOfPixels-1)
-	/// \param pixelID The pixel unique ID
-//	void setPixelId(word pixelIndex, word pixelID);
-
-	/// It gets the pixel ID (identification number)
-//	word getPixelId(word pixelIndex);
-	
-	/*
-	/// It sets the number of pixels IDs
-	/// \param number The number of pixels IDs
-	void setNumberOfPixelsID(word number);
-
-	/// It gets the number of pixels IDs
-	word getNumberOfPixelsID();
-*/
-
 	/// It gets the number of pixels
 	word getNumberOfCalibrationPixels();
 
@@ -77,7 +58,7 @@ public:
 
 	/// It sets the pedestal high value
 	/// \param pixelIndex The index of the pixel (0..NumberOfPixels-1)
-	/// \param PED_HIGH The pedestal high values of the pixel pixelIndex
+	/// \param pedHigh The pedestal high values of the pixel pixelIndex
 	void setPedestalHighValue(word pixelIndex, float pedHigh);
 
 	/// It gets the pixel pedestal high value
@@ -85,7 +66,7 @@ public:
 
 	/// It sets the pedestal low value
 	/// \param pixelIndex The index of the pixel (0..NumberOfPixels-1)
-	/// \param PED_LOW The pedestal high values of the pixel pixelIndex
+	/// \param pedLow The pedestal high values of the pixel pixelIndex
 	void setPedestalLowValue(word pixelIndex, float pedLow);
 
 	/// It gets the pixel pedestal low value
