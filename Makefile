@@ -64,10 +64,10 @@ ICON_DIR = ui
 
 ####### 4) Compiler, tools and options
 
-CC       = g++
-CXX      = g++
+CC ?= gcc
+CXX ?= g++
 #Insert the optional parameter to the compiler. The CFLAGS could be changed externally by the user
-CFLAGS   = -m64 -O3
+CFLAGS ?= -O2
 #Set INCPATH to add the inclusion paths
 INCPATH = -I ./include -I $(CTARTA)/include -L$(CTARTA)/lib
 #Insert the implicit parameter to the compiler:
@@ -76,13 +76,13 @@ ifeq ($(SYSTEM), QNX)
 	ALL_CFLAGS += -Vgcc_ntox86_gpp -lang-c++
 endif
 #Use CPPFLAGS for the preprocessor
-CPPFLAGS =  -m64 
+CPPFLAGS ?=
 #Set LIBS for addition library
 LIBS = $(INCPATH) -lstdc++  -lpacket
 ifeq ($(SYSTEM), QNX)
 	LIBS += -lsocket
 endif
-LINK     = g++
+LINK ?= $(CXX)
 #for link
 LFLAGS = -shared -Wl,-soname,$(TARGET1) -Wl,-rpath,$(DESTDIR)
 AR       = ar cqs
@@ -131,7 +131,7 @@ $(shell  cut $(INCLUDE_DIR)/$(VER_FILE_NAME) -f 3 > version)
 ####### 9) Pattern rules
 
 %.o : %.cpp | makeobjdir
-	$(CC) $(CPPFLAGS) $(ALL_CFLAGS) -c $< -o $(OBJECTS_DIR)/$@
+	$(CXX) $(CPPFLAGS) $(ALL_CFLAGS) -c $< -o $(OBJECTS_DIR)/$@
 
 %.o : %.c | makeobjdir
 	$(CC) $(CPPFLAGS) $(ALL_CFLAGS) -c $< -o $(OBJECTS_DIR)/$@
@@ -154,7 +154,7 @@ lib:  staticlib
 	
 exe: $(OBJECTS)
 		test -d $(EXE_DESTDIR) || mkdir -p $(EXE_DESTDIR)
-		$(CC) $(CPPFLAGS) $(ALL_CFLAGS) -o $(EXE_DESTDIR)/$(EXE_NAME) $(OBJECTS_DIR)/*.o $(LIBS)
+		$(CXX) $(CPPFLAGS) $(ALL_CFLAGS) -o $(EXE_DESTDIR)/$(EXE_NAME) $(OBJECTS_DIR)/*.o $(LIBS)
 	
 staticlib: $(OBJECTS)
 		test -d $(LIB_DESTDIR) || mkdir -p $(LIB_DESTDIR)	

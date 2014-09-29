@@ -14,6 +14,7 @@ RTAtelem_DIR = $(HOME)/Projects/RTAtelem/code
 # Boost Python library keyword (for Macports Boost installation use -lboost_python-mt)
 BOOST_PYTHON_LIB = -lboost_python-mt
 
+CXX ?= g++
 
 # compile mesh classes
 
