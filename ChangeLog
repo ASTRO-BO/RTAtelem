@@ -1,3 +1,16 @@
+2014-12-16 Andrea Zoli <zoli@iasfbo.inaf.it>, Andrea Bulgarelli
+<bulgarelli@iasfbo.inaf.it>, Valentina Fioretti <fioretti@iasfbo.inaf.it>
+TAG v1.6.0
+* Remove CompressionAlgorithm and CompressionLevel fields from header.
+* Merge branch 'master' of github.com:ASTRO-BO/RTAtelem
+* Compression field added in header, no bigendian
+* Use conditional assignment for CXX, CFLAGS and LINK in Makefiles.
+* Using setFieldValue for float
+* Encoding/decoding the Conversion factor
+* Pedestal XML generates ped_telescope1.packet
+* Encoder/decoder for pedestal added
+* Fixed Makefile for parallel build.
+
 2014-07-25 Andrea Zoli <zoli@iasfbo.inaf.it>, Andrea Bulgarelli
 <bulgarelli@iasfbo.inaf.it>, Valentina Fioretti <fioretti@iasfbo.inaf.it>
 TAG v1.5.0
